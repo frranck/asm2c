@@ -1,0 +1,12 @@
+Packages/
+*.LST
+*.so
+*.o
+*.nomacro
+*.dylib
+*.EXE
+*.OBJ
+*.out
+.build/
+asm2c.xcodeproj/xcuserdata/
+asm2c.xcodeproj/project.xcworkspace/xcuserdata/
