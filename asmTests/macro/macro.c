@@ -2,12 +2,12 @@
 
 #include "macro.h"
 Memory m = {
-{ [0 ... 9 ] = 5 }, //varmac1
-{ [0 ... 9 ] = 6 }, //dummy1
+{5,5,5,5,5,5,5,5,5,5}, //varmac1
+{6,6,6,6,6,6,6,6,6,6}, //dummy1
 1, //last_voice
 2, //changement
-{ [0 ... 13 ] = 0 }, //fx
-{ [0 ... 4095 ] = 0 }, //dummy2
+{0}, //fx
+{0}, //dummy2
 0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
 0,0,0,0,0,0, //flags
 0, //exitCode

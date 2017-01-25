@@ -133,6 +133,7 @@ endif
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(fpic) -c -o $@ $<
+	$(CC) $(fpic) -S -c $<
 test: $(OBJECTS)
 	$(CC) $(fpic) $(OBJECTS) -o $(TARGET_NAME).out $(LDFLAGS)
 

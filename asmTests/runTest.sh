@@ -78,7 +78,6 @@ fi
     chmod a+x ${filename}/createLib.sh
     echo "rm *.o;make test TEST=1 DEBUG=1 OBJECTS=${filename}.o TARGET_NAME=${filename}" > ${filename}/createTest.sh
     chmod a+x ${filename}/createTest.sh
-
     echo running ${filename}/${filename}.out
 
     if [ $2 == "silent" ]
@@ -93,6 +92,7 @@ fi
     then
         cat /tmp/test.$$
         rm -f /tmp/test.$$
+        #rm -f ./${filename}.out
         printError "Error running test on $filename"
         if [ $2 == "silent" ]
         then
@@ -101,6 +101,7 @@ fi
         return
     fi
     rm -f /tmp/test.$$
+# rm -f ./${filename}/${filename}.out
     printOk "Test $filename OK"
     if [ $2 == "silent" ]
     then
@@ -109,7 +110,9 @@ fi
 }
 
 createSwiftScript
+#./createRunTestBat.ksh $1
 
+#if [ $? -ne 0 ]
 if [ $# -ne 1 ]
 then
     exitOnError=0

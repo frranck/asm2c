@@ -4,8 +4,8 @@
 Memory m = {
 0, //load_handle
 {102,105,108,101,46,116,120,116,0}, //filename
-{ [0 ... 63999 ] = 0 }, //buffer
-{ [0 ... 4095 ] = 0 }, //dummy1
+{0}, //buffer
+{0}, //dummy1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
 0,0,0,0,0,0, //flags
 0, //exitCode

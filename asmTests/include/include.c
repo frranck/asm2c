@@ -2,7 +2,7 @@
 
 #include "include.h"
 Memory m = {
-{ [0 ... 4095 ] = 0 }, //dummy1
+{0}, //dummy1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
 0,0,0,0,0,0, //flags
 0, //exitCode

@@ -101,15 +101,18 @@ public struct DataPrimaryNode: ExprNode {
         if nodes.count==1 {
             return nodes.map({"\($0)"}).joined(separator:",")+", //\(name)\n";
         } else {
-            var allTheSame = true
+            var allTheSameAndZero = true
             _ = nodes.reduce("") { prev, last in
                 if (prev != "\(last)" && prev != "") {
-                    allTheSame = false
+                    allTheSameAndZero = false
                 }
+		if ( "\(last)" != "0" ) {
+	            allTheSameAndZero = false			
+	        }
                 return "\(last)"
             };
-            if allTheSame, let first = nodes.first {
-                return "{ [0 ... \(nodes.count-1) ] = \(first) }, //\(name)\n"
+            if allTheSameAndZero {
+                return "{0}, //\(name)\n"
             }
             return "{"+nodes.map({"\($0)"}).joined(separator:",")+"}, //\(name)\n";
         }

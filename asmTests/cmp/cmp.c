@@ -5,7 +5,7 @@ Memory m = {
 1, //var1
 2, //var2
 3, //var3
-{ [0 ... 4095 ] = 0 }, //dummy1
+{0}, //dummy1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
 0,0,0,0,0,0, //flags
 0, //exitCode

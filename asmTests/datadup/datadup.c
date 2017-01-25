@@ -4,11 +4,11 @@
 
 #include "datadup.h"
 Memory m = {
-{ [0 ... 9 ] = 0 }, //var0
-{ [0 ... 3 ] = 5 }, //var
-{ [0 ... 4 ] = 0 }, //var2
+{0}, //var0
+{5,5,5,5}, //var
+{0}, //var2
 {0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3}, //var3
-{ [0 ... 4095 ] = 0 }, //dummy1
+{0}, //dummy1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
 0,0,0,0,0,0, //flags
 0, //exitCode
