@@ -1,1 +1,1 @@
-rm *.o;make test TEST=1 DEBUG=1 OBJECTS=rol.o TARGET_NAME=rol
+rm *.o;make test INCLUDEMAIN=1 DEBUG=1 OBJECTS=rol.o TARGET_NAME=rol

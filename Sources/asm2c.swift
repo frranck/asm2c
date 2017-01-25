@@ -125,7 +125,7 @@ class asm2c {
                                          "return (m.executionFinished == 0);",
                                          "}",
                                          asmC,
-                                         "#ifdef TEST",
+                                         "#ifdef INCLUDEMAIN",
                                          "int main() {",
                                          "stackDump();while (program()) { }",
                                          "return m.exitCode;",

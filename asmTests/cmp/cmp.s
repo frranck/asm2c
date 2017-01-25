@@ -1796,35 +1796,6 @@ LBB6_5:
 	retq
 	.cfi_endproc
 
-	.globl	_main
-	.align	4, 0x90
-_main:                                  ## @main
-	.cfi_startproc
-## BB#0:
-	pushq	%rbp
-Ltmp21:
-	.cfi_def_cfa_offset 16
-Ltmp22:
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-Ltmp23:
-	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movl	$0, -4(%rbp)
-	callq	_stackDump
-LBB7_1:                                 ## =>This Inner Loop Header: Depth=1
-	callq	_program
-	cmpl	$0, %eax
-	je	LBB7_3
-## BB#2:                                ##   in Loop: Header=BB7_1 Depth=1
-	jmp	LBB7_1
-LBB7_3:
-	movzbl	_m+4153(%rip), %eax
-	addq	$16, %rsp
-	popq	%rbp
-	retq
-	.cfi_endproc
-
 	.section	__DATA,__data
 	.globl	_m                      ## @m
 _m:

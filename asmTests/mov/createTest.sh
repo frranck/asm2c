@@ -1,1 +1,1 @@
-rm *.o;make test TEST=1 DEBUG=1 OBJECTS=mov.o TARGET_NAME=mov
+rm *.o;make test INCLUDEMAIN=1 DEBUG=1 OBJECTS=mov.o TARGET_NAME=mov

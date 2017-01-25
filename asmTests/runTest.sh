@@ -65,7 +65,7 @@ runTest() {
     echo "compiling ${filename}.c"
     cp -f ../Resources/Makefile ${filename}/
     cp -f ../Resources/link.T ${filename}/
-    (cd ${filename};make test DEBUG=1 OBJECTS=${filename}.o TARGET_NAME=${filename})
+    (cd ${filename};make test DEBUG=1 INCLUDEMAIN=1 OBJECTS=${filename}.o TARGET_NAME=${filename})
 
 if [ $? -ne 0 ]
 then
@@ -74,9 +74,8 @@ return
 fi
 
     echo "rm *.o;make OBJECTS=${filename}.o TARGET_NAME=${filename}" > ${filename}/createLib.sh
-    echo "echo retroarch -L ./${filename}_libretro.so" >> ${filename}/createLib.sh
     chmod a+x ${filename}/createLib.sh
-    echo "rm *.o;make test TEST=1 DEBUG=1 OBJECTS=${filename}.o TARGET_NAME=${filename}" > ${filename}/createTest.sh
+    echo "rm *.o;make test INCLUDEMAIN=1 DEBUG=1 OBJECTS=${filename}.o TARGET_NAME=${filename}" > ${filename}/createTest.sh
     chmod a+x ${filename}/createTest.sh
     echo running ${filename}/${filename}.out
 

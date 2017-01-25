@@ -584,7 +584,7 @@ void asm2C_INT(int a) {
     printf("Error DOSInt 0x%x ah:0x%x al:0x%x: not supported.\n",a,ah,al);
 }
 
-#ifdef TEST
+#ifdef INCLUDEMAIN
 int main() {
 stackDump();while (program()) { }
 return m.exitCode;

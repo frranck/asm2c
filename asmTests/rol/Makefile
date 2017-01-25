@@ -111,6 +111,10 @@ else
    CFLAGS += -O2
 endif
 
+ifeq ($(INCLUDEMAIN), 1)
+CFLAGS += -DINCLUDEMAIN
+endif
+
 OBJECTS := libretro-test.o
 CFLAGS += -I../../libretro-common/include -Wall -pedantic -Wno-gnu-designator -Wno-unused-label $(fpic)
 
