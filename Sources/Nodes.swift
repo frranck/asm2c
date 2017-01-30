@@ -188,7 +188,7 @@ public struct quoteNumberNode: ExprNode {
     public let valueBig: Int
     public var description: String {
         if valueSmall != valueBig {
-            return "(is_little_endian()?\(valueSmall):\(valueBig))"
+            return "(m.isLittle?\(valueSmall):\(valueBig))"
         } else {
             return "\(valueSmall)"
         }

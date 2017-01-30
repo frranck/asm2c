@@ -11,7 +11,7 @@ assume  cs:_TEXT,ds:_DATA
 start: ;IGNORE
 
 mov edx,0
-mov ecx,0
+mov ecx,2
 lea edi,buffer
 mov ebx,5
 
