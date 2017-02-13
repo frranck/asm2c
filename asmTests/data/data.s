@@ -17,12 +17,12 @@ Ltmp2:
 	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
 	movq	(%rax), %rax
 	movq	%rax, -8(%rbp)
-	testb	$1, _m+4232(%rip)
+	testb	$1, _m+50(%rip)
 	je	LBB0_2
 ## BB#1:
-	jmp	LBB0_39
+	jmp	LBB0_48
 LBB0_2:
-	testb	$1, _m+4231(%rip)
+	testb	$1, _m+49(%rip)
 	je	LBB0_4
 ## BB#3:
 	xorl	%esi, %esi
@@ -30,14 +30,14 @@ LBB0_2:
 	movl	$148, %ecx
 	movl	%ecx, %edx
 	leaq	_m(%rip), %rdi
-	addq	$5006, %rdi             ## imm = 0x138E
-	movb	$0, _m+4231(%rip)
-	movslq	_m+5002(%rip), %r8
+	addq	$5522, %rdi             ## imm = 0x1592
+	movb	$0, _m+49(%rip)
+	movslq	_m+5518(%rip), %r8
 	subq	$148, %r8
 	movl	%r8d, %ecx
-	movl	%ecx, _m+5002(%rip)
+	movl	%ecx, _m+5518(%rip)
 	movq	%rax, %r8
-	movslq	_m+5002(%rip), %r9
+	movslq	_m+5518(%rip), %r9
 	shlq	$2, %r9
 	addq	%r9, %rdi
 	movq	%rdi, -192(%rbp)        ## 8-byte Spill
@@ -52,443 +52,398 @@ LBB0_2:
 	callq	_longjmp
 LBB0_4:
 	leaq	-160(%rbp), %rdi
-	movl	$0, _m+4186(%rip)
-	movl	$85, _m+4182(%rip)
-	movl	_m+4182(%rip), %eax
-	subl	_m+4186(%rip), %eax
-	movl	%eax, _m+4182(%rip)
-	cmpl	$0, _m+4182(%rip)
+	movl	$52, _m+4(%rip)
+	movl	$137, _m(%rip)
+	movl	_m(%rip), %eax
+	subl	_m+4(%rip), %eax
+	movl	%eax, _m(%rip)
+	cmpl	$0, _m(%rip)
 	sete	%cl
 	andb	$1, %cl
-	movb	%cl, _m+4227(%rip)
-	movl	_m+4186(%rip), %eax
-	cmpl	_m+4182(%rip), %eax
+	movb	%cl, _m+45(%rip)
+	movl	_m+4(%rip), %eax
+	cmpl	_m(%rip), %eax
 	setb	%cl
 	andb	$1, %cl
-	movb	%cl, _m+4226(%rip)
-	movl	_m+4182(%rip), %eax
+	movb	%cl, _m+44(%rip)
+	movl	_m(%rip), %eax
 	shrl	$31, %eax
 	cmpl	$0, %eax
 	setne	%cl
 	andb	$1, %cl
-	movb	%cl, _m+4229(%rip)
-	movl	_m+4182(%rip), %eax
+	movb	%cl, _m+47(%rip)
+	movl	_m(%rip), %eax
 	addl	$1, %eax
-	movl	%eax, _m+4182(%rip)
-	cmpl	$0, _m+4182(%rip)
+	movl	%eax, _m(%rip)
+	cmpl	$0, _m(%rip)
 	sete	%cl
 	andb	$1, %cl
-	movb	%cl, _m+4227(%rip)
+	movb	%cl, _m+45(%rip)
 	callq	_setjmp
 	cmpl	$0, %eax
-	jne	LBB0_6
+	jne	LBB0_9
 ## BB#5:
 	movl	$148, %eax
 	movl	%eax, %edx
 	movq	$-1, %rcx
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
-	addq	$5006, %rdi             ## imm = 0x138E
-	movslq	_m+5002(%rip), %r8
+	addq	$5522, %rdi             ## imm = 0x1592
+	movslq	_m+5518(%rip), %r8
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+5002(%rip), %rcx
+	movslq	_m+5518(%rip), %rcx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
-	movl	%r9d, _m+5002(%rip)
+	movl	%r9d, _m+5518(%rip)
+	movslq	_m+5518(%rip), %rcx
+	cmpq	$4096, %rcx             ## imm = 0x1000
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
+	cmpq	$0, %rcx
 	movq	%rax, -216(%rbp)        ## 8-byte Spill
-	jmp	LBB0_27
-LBB0_6:
+	je	LBB0_7
+## BB#6:
+	leaq	L___func__.program(%rip), %rdi
+	leaq	L_.str(%rip), %rsi
+	movl	$59, %edx
+	leaq	L_.str.1(%rip), %rcx
+	callq	___assert_rtn
+LBB0_7:
+	jmp	LBB0_8
+LBB0_8:
+	jmp	LBB0_33
+LBB0_9:
 	leaq	_m(%rip), %rax
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movzbl	85(%rax,%rdx), %ecx
+	movzbl	137(%rax,%rdx), %ecx
 	subl	$100, %ecx
 	cmpl	$0, %ecx
 	sete	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%sil, _m+45(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movzbl	85(%rax,%rdx), %ecx
+	movzbl	137(%rax,%rdx), %ecx
 	cmpl	$100, %ecx
 	setl	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4226(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%sil, _m+44(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movzbl	85(%rax,%rdx), %ecx
+	movzbl	137(%rax,%rdx), %ecx
 	subl	$100, %ecx
 	sarl	$7, %ecx
 	cmpl	$0, %ecx
 	setne	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4229(%rip)
-	movl	$-13, _m+4182(%rip)
-	movl	_m+4182(%rip), %ecx
+	movb	%sil, _m+47(%rip)
+	movl	$-13, _m(%rip)
+	movl	_m(%rip), %ecx
 	subl	$-13, %ecx
 	cmpl	$0, %ecx
 	sete	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	cmpl	$-13, _m+4182(%rip)
+	movb	%sil, _m+45(%rip)
+	cmpl	$-13, _m(%rip)
 	setb	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4226(%rip)
-	movl	_m+4182(%rip), %ecx
+	movb	%sil, _m+44(%rip)
+	movl	_m(%rip), %ecx
 	subl	$-13, %ecx
 	shrl	$31, %ecx
 	cmpl	$0, %ecx
 	setne	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_8
-## BB#7:
-	jmp	LBB0_21
-LBB0_8:
+	movb	%sil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_11
+## BB#10:
+	jmp	LBB0_24
+LBB0_11:
 	leaq	_m(%rip), %rax
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movl	4(%rax,%rdx), %ecx
+	movl	56(%rax,%rdx), %ecx
 	subl	$-13, %ecx
 	cmpl	$0, %ecx
 	sete	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%sil, _m+45(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	cmpl	$-13, 4(%rax,%rdx)
+	cmpl	$-13, 56(%rax,%rdx)
 	setb	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4226(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%sil, _m+44(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movl	4(%rax,%rdx), %ecx
+	movl	56(%rax,%rdx), %ecx
 	subl	$-13, %ecx
 	shrl	$31, %ecx
 	cmpl	$0, %ecx
 	setne	%sil
 	andb	$1, %sil
-	movb	%sil, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_10
-## BB#9:
-	jmp	LBB0_21
-LBB0_10:
+	movb	%sil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_13
+## BB#12:
+	jmp	LBB0_24
+LBB0_13:
 	leaq	_m(%rip), %rax
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movl	4(%rax,%rdx), %ecx
+	movl	56(%rax,%rdx), %ecx
 	addl	$1, %ecx
-	movzwl	_m+4216(%rip), %esi
+	movzwl	_m+34(%rip), %esi
 	movl	%esi, %edx
-	movl	21394(%rax,%rdx,4), %esi
+	movl	5006(%rax,%rdx,4), %esi
 	movl	%esi, %edx
-	movl	%ecx, 4(%rax,%rdx)
-	movzwl	_m+4216(%rip), %ecx
+	movl	%ecx, 56(%rax,%rdx)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	cmpl	$0, 4(%rax,%rdx)
+	cmpl	$0, 56(%rax,%rdx)
 	sete	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4227(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%dil, _m+45(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movl	4(%rax,%rdx), %ecx
+	movl	56(%rax,%rdx), %ecx
 	subl	$-12, %ecx
 	cmpl	$0, %ecx
 	sete	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4227(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%dil, _m+45(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	cmpl	$-12, 4(%rax,%rdx)
+	cmpl	$-12, 56(%rax,%rdx)
 	setb	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4226(%rip)
-	movzwl	_m+4216(%rip), %ecx
+	movb	%dil, _m+44(%rip)
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
-	movl	4(%rax,%rdx), %ecx
+	movl	56(%rax,%rdx), %ecx
 	subl	$-12, %ecx
 	shrl	$31, %ecx
 	cmpl	$0, %ecx
 	setne	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_12
-## BB#11:
-	jmp	LBB0_21
-LBB0_12:
+	movb	%dil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_15
+## BB#14:
+	jmp	LBB0_24
+LBB0_15:
 	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movzwl	_m+4216(%rip), %esi
-	movl	%esi, %edi
-	movl	21394(%rax,%rdi,4), %esi
-	movl	%esi, %edi
-	movb	1(%rax,%rdi), %r8b
-	movb	_m+4230(%rip), %r9b
-	testb	$1, %r9b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movb	%r8b, 4194(%rax,%rdi)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzbl	4194(%rax,%rdi), %esi
-	subl	$2, %esi
-	cmpl	$0, %esi
+	movzwl	_m+34(%rip), %ecx
+	movl	%ecx, %edx
+	movl	5006(%rax,%rdx,4), %ecx
+	movl	%ecx, %edx
+	movb	53(%rax,%rdx), %sil
+	movb	%sil, _m+12(%rip)
+	movzbl	_m+12(%rip), %ecx
+	subl	$2, %ecx
+	cmpl	$0, %ecx
+	sete	%sil
+	andb	$1, %sil
+	movb	%sil, _m+45(%rip)
+	movzbl	_m+12(%rip), %ecx
+	cmpl	$2, %ecx
+	setl	%sil
+	andb	$1, %sil
+	movb	%sil, _m+44(%rip)
+	movzbl	_m+12(%rip), %ecx
+	subl	$2, %ecx
+	sarl	$7, %ecx
+	cmpl	$0, %ecx
+	setne	%sil
+	andb	$1, %sil
+	movb	%sil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_17
+## BB#16:
+	jmp	LBB0_24
+LBB0_17:
+	leaq	_m(%rip), %rax
+	movl	$53, _m+20(%rip)
+	movl	$54, _m+16(%rip)
+	movl	_m+20(%rip), %ecx
+	movl	%ecx, %edx
+	movq	%rax, %rsi
+	addq	%rdx, %rsi
+	movzwl	_m+34(%rip), %ecx
+	movl	%ecx, %edx
+	movl	5006(%rax,%rdx,4), %ecx
+	movl	%ecx, %eax
+	movb	(%rsi,%rax), %dil
+	movb	%dil, _m+12(%rip)
+	movzbl	_m+12(%rip), %ecx
+	subl	$2, %ecx
+	cmpl	$0, %ecx
+	sete	%dil
+	andb	$1, %dil
+	movb	%dil, _m+45(%rip)
+	movzbl	_m+12(%rip), %ecx
+	cmpl	$2, %ecx
+	setl	%dil
+	andb	$1, %dil
+	movb	%dil, _m+44(%rip)
+	movzbl	_m+12(%rip), %ecx
+	subl	$2, %ecx
+	sarl	$7, %ecx
+	cmpl	$0, %ecx
+	setne	%dil
+	andb	$1, %dil
+	movb	%dil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_19
+## BB#18:
+	jmp	LBB0_24
+LBB0_19:
+	leaq	_m(%rip), %rax
+	movl	$53, _m+20(%rip)
+	movl	_m+20(%rip), %ecx
+	addl	$1, %ecx
+	movl	%ecx, %ecx
+	movl	%ecx, %edx
+	movq	%rax, %rsi
+	addq	%rdx, %rsi
+	movzwl	_m+34(%rip), %ecx
+	movl	%ecx, %edx
+	movl	5006(%rax,%rdx,4), %ecx
+	movl	%ecx, %eax
+	movw	(%rsi,%rax), %di
+	movw	%di, _m+12(%rip)
+	movzwl	_m+12(%rip), %ecx
+	subl	$11, %ecx
+	cmpl	$0, %ecx
 	sete	%r8b
 	andb	$1, %r8b
-	movb	%r8b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzbl	4194(%rax,%rdi), %esi
-	cmpl	$2, %esi
+	movb	%r8b, _m+45(%rip)
+	movzwl	_m+12(%rip), %ecx
+	cmpl	$11, %ecx
 	setl	%r8b
 	andb	$1, %r8b
-	movb	%r8b, _m+4226(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movzbl	4194(%rax,%rdi), %ecx
-	subl	$2, %ecx
-	sarl	$7, %ecx
-	cmpl	$0, %ecx
-	setne	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_14
-## BB#13:
-	jmp	LBB0_21
-LBB0_14:
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movl	$1, _m+4202(%rip)
-	movl	$2, _m+4198(%rip)
-	movl	_m+4202(%rip), %esi
-	movl	%esi, %edi
-	movq	%rax, %r8
-	addq	%rdi, %r8
-	movzwl	_m+4216(%rip), %esi
-	movl	%esi, %edi
-	movl	21394(%rax,%rdi,4), %esi
-	movl	%esi, %edi
-	movb	(%r8,%rdi), %r9b
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movb	%r9b, 4194(%rax,%rdi)
-	movb	_m+4230(%rip), %r9b
-	testb	$1, %r9b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzbl	4194(%rax,%rdi), %esi
-	subl	$2, %esi
-	cmpl	$0, %esi
-	sete	%r9b
-	andb	$1, %r9b
-	movb	%r9b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r9b
-	testb	$1, %r9b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzbl	4194(%rax,%rdi), %esi
-	cmpl	$2, %esi
-	setl	%r9b
-	andb	$1, %r9b
-	movb	%r9b, _m+4226(%rip)
-	movb	_m+4230(%rip), %r9b
-	testb	$1, %r9b
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movzbl	4194(%rax,%rdi), %ecx
-	subl	$2, %ecx
-	sarl	$7, %ecx
-	cmpl	$0, %ecx
-	setne	%r9b
-	andb	$1, %r9b
-	movb	%r9b, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_16
-## BB#15:
-	jmp	LBB0_21
-LBB0_16:
-	leaq	_m(%rip), %rax
-	movl	$2, %ecx
-	xorl	%edx, %edx
-	movl	$1, _m+4202(%rip)
-	movl	_m+4202(%rip), %esi
-	addl	$1, %esi
-	movl	%esi, %esi
-	movl	%esi, %edi
-	movq	%rax, %r8
-	addq	%rdi, %r8
-	movzwl	_m+4216(%rip), %esi
-	movl	%esi, %edi
-	movl	21394(%rax,%rdi,4), %esi
-	movl	%esi, %edi
-	movw	(%r8,%rdi), %r9w
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movw	%r9w, 4194(%rax,%rdi)
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzwl	4194(%rax,%rdi), %esi
-	subl	$11, %esi
-	cmpl	$0, %esi
-	sete	%r10b
-	andb	$1, %r10b
-	movb	%r10b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %rdi
-	movzwl	4194(%rax,%rdi), %esi
-	cmpl	$11, %esi
-	setl	%r10b
-	andb	$1, %r10b
-	movb	%r10b, _m+4226(%rip)
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movzwl	4194(%rax,%rdi), %ecx
+	movb	%r8b, _m+44(%rip)
+	movzwl	_m+12(%rip), %ecx
 	subl	$11, %ecx
 	sarl	$15, %ecx
 	cmpl	$0, %ecx
-	setne	%r10b
-	andb	$1, %r10b
-	movb	%r10b, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_18
-## BB#17:
-	jmp	LBB0_21
-LBB0_18:
+	setne	%r8b
+	andb	$1, %r8b
+	movb	%r8b, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_21
+## BB#20:
+	jmp	LBB0_24
+LBB0_21:
 	leaq	_m(%rip), %rax
-	movl	_m+4202(%rip), %ecx
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
 	movzbl	(%rsi,%rdx), %ecx
 	addl	$1, %ecx
 	movb	%cl, %dil
-	movl	_m+4202(%rip), %ecx
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
 	movb	%dil, (%rsi,%rdx)
-	movl	_m+4202(%rip), %ecx
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
 	movzbl	(%rsi,%rdx), %ecx
 	cmpl	$0, %ecx
 	sete	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4227(%rip)
-	movl	_m+4202(%rip), %ecx
+	movb	%dil, _m+45(%rip)
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
 	movzbl	(%rsi,%rdx), %ecx
 	subl	$132, %ecx
 	cmpl	$0, %ecx
 	sete	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4227(%rip)
-	movl	_m+4202(%rip), %ecx
+	movb	%dil, _m+45(%rip)
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %edx
 	movzbl	(%rsi,%rdx), %ecx
 	cmpl	$132, %ecx
 	setl	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4226(%rip)
-	movl	_m+4202(%rip), %ecx
+	movb	%dil, _m+44(%rip)
+	movl	_m+20(%rip), %ecx
 	addl	$7, %ecx
 	movl	%ecx, %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %eax
 	movzbl	(%rsi,%rax), %ecx
 	subl	$132, %ecx
@@ -496,372 +451,253 @@ LBB0_18:
 	cmpl	$0, %ecx
 	setne	%dil
 	andb	$1, %dil
-	movb	%dil, _m+4229(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_20
-## BB#19:
-	jmp	LBB0_21
-LBB0_20:
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movb	$0, 4182(%rax,%rdi)
-	jmp	LBB0_22
-LBB0_21:
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movb	$1, 4182(%rax,%rdi)
-LBB0_22:
-	movl	$33, %edi
-	leaq	_m(%rip), %rax
-	movl	$2, %ecx
-	movl	$1, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r8
-	movb	$76, 4182(%rax,%r8)
-	callq	_asm2C_INT
-	testb	$1, _m+4231(%rip)
-	je	LBB0_26
-## BB#23:
-	leaq	-160(%rbp), %rdi
-	callq	_setjmp
-	cmpl	$0, %eax
-	jne	LBB0_25
-## BB#24:
-	movl	$148, %eax
-	movl	%eax, %edx
-	movq	$-1, %rcx
-	leaq	-160(%rbp), %rsi
-	leaq	_m(%rip), %rdi
-	addq	$5006, %rdi             ## imm = 0x138E
-	movslq	_m+5002(%rip), %r8
-	shlq	$2, %r8
-	addq	%r8, %rdi
-	callq	___memcpy_chk
-	movslq	_m+5002(%rip), %rcx
-	addq	$148, %rcx
-	movl	%ecx, %r9d
-	movl	%r9d, _m+5002(%rip)
-	movq	%rax, -224(%rbp)        ## 8-byte Spill
-	jmp	LBB0_39
+	movb	%dil, _m+47(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_23
+## BB#22:
+	jmp	LBB0_24
+LBB0_23:
+	movb	$0, _m(%rip)
+	jmp	LBB0_25
+LBB0_24:
+	movb	$1, _m(%rip)
 LBB0_25:
-	jmp	LBB0_26
-LBB0_26:
-	jmp	LBB0_27
-LBB0_27:
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movl	$70, _m+4202(%rip)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %rdi
-	movb	$8, 4190(%rax,%rdi)
-LBB0_28:                                ## =>This Inner Loop Header: Depth=1
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movl	_m+4182(%rip), %esi
-	shll	$4, %esi
-	movl	_m+4182(%rip), %edi
-	shrl	$28, %edi
-	orl	%edi, %esi
-	movl	%esi, _m+4182(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movb	4182(%rax,%r9), %r8b
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movb	%r8b, 4186(%rax,%r9)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	andl	$15, %esi
-	movb	%sil, %r8b
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movb	%r8b, 4186(%rax,%r9)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	cmpl	$0, %esi
-	sete	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	sarl	$7, %esi
-	cmpl	$0, %esi
-	setne	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4229(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	addl	$48, %esi
-	movb	%sil, %r8b
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movb	%r8b, 4186(%rax,%r9)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	cmpl	$0, %esi
-	sete	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	cmpl	$48, %esi
-	setl	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4226(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	sarl	$7, %esi
-	cmpl	$0, %esi
-	setne	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4229(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	subl	$57, %esi
-	cmpl	$0, %esi
-	sete	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4227(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	movl	%ecx, %esi
-	cmovnel	%edx, %esi
-	movslq	%esi, %r9
-	movzbl	4186(%rax,%r9), %esi
-	cmpl	$57, %esi
-	setl	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4226(%rip)
-	movb	_m+4230(%rip), %r8b
-	testb	$1, %r8b
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r9
-	movzbl	4186(%rax,%r9), %ecx
-	subl	$57, %ecx
-	sarl	$7, %ecx
-	cmpl	$0, %ecx
-	setne	%r8b
-	andb	$1, %r8b
-	movb	%r8b, _m+4229(%rip)
-	testb	$1, _m+4226(%rip)
-	jne	LBB0_30
-## BB#29:                               ##   in Loop: Header=BB0_28 Depth=1
-	testb	$1, _m+4227(%rip)
-	je	LBB0_31
-LBB0_30:                                ##   in Loop: Header=BB0_28 Depth=1
-	jmp	LBB0_32
-LBB0_31:                                ##   in Loop: Header=BB0_28 Depth=1
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movzbl	4186(%rax,%r8), %edi
-	addl	$7, %edi
-	movb	%dil, %sil
-	movb	_m+4230(%rip), %r9b
-	testb	$1, %r9b
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movb	%sil, 4186(%rax,%r8)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movzbl	4186(%rax,%r8), %edi
-	cmpl	$0, %edi
-	sete	%sil
-	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movzbl	4186(%rax,%r8), %edi
-	cmpl	$7, %edi
-	setl	%sil
-	andb	$1, %sil
-	movb	%sil, _m+4226(%rip)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r8
-	movzbl	4186(%rax,%r8), %ecx
-	sarl	$7, %ecx
-	cmpl	$0, %ecx
-	setne	%sil
-	andb	$1, %sil
-	movb	%sil, _m+4229(%rip)
-LBB0_32:                                ##   in Loop: Header=BB0_28 Depth=1
-	leaq	_m(%rip), %rax
-	movl	$3, %ecx
-	xorl	%edx, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movb	4186(%rax,%r8), %sil
-	movl	_m+4202(%rip), %edi
-	movl	%edi, %r8d
-	movq	%rax, %r9
-	addq	%r8, %r9
-	movzwl	_m+4216(%rip), %edi
-	movl	%edi, %r8d
-	movl	21394(%rax,%r8,4), %edi
-	movl	%edi, %r8d
-	movb	%sil, (%r9,%r8)
-	movl	_m+4202(%rip), %edi
-	addl	$1, %edi
-	movl	%edi, _m+4202(%rip)
-	cmpl	$0, _m+4202(%rip)
-	sete	%sil
-	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movzbl	4190(%rax,%r8), %edi
-	subl	$1, %edi
-	movb	%dil, %sil
-	movb	_m+4230(%rip), %r10b
-	testb	$1, %r10b
-	movl	%ecx, %edi
-	cmovnel	%edx, %edi
-	movslq	%edi, %r8
-	movb	%sil, 4190(%rax,%r8)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r8
-	movzbl	4190(%rax,%r8), %ecx
-	cmpl	$0, %ecx
-	sete	%sil
-	andb	$1, %sil
-	movb	%sil, _m+4227(%rip)
-	testb	$1, _m+4227(%rip)
-	jne	LBB0_34
-## BB#33:                               ##   in Loop: Header=BB0_28 Depth=1
-	jmp	LBB0_28
-LBB0_34:
 	movl	$33, %edi
-	leaq	_m(%rip), %rax
-	movl	$2, %ecx
-	movl	$1, %edx
-	movl	$70, _m+4194(%rip)
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r8
-	movb	$9, 4182(%rax,%r8)
+	movb	$76, _m+1(%rip)
 	callq	_asm2C_INT
-	testb	$1, _m+4231(%rip)
-	je	LBB0_38
-## BB#35:
+	testb	$1, _m+49(%rip)
+	je	LBB0_32
+## BB#26:
 	leaq	-160(%rbp), %rdi
 	callq	_setjmp
 	cmpl	$0, %eax
-	jne	LBB0_37
-## BB#36:
+	jne	LBB0_31
+## BB#27:
 	movl	$148, %eax
 	movl	%eax, %edx
 	movq	$-1, %rcx
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
-	addq	$5006, %rdi             ## imm = 0x138E
-	movslq	_m+5002(%rip), %r8
+	addq	$5522, %rdi             ## imm = 0x1592
+	movslq	_m+5518(%rip), %r8
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+5002(%rip), %rcx
+	movslq	_m+5518(%rip), %rcx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
-	movl	%r9d, _m+5002(%rip)
-	movq	%rax, -232(%rbp)        ## 8-byte Spill
-	jmp	LBB0_39
-LBB0_37:
+	movl	%r9d, _m+5518(%rip)
+	movslq	_m+5518(%rip), %rcx
+	cmpq	$4096, %rcx             ## imm = 0x1000
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
+	cmpq	$0, %rcx
+	movq	%rax, -224(%rbp)        ## 8-byte Spill
+	je	LBB0_29
+## BB#28:
+	leaq	L___func__.program(%rip), %rdi
+	leaq	L_.str(%rip), %rsi
+	movl	$90, %edx
+	leaq	L_.str.1(%rip), %rcx
+	callq	___assert_rtn
+LBB0_29:
+	jmp	LBB0_30
+LBB0_30:
+	jmp	LBB0_48
+LBB0_31:
+	jmp	LBB0_32
+LBB0_32:
+	jmp	LBB0_33
+LBB0_33:
+	movl	$122, _m+20(%rip)
+	movb	$8, _m+8(%rip)
+LBB0_34:                                ## =>This Inner Loop Header: Depth=1
+	movl	_m(%rip), %eax
+	shll	$4, %eax
+	movl	_m(%rip), %ecx
+	shrl	$28, %ecx
+	orl	%ecx, %eax
+	movl	%eax, _m(%rip)
+	movb	_m(%rip), %dl
+	movb	%dl, _m+4(%rip)
+	movzbl	_m+4(%rip), %eax
+	andl	$15, %eax
+	movb	%al, %dl
+	movb	%dl, _m+4(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$0, %eax
+	sete	%dl
+	andb	$1, %dl
+	movb	%dl, _m+45(%rip)
+	movzbl	_m+4(%rip), %eax
+	sarl	$7, %eax
+	cmpl	$0, %eax
+	setne	%dl
+	andb	$1, %dl
+	movb	%dl, _m+47(%rip)
+	movzbl	_m+4(%rip), %eax
+	addl	$48, %eax
+	movb	%al, %dl
+	movb	%dl, _m+4(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$0, %eax
+	sete	%dl
+	andb	$1, %dl
+	movb	%dl, _m+45(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$48, %eax
+	setl	%dl
+	andb	$1, %dl
+	movb	%dl, _m+44(%rip)
+	movzbl	_m+4(%rip), %eax
+	sarl	$7, %eax
+	cmpl	$0, %eax
+	setne	%dl
+	andb	$1, %dl
+	movb	%dl, _m+47(%rip)
+	movzbl	_m+4(%rip), %eax
+	subl	$57, %eax
+	cmpl	$0, %eax
+	sete	%dl
+	andb	$1, %dl
+	movb	%dl, _m+45(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$57, %eax
+	setl	%dl
+	andb	$1, %dl
+	movb	%dl, _m+44(%rip)
+	movzbl	_m+4(%rip), %eax
+	subl	$57, %eax
+	sarl	$7, %eax
+	cmpl	$0, %eax
+	setne	%dl
+	andb	$1, %dl
+	movb	%dl, _m+47(%rip)
+	testb	$1, _m+44(%rip)
+	jne	LBB0_36
+## BB#35:                               ##   in Loop: Header=BB0_34 Depth=1
+	testb	$1, _m+45(%rip)
+	je	LBB0_37
+LBB0_36:                                ##   in Loop: Header=BB0_34 Depth=1
 	jmp	LBB0_38
-LBB0_38:
+LBB0_37:                                ##   in Loop: Header=BB0_34 Depth=1
+	movzbl	_m+4(%rip), %eax
+	addl	$7, %eax
+	movb	%al, %cl
+	movb	%cl, _m+4(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$0, %eax
+	sete	%cl
+	andb	$1, %cl
+	movb	%cl, _m+45(%rip)
+	movzbl	_m+4(%rip), %eax
+	cmpl	$7, %eax
+	setl	%cl
+	andb	$1, %cl
+	movb	%cl, _m+44(%rip)
+	movzbl	_m+4(%rip), %eax
+	sarl	$7, %eax
+	cmpl	$0, %eax
+	setne	%cl
+	andb	$1, %cl
+	movb	%cl, _m+47(%rip)
+LBB0_38:                                ##   in Loop: Header=BB0_34 Depth=1
+	leaq	_m(%rip), %rax
+	movb	_m+4(%rip), %cl
+	movl	_m+20(%rip), %edx
+	movl	%edx, %esi
+	movq	%rax, %rdi
+	addq	%rsi, %rdi
+	movzwl	_m+34(%rip), %edx
+	movl	%edx, %esi
+	movl	5006(%rax,%rsi,4), %edx
+	movl	%edx, %eax
+	movb	%cl, (%rdi,%rax)
+	movl	_m+20(%rip), %edx
+	addl	$1, %edx
+	movl	%edx, _m+20(%rip)
+	cmpl	$0, _m+20(%rip)
+	sete	%cl
+	andb	$1, %cl
+	movb	%cl, _m+45(%rip)
+	movzbl	_m+8(%rip), %edx
+	subl	$1, %edx
+	movb	%dl, %cl
+	movb	%cl, _m+8(%rip)
+	movzbl	_m+8(%rip), %edx
+	cmpl	$0, %edx
+	sete	%cl
+	andb	$1, %cl
+	movb	%cl, _m+45(%rip)
+	testb	$1, _m+45(%rip)
+	jne	LBB0_40
+## BB#39:                               ##   in Loop: Header=BB0_34 Depth=1
+	jmp	LBB0_34
+LBB0_40:
+	movl	$33, %edi
+	movl	$122, _m+12(%rip)
+	movb	$9, _m+1(%rip)
+	callq	_asm2C_INT
+	testb	$1, _m+49(%rip)
+	je	LBB0_47
+## BB#41:
+	leaq	-160(%rbp), %rdi
+	callq	_setjmp
+	cmpl	$0, %eax
+	jne	LBB0_46
+## BB#42:
+	movl	$148, %eax
+	movl	%eax, %edx
+	movq	$-1, %rcx
+	leaq	-160(%rbp), %rsi
+	leaq	_m(%rip), %rdi
+	addq	$5522, %rdi             ## imm = 0x1592
+	movslq	_m+5518(%rip), %r8
+	shlq	$2, %r8
+	addq	%r8, %rdi
+	callq	___memcpy_chk
+	movslq	_m+5518(%rip), %rcx
+	addq	$148, %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+5518(%rip)
+	movslq	_m+5518(%rip), %rcx
+	cmpq	$4096, %rcx             ## imm = 0x1000
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
+	cmpq	$0, %rcx
+	movq	%rax, -232(%rbp)        ## 8-byte Spill
+	je	LBB0_44
+## BB#43:
+	leaq	L___func__.program(%rip), %rdi
+	leaq	L_.str(%rip), %rsi
+	movl	$110, %edx
+	leaq	L_.str.1(%rip), %rcx
+	callq	___assert_rtn
+LBB0_44:
+	jmp	LBB0_45
+LBB0_45:
+	jmp	LBB0_48
+LBB0_46:
+	jmp	LBB0_47
+LBB0_47:
 	xorl	%esi, %esi
 	leaq	-160(%rbp), %rax
 	movl	$148, %ecx
 	movl	%ecx, %edx
 	leaq	_m(%rip), %rdi
-	addq	$5006, %rdi             ## imm = 0x138E
-	movslq	_m+5002(%rip), %r8
+	addq	$5522, %rdi             ## imm = 0x1592
+	movslq	_m+5518(%rip), %r8
 	subq	$148, %r8
 	movl	%r8d, %ecx
-	movl	%ecx, _m+5002(%rip)
+	movl	%ecx, _m+5518(%rip)
 	movq	%rax, %r8
-	movslq	_m+5002(%rip), %r9
+	movslq	_m+5518(%rip), %r9
 	shlq	$2, %r9
 	addq	%r9, %rdi
 	movq	%rdi, -240(%rbp)        ## 8-byte Spill
@@ -874,9 +710,9 @@ LBB0_38:
 	movq	-256(%rbp), %rdi        ## 8-byte Reload
 	movl	-244(%rbp), %esi        ## 4-byte Reload
 	callq	_longjmp
-LBB0_39:
+LBB0_48:
 	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
-	movb	_m+4232(%rip), %cl
+	movb	_m+50(%rip), %cl
 	andb	$1, %cl
 	movzbl	%cl, %edx
 	cmpl	$0, %edx
@@ -886,13 +722,13 @@ LBB0_39:
 	movq	(%rax), %rax
 	cmpq	-8(%rbp), %rax
 	movl	%edx, -260(%rbp)        ## 4-byte Spill
-	jne	LBB0_41
-## BB#40:
+	jne	LBB0_50
+## BB#49:
 	movl	-260(%rbp), %eax        ## 4-byte Reload
 	addq	$272, %rsp              ## imm = 0x110
 	popq	%rbp
 	retq
-LBB0_41:
+LBB0_50:
 	callq	___stack_chk_fail
 	.cfi_endproc
 
@@ -909,116 +745,60 @@ Ltmp4:
 	movq	%rsp, %rbp
 Ltmp5:
 	.cfi_def_cfa_register %rbp
-	subq	$1312, %rsp             ## imm = 0x520
+	subq	$1216, %rsp             ## imm = 0x4C0
 	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
 	movq	(%rax), %rax
 	movq	%rax, -8(%rbp)
 	movl	%edi, -1012(%rbp)
-	leaq	_m(%rip), %rax
-	movb	_m+4230(%rip), %cl
-	andb	$1, %cl
-	cmpb	$1, %cl
-	movl	$1, %edi
-	adcl	$0, %edi
-	movl	%edi, %edx
-	movb	4182(%rdx,%rax), %cl
+	movb	_m+1(%rip), %cl
 	movb	%cl, -1017(%rbp)
-	movb	_m+4230(%rip), %cl
-	testb	$1, %cl
-	sete	%cl
-	movzbl	%cl, %edi
-	movl	%edi, %edx
-	leal	(%rdx,%rdx,2), %edi
-	movl	%edi, %edx
-	movb	4182(%rdx,%rax), %cl
+	movb	_m(%rip), %cl
 	movb	%cl, -1018(%rbp)
-	movb	_m+4230(%rip), %cl
-	testb	$1, %cl
-	sete	%cl
-	movzbl	%cl, %edi
-	movl	%edi, %edx
-	movw	4182(%rax,%rdx,2), %si
-	movw	%si, -1020(%rbp)
-	movb	_m+4230(%rip), %cl
-	testb	$1, %cl
-	sete	%cl
-	movzbl	%cl, %edi
-	movl	%edi, %edx
-	movw	4186(%rax,%rdx,2), %si
-	movw	%si, -1022(%rbp)
-	movb	_m+4230(%rip), %cl
-	testb	$1, %cl
-	sete	%cl
-	movzbl	%cl, %edi
-	movl	%edi, %edx
-	movw	4190(%rax,%rdx,2), %si
-	movw	%si, -1024(%rbp)
-	movb	_m+4230(%rip), %cl
-	testb	$1, %cl
-	sete	%cl
-	movzbl	%cl, %edi
-	movl	%edi, %edx
-	movw	4194(%rax,%rdx,2), %si
-	movw	%si, -1026(%rbp)
-	movb	$0, _m+4226(%rip)
-	movzbl	-1017(%rbp), %esi
-	movzbl	-1018(%rbp), %edx
-	movzwl	-1020(%rbp), %ecx
-	movzwl	-1022(%rbp), %r8d
-	movzwl	-1024(%rbp), %r9d
-	movzwl	-1026(%rbp), %edi
-	movq	%rsp, %rax
-	movl	%edi, (%rax)
-	leaq	L_.str.39(%rip), %rdi
-	xorl	%r10d, %r10d
-	movb	%r10b, %r11b
-	movb	%r11b, %al
-	callq	_printf
-	movl	-1012(%rbp), %ecx
-	movl	%ecx, %edx
-	subl	$16, %edx
-	movl	%eax, -1088(%rbp)       ## 4-byte Spill
-	movl	%ecx, -1092(%rbp)       ## 4-byte Spill
-	movl	%edx, -1096(%rbp)       ## 4-byte Spill
+	movw	_m(%rip), %dx
+	movw	%dx, -1020(%rbp)
+	movw	_m+4(%rip), %dx
+	movw	%dx, -1022(%rbp)
+	movw	_m+8(%rip), %dx
+	movw	%dx, -1024(%rbp)
+	movw	_m+12(%rip), %dx
+	movw	%dx, -1026(%rbp)
+	movb	$0, _m+44(%rip)
+	movl	-1012(%rbp), %edi
+	movl	%edi, %esi
+	subl	$16, %esi
+	movl	%edi, -1084(%rbp)       ## 4-byte Spill
+	movl	%esi, -1088(%rbp)       ## 4-byte Spill
 	je	LBB1_1
 	jmp	LBB1_64
 LBB1_64:
-	movl	-1092(%rbp), %eax       ## 4-byte Reload
+	movl	-1084(%rbp), %eax       ## 4-byte Reload
 	subl	$33, %eax
-	movl	%eax, -1100(%rbp)       ## 4-byte Spill
+	movl	%eax, -1092(%rbp)       ## 4-byte Spill
 	je	LBB1_5
 	jmp	LBB1_65
 LBB1_65:
-	movl	-1092(%rbp), %eax       ## 4-byte Reload
+	movl	-1084(%rbp), %eax       ## 4-byte Reload
 	subl	$49, %eax
-	movl	%eax, -1104(%rbp)       ## 4-byte Spill
+	movl	%eax, -1096(%rbp)       ## 4-byte Spill
 	je	LBB1_41
 	jmp	LBB1_59
 LBB1_1:
 	movzwl	-1020(%rbp), %eax
 	movl	%eax, %ecx
 	subl	$3, %ecx
-	movl	%eax, -1108(%rbp)       ## 4-byte Spill
-	movl	%ecx, -1112(%rbp)       ## 4-byte Spill
+	movl	%eax, -1100(%rbp)       ## 4-byte Spill
+	movl	%ecx, -1104(%rbp)       ## 4-byte Spill
 	je	LBB1_2
 	jmp	LBB1_74
 LBB1_74:
-	movl	-1108(%rbp), %eax       ## 4-byte Reload
+	movl	-1100(%rbp), %eax       ## 4-byte Reload
 	subl	$19, %eax
-	movl	%eax, -1116(%rbp)       ## 4-byte Spill
+	movl	%eax, -1108(%rbp)       ## 4-byte Spill
 	je	LBB1_3
 	jmp	LBB1_4
 LBB1_2:
-	leaq	L_.str.40(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1120(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_3:
-	leaq	L_.str.41(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1124(%rbp)       ## 4-byte Spill
 	callq	_stackDump
 	jmp	LBB1_61
 LBB1_4:
@@ -1028,24 +808,24 @@ LBB1_5:
 	addl	$-9, %eax
 	movl	%eax, %ecx
 	subl	$67, %eax
-	movq	%rcx, -1136(%rbp)       ## 8-byte Spill
-	movl	%eax, -1140(%rbp)       ## 4-byte Spill
+	movq	%rcx, -1120(%rbp)       ## 8-byte Spill
+	movl	%eax, -1124(%rbp)       ## 4-byte Spill
 	ja	LBB1_39
 ## BB#66:
 	leaq	LJTI1_0(%rip), %rax
-	movq	-1136(%rbp), %rcx       ## 8-byte Reload
+	movq	-1120(%rbp), %rcx       ## 8-byte Reload
 	movslq	(%rax,%rcx,4), %rdx
 	addq	%rax, %rdx
 	jmpq	*%rdx
 LBB1_6:
 	leaq	_m(%rip), %rax
-	movl	_m+4194(%rip), %ecx
+	movl	_m+12(%rip), %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %eax
 	addq	%rax, %rsi
 	movq	%rsi, -1040(%rbp)
@@ -1057,13 +837,13 @@ LBB1_7:                                 ## =>This Inner Loop Header: Depth=1
 	cmpl	$36, %edx
 	je	LBB1_10
 ## BB#8:                                ##   in Loop: Header=BB1_7 Depth=1
-	leaq	L_.str.42(%rip), %rdi
+	leaq	L_.str.25(%rip), %rdi
 	movslq	-1016(%rbp), %rax
 	movq	-1040(%rbp), %rcx
 	movsbl	(%rcx,%rax), %esi
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1144(%rbp)       ## 4-byte Spill
+	movl	%eax, -1128(%rbp)       ## 4-byte Spill
 ## BB#9:                                ##   in Loop: Header=BB1_7 Depth=1
 	movl	-1016(%rbp), %eax
 	addl	$1, %eax
@@ -1072,7 +852,7 @@ LBB1_7:                                 ## =>This Inner Loop Header: Depth=1
 LBB1_10:
 	jmp	LBB1_61
 LBB1_11:
-	movl	$512, _m+4194(%rip)     ## imm = 0x200
+	movl	$512, _m+12(%rip)       ## imm = 0x200
 	jmp	LBB1_61
 LBB1_12:
 	cmpq	$0, _m+4408214(%rip)
@@ -1081,17 +861,17 @@ LBB1_12:
 	xorl	%esi, %esi
 	movl	$1000, %eax             ## imm = 0x3E8
 	movl	%eax, %edx
-	leaq	L_.str.43(%rip), %rcx
+	leaq	L_.str.26(%rip), %rcx
 	leaq	_m(%rip), %rdi
 	leaq	-1008(%rbp), %r8
 	movq	_m+4408214(%rip), %r9
-	movl	_m+4194(%rip), %eax
+	movl	_m+12(%rip), %eax
 	movl	%eax, %r10d
 	movq	%rdi, %r11
 	addq	%r10, %r11
-	movzwl	_m+4216(%rip), %eax
+	movzwl	_m+34(%rip), %eax
 	movl	%eax, %r10d
-	movl	21394(%rdi,%r10,4), %eax
+	movl	5006(%rdi,%r10,4), %eax
 	movl	%eax, %edi
 	addq	%rdi, %r11
 	movq	%r8, %rdi
@@ -1099,112 +879,85 @@ LBB1_12:
 	movq	%r11, %r9
 	movb	$0, %al
 	callq	___sprintf_chk
-	movl	%eax, -1148(%rbp)       ## 4-byte Spill
+	movl	%eax, -1132(%rbp)       ## 4-byte Spill
 	jmp	LBB1_15
 LBB1_14:
 	xorl	%esi, %esi
 	movl	$1000, %eax             ## imm = 0x3E8
 	movl	%eax, %edx
-	leaq	L_.str.44(%rip), %rcx
+	leaq	L_.str.27(%rip), %rcx
 	leaq	_m(%rip), %rdi
 	leaq	-1008(%rbp), %r8
-	movl	_m+4194(%rip), %eax
+	movl	_m+12(%rip), %eax
 	movl	%eax, %r9d
 	movq	%rdi, %r10
 	addq	%r9, %r10
-	movzwl	_m+4216(%rip), %eax
+	movzwl	_m+34(%rip), %eax
 	movl	%eax, %r9d
-	movl	21394(%rdi,%r9,4), %eax
+	movl	5006(%rdi,%r9,4), %eax
 	movl	%eax, %edi
 	addq	%rdi, %r10
 	movq	%r8, %rdi
 	movq	%r10, %r8
 	movb	$0, %al
 	callq	___sprintf_chk
-	movl	%eax, -1152(%rbp)       ## 4-byte Spill
+	movl	%eax, -1136(%rbp)       ## 4-byte Spill
 LBB1_15:
-	leaq	L_.str.45(%rip), %rsi
+	leaq	L_.str.28(%rip), %rsi
 	leaq	-1008(%rbp), %rdi
 	callq	_fopen
-	leaq	L_.str.46(%rip), %rdi
-	leaq	-1008(%rbp), %rsi
 	movq	%rax, _asm2C_INT.file(%rip)
-	movq	_asm2C_INT.file(%rip), %rax
-	movq	%rax, %rdx
-	movb	$0, %al
-	callq	_printf
 	cmpq	$0, _asm2C_INT.file(%rip)
-	movl	%eax, -1156(%rbp)       ## 4-byte Spill
 	je	LBB1_17
 ## BB#16:
-	movl	$1, _m+4182(%rip)
+	movl	$1, _m(%rip)
 	jmp	LBB1_18
 LBB1_17:
-	leaq	L_.str.47(%rip), %rdi
+	leaq	L_.str.29(%rip), %rdi
 	leaq	-1008(%rbp), %rsi
-	movb	$1, _m+4226(%rip)
+	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1160(%rbp)       ## 4-byte Spill
+	movl	%eax, -1140(%rbp)       ## 4-byte Spill
 LBB1_18:
 	jmp	LBB1_61
 LBB1_19:
-	leaq	L_.str.48(%rip), %rdi
-	movzwl	-1022(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
 	movq	_asm2C_INT.file(%rip), %rdi
-	movl	%eax, -1164(%rbp)       ## 4-byte Spill
 	callq	_fclose
 	cmpl	$0, %eax
 	je	LBB1_21
 ## BB#20:
-	leaq	L_.str.49(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.30(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	callq	_perror
-	leaq	L_.str.50(%rip), %rdi
+	leaq	L_.str.31(%rip), %rdi
 	movzwl	-1022(%rbp), %esi
 	movq	_asm2C_INT.file(%rip), %rax
 	movq	%rax, %rdx
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1168(%rbp)       ## 4-byte Spill
+	movl	%eax, -1144(%rbp)       ## 4-byte Spill
 LBB1_21:
 	movq	$0, _asm2C_INT.file(%rip)
 	jmp	LBB1_61
 LBB1_22:
-	leaq	L_.str.51(%rip), %rdi
 	leaq	_m(%rip), %rax
-	movl	_m+4194(%rip), %ecx
+	movl	_m+12(%rip), %ecx
 	movl	%ecx, %edx
 	movq	%rax, %rsi
 	addq	%rdx, %rsi
-	movzwl	_m+4216(%rip), %ecx
+	movzwl	_m+34(%rip), %ecx
 	movl	%ecx, %edx
-	movl	21394(%rax,%rdx,4), %ecx
+	movl	5006(%rax,%rdx,4), %ecx
 	movl	%ecx, %eax
 	addq	%rax, %rsi
 	movq	%rsi, -1048(%rbp)
-	movl	_m+4190(%rip), %esi
-	movzwl	-1024(%rbp), %edx
-	movzwl	_m+4216(%rip), %ecx
-	movl	_m+4194(%rip), %r8d
-	movq	-1048(%rbp), %r9
-	movq	_asm2C_INT.file(%rip), %rax
-	movq	%rax, (%rsp)
-	movb	$0, %al
-	callq	_printf
 	movq	_asm2C_INT.file(%rip), %rdi
-	movl	%eax, -1172(%rbp)       ## 4-byte Spill
 	callq	_feof
 	cmpl	$0, %eax
 	je	LBB1_24
 ## BB#23:
-	leaq	L_.str.52(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	$0, _m+4182(%rip)
-	movl	%eax, -1176(%rbp)       ## 4-byte Spill
+	movl	$0, _m(%rip)
 	jmp	LBB1_30
 LBB1_24:
 	movl	$1, %eax
@@ -1221,60 +974,55 @@ LBB1_24:
 	cmpq	%rcx, %rax
 	je	LBB1_28
 ## BB#25:
-	leaq	L_.str.49(%rip), %rdi
+	leaq	L_.str.30(%rip), %rdi
 	callq	_perror
-	leaq	L_.str.53(%rip), %rdi
+	leaq	L_.str.32(%rip), %rdi
 	movzwl	-1024(%rbp), %esi
 	movq	-1056(%rbp), %rdx
 	movb	$0, %al
 	callq	_printf
 	movq	_asm2C_INT.file(%rip), %rdi
-	movl	%eax, -1180(%rbp)       ## 4-byte Spill
+	movl	%eax, -1148(%rbp)       ## 4-byte Spill
 	callq	_feof
 	cmpl	$0, %eax
 	jne	LBB1_27
 ## BB#26:
-	leaq	L_.str.54(%rip), %rdi
+	leaq	L_.str.33(%rip), %rdi
 	movzwl	-1024(%rbp), %esi
 	movq	-1056(%rbp), %rdx
 	movq	_asm2C_INT.file(%rip), %rax
 	movq	%rax, %rcx
 	movb	$0, %al
 	callq	_printf
-	movb	$1, _m+4226(%rip)
-	movl	%eax, -1184(%rbp)       ## 4-byte Spill
+	movb	$1, _m+44(%rip)
+	movl	%eax, -1152(%rbp)       ## 4-byte Spill
 LBB1_27:
 	jmp	LBB1_29
 LBB1_28:
-	leaq	L_.str.55(%rip), %rdi
-	movq	_asm2C_INT.file(%rip), %rax
-	movq	%rax, %rsi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1188(%rbp)       ## 4-byte Spill
+	jmp	LBB1_29
 LBB1_29:
 	movq	-1056(%rbp), %rax
 	movl	%eax, %ecx
-	movl	%ecx, _m+4182(%rip)
+	movl	%ecx, _m(%rip)
 LBB1_30:
 	jmp	LBB1_61
 LBB1_31:
 	movl	$0, -1060(%rbp)
 	movzbl	-1017(%rbp), %eax
 	testl	%eax, %eax
-	movl	%eax, -1192(%rbp)       ## 4-byte Spill
+	movl	%eax, -1156(%rbp)       ## 4-byte Spill
 	je	LBB1_32
 	jmp	LBB1_67
 LBB1_67:
-	movl	-1192(%rbp), %eax       ## 4-byte Reload
+	movl	-1156(%rbp), %eax       ## 4-byte Reload
 	subl	$1, %eax
-	movl	%eax, -1196(%rbp)       ## 4-byte Spill
+	movl	%eax, -1160(%rbp)       ## 4-byte Spill
 	je	LBB1_33
 	jmp	LBB1_68
 LBB1_68:
-	movl	-1192(%rbp), %eax       ## 4-byte Reload
+	movl	-1156(%rbp), %eax       ## 4-byte Reload
 	subl	$2, %eax
-	movl	%eax, -1200(%rbp)       ## 4-byte Spill
+	movl	%eax, -1164(%rbp)       ## 4-byte Spill
 	je	LBB1_34
 	jmp	LBB1_35
 LBB1_32:
@@ -1286,37 +1034,31 @@ LBB1_33:
 LBB1_34:
 	movl	$2, -1060(%rbp)
 LBB1_35:
-	leaq	L_.str.56(%rip), %rdi
 	movzwl	-1024(%rbp), %eax
 	shll	$16, %eax
 	movzwl	-1026(%rbp), %ecx
 	addl	%ecx, %eax
 	movslq	%eax, %rdx
 	movq	%rdx, -1072(%rbp)
-	movq	-1072(%rbp), %rsi
-	movl	-1060(%rbp), %edx
-	movb	$0, %al
-	callq	_printf
 	movq	_asm2C_INT.file(%rip), %rdi
 	movq	-1072(%rbp), %rsi
 	movl	-1060(%rbp), %edx
-	movl	%eax, -1204(%rbp)       ## 4-byte Spill
 	callq	_fseek
 	cmpl	$0, %eax
 	je	LBB1_37
 ## BB#36:
-	leaq	L_.str.57(%rip), %rdi
+	leaq	L_.str.34(%rip), %rdi
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1208(%rbp)       ## 4-byte Spill
+	movl	%eax, -1168(%rbp)       ## 4-byte Spill
 LBB1_37:
 	jmp	LBB1_61
 LBB1_38:
 	callq	_stackDump
-	movb	$1, _m+4231(%rip)
-	movb	$1, _m+4232(%rip)
+	movb	$1, _m+49(%rip)
+	movb	$1, _m+50(%rip)
 	movb	-1018(%rbp), %al
-	movb	%al, _m+4233(%rip)
+	movb	%al, _m+51(%rip)
 	jmp	LBB1_61
 LBB1_39:
 	jmp	LBB1_40
@@ -1325,182 +1067,125 @@ LBB1_40:
 LBB1_41:
 	movzwl	-1020(%rbp), %eax
 	testl	%eax, %eax
-	movl	%eax, -1212(%rbp)       ## 4-byte Spill
+	movl	%eax, -1172(%rbp)       ## 4-byte Spill
 	je	LBB1_42
 	jmp	LBB1_69
 LBB1_69:
-	movl	-1212(%rbp), %eax       ## 4-byte Reload
+	movl	-1172(%rbp), %eax       ## 4-byte Reload
 	subl	$2, %eax
-	movl	%eax, -1216(%rbp)       ## 4-byte Spill
+	movl	%eax, -1176(%rbp)       ## 4-byte Spill
 	je	LBB1_46
 	jmp	LBB1_70
 LBB1_70:
-	movl	-1212(%rbp), %eax       ## 4-byte Reload
+	movl	-1172(%rbp), %eax       ## 4-byte Reload
 	subl	$7, %eax
-	movl	%eax, -1220(%rbp)       ## 4-byte Spill
+	movl	%eax, -1180(%rbp)       ## 4-byte Spill
 	je	LBB1_49
 	jmp	LBB1_71
 LBB1_71:
-	movl	-1212(%rbp), %eax       ## 4-byte Reload
+	movl	-1172(%rbp), %eax       ## 4-byte Reload
 	subl	$8, %eax
-	movl	%eax, -1224(%rbp)       ## 4-byte Spill
+	movl	%eax, -1184(%rbp)       ## 4-byte Spill
 	je	LBB1_52
 	jmp	LBB1_72
 LBB1_72:
-	movl	-1212(%rbp), %eax       ## 4-byte Reload
+	movl	-1172(%rbp), %eax       ## 4-byte Reload
 	subl	$517, %eax              ## imm = 0x205
-	movl	%eax, -1228(%rbp)       ## 4-byte Spill
+	movl	%eax, -1188(%rbp)       ## 4-byte Spill
 	je	LBB1_56
 	jmp	LBB1_73
 LBB1_73:
-	movl	-1212(%rbp), %eax       ## 4-byte Reload
+	movl	-1172(%rbp), %eax       ## 4-byte Reload
 	subl	$1281, %eax             ## imm = 0x501
-	movl	%eax, -1232(%rbp)       ## 4-byte Spill
+	movl	%eax, -1192(%rbp)       ## 4-byte Spill
 	je	LBB1_53
 	jmp	LBB1_57
 LBB1_42:
-	leaq	L_.str.58(%rip), %rdi
-	movzwl	-1024(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	_m+21390(%rip), %esi
+	movl	_m+5002(%rip), %eax
 	movzwl	-1024(%rbp), %ecx
-	addl	%ecx, %esi
-	cmpl	$128, %esi
-	movl	%eax, -1236(%rbp)       ## 4-byte Spill
+	addl	%ecx, %eax
+	cmpl	$128, %eax
 	jb	LBB1_44
 ## BB#43:
-	leaq	L_.str.59(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.35(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1240(%rbp)       ## 4-byte Spill
+	movl	%eax, -1196(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_44:
-	leaq	L_.str.60(%rip), %rdi
-	movl	_m+21390(%rip), %eax
-	movl	%eax, _m+4182(%rip)
+	movl	_m+5002(%rip), %eax
+	movl	%eax, _m(%rip)
 	movzwl	-1024(%rbp), %eax
-	addl	_m+21390(%rip), %eax
-	movl	%eax, _m+21390(%rip)
-	movl	_m+4182(%rip), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1244(%rbp)       ## 4-byte Spill
+	addl	_m+5002(%rip), %eax
+	movl	%eax, _m+5002(%rip)
 ## BB#45:
 	jmp	LBB1_61
 LBB1_46:
-	leaq	L_.str.61(%rip), %rdi
-	movl	_m+4186(%rip), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	_m+21390(%rip), %esi
-	addl	$1, %esi
-	cmpl	$128, %esi
-	movl	%eax, -1248(%rbp)       ## 4-byte Spill
+	movl	_m+5002(%rip), %eax
+	addl	$1, %eax
+	cmpl	$128, %eax
 	jb	LBB1_48
 ## BB#47:
-	leaq	L_.str.59(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.35(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1252(%rbp)       ## 4-byte Spill
+	movl	%eax, -1200(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_48:
-	leaq	L_.str.62(%rip), %rdi
 	leaq	_m(%rip), %rax
-	movl	_m+21390(%rip), %ecx
+	movl	_m+5002(%rip), %ecx
 	movl	%ecx, %edx
-	movl	$4280214, 21394(%rax,%rdx,4) ## imm = 0x414F96
-	movl	_m+21390(%rip), %ecx
-	movl	%ecx, _m+4182(%rip)
-	movl	_m+4182(%rip), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	_m+21390(%rip), %ecx
+	movl	$4280214, 5006(%rax,%rdx,4) ## imm = 0x414F96
+	movl	_m+5002(%rip), %ecx
+	movl	%ecx, _m(%rip)
+	movl	_m+5002(%rip), %ecx
 	addl	$1, %ecx
-	movl	%ecx, _m+21390(%rip)
-	movl	%eax, -1256(%rbp)       ## 4-byte Spill
+	movl	%ecx, _m+5002(%rip)
 	jmp	LBB1_61
 LBB1_49:
-	leaq	L_.str.63(%rip), %rdi
-	movl	_m+4186(%rip), %esi
-	movl	_m+4194(%rip), %edx
-	movl	_m+4190(%rip), %ecx
-	movb	$0, %al
-	callq	_printf
-	movzwl	-1022(%rbp), %ecx
-	cmpl	_m+21390(%rip), %ecx
-	movl	%eax, -1260(%rbp)       ## 4-byte Spill
+	movzwl	-1022(%rbp), %eax
+	cmpl	_m+5002(%rip), %eax
 	jbe	LBB1_51
 ## BB#50:
-	leaq	L_.str.64(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.36(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1264(%rbp)       ## 4-byte Spill
+	movl	%eax, -1204(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_51:
-	leaq	L_.str.65(%rip), %rdi
 	leaq	_m(%rip), %rax
-	movl	$2, %ecx
-	xorl	%edx, %edx
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	movl	%ecx, %r8d
-	cmovnel	%edx, %r8d
-	movslq	%r8d, %r9
-	movzwl	4194(%rax,%r9), %r8d
-	andl	$65535, %r8d            ## imm = 0xFFFF
-	movb	_m+4230(%rip), %sil
-	testb	$1, %sil
-	cmovnel	%edx, %ecx
-	movslq	%ecx, %r9
-	movzwl	4190(%rax,%r9), %ecx
-	shll	$16, %ecx
-	addl	%ecx, %r8d
-	movzwl	-1022(%rbp), %ecx
-	movl	%ecx, %r9d
-	movl	%r8d, 21394(%rax,%r9,4)
-	movzwl	-1022(%rbp), %esi
-	movzwl	-1022(%rbp), %ecx
-	movl	%ecx, %r9d
-	movl	21394(%rax,%r9,4), %edx
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1268(%rbp)       ## 4-byte Spill
+	movzwl	_m+12(%rip), %ecx
+	andl	$65535, %ecx            ## imm = 0xFFFF
+	movzwl	_m+8(%rip), %edx
+	shll	$16, %edx
+	addl	%edx, %ecx
+	movzwl	-1022(%rbp), %edx
+	movl	%edx, %esi
+	movl	%ecx, 5006(%rax,%rsi,4)
 	jmp	LBB1_61
 LBB1_52:
-	leaq	L_.str.66(%rip), %rdi
-	movzwl	-1022(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1272(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_53:
-	leaq	L_.str.67(%rip), %rdi
 	movzwl	-1022(%rbp), %eax
 	shll	$16, %eax
 	movzwl	-1024(%rbp), %ecx
 	addl	%ecx, %eax
 	movl	%eax, -1076(%rbp)
-	movl	-1076(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	_m+21906(%rip), %ecx
-	addl	-1076(%rbp), %ecx
-	cmpl	$4194304, %ecx          ## imm = 0x400000
-	movl	%eax, -1276(%rbp)       ## 4-byte Spill
+	movl	_m+21906(%rip), %eax
+	addl	-1076(%rbp), %eax
+	cmpl	$4194304, %eax          ## imm = 0x400000
 	jb	LBB1_55
 ## BB#54:
-	leaq	L_.str.68(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.37(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1280(%rbp)       ## 4-byte Spill
+	movl	%eax, -1208(%rbp)       ## 4-byte Spill
 	jmp	LBB1_61
 LBB1_55:
-	leaq	L_.str.69(%rip), %rdi
 	movl	_m+21906(%rip), %eax
 	movl	%eax, %ecx
 	addq	$21910, %rcx            ## imm = 0x5596
@@ -1509,30 +1194,14 @@ LBB1_55:
 	movl	-1076(%rbp), %eax
 	addl	_m+21906(%rip), %eax
 	movl	%eax, _m+21906(%rip)
-	movl	_m+21906(%rip), %eax
-	movl	%eax, %ecx
-	addq	$21910, %rcx            ## imm = 0x5596
-	movl	%ecx, %eax
-	movl	%eax, -1084(%rbp)
-	movl	-1084(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.70(%rip), %rdi
-	movl	-1080(%rbp), %esi
-	andl	$65535, %esi            ## imm = 0xFFFF
-	movl	%esi, _m+4190(%rip)
-	movl	-1080(%rbp), %esi
-	shrl	$16, %esi
-	movl	%esi, _m+4186(%rip)
-	movl	$0, _m+4202(%rip)
-	movl	$0, _m+4198(%rip)
-	movl	-1080(%rbp), %esi
-	movl	_m+4186(%rip), %edx
-	movl	_m+4190(%rip), %ecx
-	movl	%eax, -1284(%rbp)       ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -1288(%rbp)       ## 4-byte Spill
+	movl	-1080(%rbp), %eax
+	andl	$65535, %eax            ## imm = 0xFFFF
+	movl	%eax, _m+8(%rip)
+	movl	-1080(%rbp), %eax
+	shrl	$16, %eax
+	movl	%eax, _m+4(%rip)
+	movl	$0, _m+20(%rip)
+	movl	$0, _m+16(%rip)
 	jmp	LBB1_61
 LBB1_56:
 	jmp	LBB1_61
@@ -1543,21 +1212,21 @@ LBB1_58:
 LBB1_59:
 	jmp	LBB1_60
 LBB1_60:
-	leaq	L_.str.71(%rip), %rdi
-	movb	$1, _m+4226(%rip)
+	leaq	L_.str.38(%rip), %rdi
+	movb	$1, _m+44(%rip)
 	movl	-1012(%rbp), %esi
 	movzbl	-1017(%rbp), %edx
 	movzbl	-1018(%rbp), %ecx
 	movb	$0, %al
 	callq	_printf
-	movl	%eax, -1292(%rbp)       ## 4-byte Spill
+	movl	%eax, -1212(%rbp)       ## 4-byte Spill
 LBB1_61:
 	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
 	movq	(%rax), %rax
 	cmpq	-8(%rbp), %rax
 	jne	LBB1_63
 ## BB#62:
-	addq	$1312, %rsp             ## imm = 0x520
+	addq	$1216, %rsp             ## imm = 0x4C0
 	popq	%rbp
 	retq
 LBB1_63:
@@ -1642,9 +1311,9 @@ LJTI1_0:
 	.long	L1_0_set_39
 	.long	L1_0_set_38
 
-	.globl	_checkIfVgaRamEmpty
+	.globl	_asm2C_printOffsets
 	.align	4, 0x90
-_checkIfVgaRamEmpty:                    ## @checkIfVgaRamEmpty
+_asm2C_printOffsets:                    ## @asm2C_printOffsets
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -1655,44 +1324,168 @@ Ltmp7:
 	movq	%rsp, %rbp
 Ltmp8:
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movl	$1, -8(%rbp)
-	movl	$0, -4(%rbp)
-LBB2_1:                                 ## =>This Inner Loop Header: Depth=1
-	cmpl	$64000, -4(%rbp)        ## imm = 0xFA00
-	jge	LBB2_6
-## BB#2:                                ##   in Loop: Header=BB2_1 Depth=1
-	leaq	_m(%rip), %rax
-	movslq	-4(%rbp), %rcx
-	cmpb	$0, 4280214(%rax,%rcx)
-	je	LBB2_4
-## BB#3:                                ##   in Loop: Header=BB2_1 Depth=1
-	movl	$0, -8(%rbp)
-LBB2_4:                                 ##   in Loop: Header=BB2_1 Depth=1
-	jmp	LBB2_5
-LBB2_5:                                 ##   in Loop: Header=BB2_1 Depth=1
-	movl	-4(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -4(%rbp)
-	jmp	LBB2_1
-LBB2_6:
-	leaq	L_.str(%rip), %rdi
+	subq	$96, %rsp
 	leaq	L_.str.2(%rip), %rax
-	leaq	L_.str.1(%rip), %rcx
-	cmpl	$0, -8(%rbp)
-	cmovneq	%rcx, %rax
-	movq	%rax, %rsi
+	leaq	L_.str.3(%rip), %rsi
+	movl	%edi, -4(%rbp)
+	movq	%rax, %rdi
+	callq	_fopen
+	leaq	L_.str.4(%rip), %rsi
+	movl	$52, %ecx
+	movq	%rax, -16(%rbp)
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
 	movb	$0, %al
-	callq	_printf
-	movl	%eax, -12(%rbp)         ## 4-byte Spill
-	addq	$16, %rsp
+	callq	_fprintf
+	leaq	L_.str.5(%rip), %rsi
+	movl	$53, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -20(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.6(%rip), %rsi
+	movl	$54, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -24(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.7(%rip), %rsi
+	movl	$56, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -28(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.8(%rip), %rsi
+	movl	$60, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -32(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.9(%rip), %rsi
+	movl	$61, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -36(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.10(%rip), %rsi
+	movl	$62, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -40(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.11(%rip), %rsi
+	movl	$68, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -44(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.12(%rip), %rsi
+	movl	$84, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -48(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.13(%rip), %rsi
+	movl	$92, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -52(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.14(%rip), %rsi
+	movl	$96, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -56(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.15(%rip), %rsi
+	movl	$106, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -60(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.16(%rip), %rsi
+	movl	$110, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -64(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.17(%rip), %rsi
+	movl	$118, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -68(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.18(%rip), %rsi
+	movl	$122, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -72(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.19(%rip), %rsi
+	movl	$133, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -76(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.20(%rip), %rsi
+	movl	$137, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -80(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	leaq	L_.str.21(%rip), %rsi
+	movl	$138, %ecx
+	movq	-16(%rbp), %rdi
+	movl	%ecx, %edx
+	subl	-4(%rbp), %edx
+	movl	%eax, -84(%rbp)         ## 4-byte Spill
+	movb	$0, %al
+	callq	_fprintf
+	movq	-16(%rbp), %rdi
+	movl	%eax, -88(%rbp)         ## 4-byte Spill
+	callq	_fclose
+	movl	%eax, -92(%rbp)         ## 4-byte Spill
+	addq	$96, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
 
-	.globl	_stackDump
+	.globl	_checkIfVgaRamEmpty
 	.align	4, 0x90
-_stackDump:                             ## @stackDump
+_checkIfVgaRamEmpty:                    ## @checkIfVgaRamEmpty
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -1703,226 +1496,33 @@ Ltmp10:
 	movq	%rsp, %rbp
 Ltmp11:
 	.cfi_def_cfa_register %rbp
-	subq	$112, %rsp
-	leaq	L_.str.3(%rip), %rdi
-	movb	_m+4230(%rip), %al
-	andb	$1, %al
-	movzbl	%al, %esi
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.4(%rip), %rdi
-	movl	$4, %esi
-                                        ## 
-	movl	%eax, -4(%rbp)          ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.5(%rip), %rdi
-	movl	$8, %ecx
-	movl	%ecx, %esi
-	movl	%eax, -8(%rbp)          ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.6(%rip), %rdi
-	movl	$2, %ecx
-	movl	%ecx, %esi
-	movl	%eax, -12(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.7(%rip), %rdi
-	movl	$1, %ecx
-	movl	%ecx, %esi
-	movl	%eax, -16(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.8(%rip), %rdi
-	movl	$4408222, %ecx          ## imm = 0x43439E
-	movl	%ecx, %esi
-	movl	%eax, -20(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.9(%rip), %rdi
-	movl	_m+4182(%rip), %esi
-	movl	%eax, -24(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	_m(%rip), %rdi
-	addq	$4182, %rdi             ## imm = 0x1056
-	movl	$4, %esi
-	movl	%eax, -28(%rbp)         ## 4-byte Spill
-	callq	_hexDump
-	leaq	L_.str.10(%rip), %rdi
-	movl	_m+4186(%rip), %esi
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.11(%rip), %rdi
-	movl	_m+4190(%rip), %esi
-	movl	%eax, -32(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.12(%rip), %rdi
-	movl	_m+4194(%rip), %esi
-	movl	%eax, -36(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.13(%rip), %rdi
-	movl	_m+4206(%rip), %esi
-	movl	%eax, -40(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.14(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movzwl	_m+4214(%rip), %esi
-	movzwl	_m+4214(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %r8d
-	addq	%r8, %rdx
-	movl	%eax, -44(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.15(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movzwl	_m+4216(%rip), %esi
-	movzwl	_m+4216(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %r8d
-	addq	%r8, %rdx
-	movl	%eax, -48(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.16(%rip), %rdi
-	movl	_m+4198(%rip), %esi
-	movl	%eax, -52(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.17(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movl	_m+4198(%rip), %ecx
-	movl	%ecx, %r8d
-	movq	%rdx, %r9
-	addq	%r8, %r9
-	movzwl	_m+4216(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %edx
-	addq	%rdx, %r9
-	movq	%r9, %rsi
-	movl	%eax, -56(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.18(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movzwl	_m+4218(%rip), %esi
-	movzwl	_m+4218(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %r8d
-	addq	%r8, %rdx
-	movl	%eax, -60(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	_m(%rip), %rdx
-	addq	$4218, %rdx             ## imm = 0x107A
-	movl	$4, %esi
-	movq	%rdx, %rdi
-	movl	%eax, -64(%rbp)         ## 4-byte Spill
-	callq	_hexDump
-	leaq	L_.str.19(%rip), %rdi
-	movl	_m+4202(%rip), %esi
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.20(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movl	_m+4202(%rip), %ecx
-	movl	%ecx, %r8d
-	movq	%rdx, %r9
-	addq	%r8, %r9
-	movzwl	_m+4218(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %edx
-	addq	%rdx, %r9
-	movq	%r9, %rsi
-	movl	%eax, -68(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	movl	$50, %esi
-	leaq	_m(%rip), %rdx
-	movl	_m+4202(%rip), %ecx
-	movl	%ecx, %edi
-	movq	%rdx, %r8
-	addq	%rdi, %r8
-	movzwl	_m+4218(%rip), %ecx
-	movl	%ecx, %edi
-	movl	21394(%rdx,%rdi,4), %ecx
-	movl	%ecx, %edx
-	addq	%rdx, %r8
-	movq	%r8, %rdi
-	movl	%eax, -72(%rbp)         ## 4-byte Spill
-	callq	_hexDump
-	leaq	L_.str.21(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movzwl	_m+4220(%rip), %esi
-	movzwl	_m+4220(%rip), %eax
-	movl	%eax, %r8d
-	movl	21394(%rdx,%r8,4), %eax
-	movl	%eax, %r8d
-	addq	%r8, %rdx
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.22(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	movzwl	_m+4222(%rip), %esi
-	movzwl	_m+4222(%rip), %ecx
-	movl	%ecx, %r8d
-	movl	21394(%rdx,%r8,4), %ecx
-	movl	%ecx, %r8d
-	addq	%r8, %rdx
-	movl	%eax, -76(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.23(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	addq	$21910, %rdx            ## imm = 0x5596
-	movq	%rdx, %rsi
-	movl	%eax, -80(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.24(%rip), %rdi
-	leaq	_m(%rip), %rdx
-	addq	$4280214, %rdx          ## imm = 0x414F96
-	movq	%rdx, %rsi
-	movl	%eax, -84(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.25(%rip), %rdi
-	movzbl	_m+4280214(%rip), %esi
-	movl	%eax, -88(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.26(%rip), %rdi
-	movb	_m+4227(%rip), %r10b
-	andb	$1, %r10b
-	movzbl	%r10b, %esi
-	movl	%eax, -92(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	leaq	L_.str.27(%rip), %rdi
-	movl	_m+5002(%rip), %esi
-	movl	%eax, -96(%rbp)         ## 4-byte Spill
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -100(%rbp)        ## 4-byte Spill
-	callq	_checkIfVgaRamEmpty
-	addq	$112, %rsp
+	movl	$1, -8(%rbp)
+	movl	$0, -4(%rbp)
+LBB3_1:                                 ## =>This Inner Loop Header: Depth=1
+	cmpl	$64000, -4(%rbp)        ## imm = 0xFA00
+	jge	LBB3_6
+## BB#2:                                ##   in Loop: Header=BB3_1 Depth=1
+	leaq	_m(%rip), %rax
+	movslq	-4(%rbp), %rcx
+	cmpb	$0, 4280214(%rax,%rcx)
+	je	LBB3_4
+## BB#3:                                ##   in Loop: Header=BB3_1 Depth=1
+	movl	$0, -8(%rbp)
+LBB3_4:                                 ##   in Loop: Header=BB3_1 Depth=1
+	jmp	LBB3_5
+LBB3_5:                                 ##   in Loop: Header=BB3_1 Depth=1
+	movl	-4(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -4(%rbp)
+	jmp	LBB3_1
+LBB3_6:
 	popq	%rbp
 	retq
 	.cfi_endproc
 
-	.globl	_hexDump
+	.globl	_stackDump
 	.align	4, 0x90
-_hexDump:                               ## @hexDump
+_stackDump:                             ## @stackDump
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -1933,171 +1533,34 @@ Ltmp13:
 	movq	%rsp, %rbp
 Ltmp14:
 	.cfi_def_cfa_register %rbp
-	subq	$112, %rsp
-	leaq	L_.str.28(%rip), %rax
-	movq	___stack_chk_guard@GOTPCREL(%rip), %rcx
-	movq	(%rcx), %rcx
-	movq	%rcx, -8(%rbp)
-	movq	%rdi, -40(%rbp)
-	movl	%esi, -44(%rbp)
-	movq	-40(%rbp), %rcx
-	movq	%rcx, -56(%rbp)
-	movq	-40(%rbp), %rsi
-	movq	%rax, %rdi
-	movb	$0, %al
-	callq	_printf
-	cmpl	$0, -44(%rbp)
-	movl	%eax, -60(%rbp)         ## 4-byte Spill
-	jne	LBB4_2
-## BB#1:
-	leaq	L_.str.29(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -64(%rbp)         ## 4-byte Spill
-	jmp	LBB4_20
-LBB4_2:
-	cmpl	$0, -44(%rbp)
-	jge	LBB4_4
-## BB#3:
-	leaq	L_.str.30(%rip), %rdi
-	movl	-44(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -68(%rbp)         ## 4-byte Spill
-	jmp	LBB4_20
-LBB4_4:
-	movl	$0, -48(%rbp)
-LBB4_5:                                 ## =>This Inner Loop Header: Depth=1
-	movl	-48(%rbp), %eax
-	cmpl	-44(%rbp), %eax
-	jge	LBB4_16
-## BB#6:                                ##   in Loop: Header=BB4_5 Depth=1
-	movl	$16, %eax
-	movl	-48(%rbp), %ecx
-	movl	%eax, -72(%rbp)         ## 4-byte Spill
-	movl	%ecx, %eax
-	cltd
-	movl	-72(%rbp), %ecx         ## 4-byte Reload
-	idivl	%ecx
-	cmpl	$0, %edx
-	jne	LBB4_10
-## BB#7:                                ##   in Loop: Header=BB4_5 Depth=1
-	cmpl	$0, -48(%rbp)
-	je	LBB4_9
-## BB#8:                                ##   in Loop: Header=BB4_5 Depth=1
-	leaq	L_.str.31(%rip), %rdi
-	leaq	-32(%rbp), %rsi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -76(%rbp)         ## 4-byte Spill
-LBB4_9:                                 ##   in Loop: Header=BB4_5 Depth=1
-	leaq	L_.str.32(%rip), %rdi
-	movl	-48(%rbp), %esi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -80(%rbp)         ## 4-byte Spill
-LBB4_10:                                ##   in Loop: Header=BB4_5 Depth=1
-	leaq	L_.str.33(%rip), %rdi
-	movslq	-48(%rbp), %rax
-	movq	-56(%rbp), %rcx
-	movzbl	(%rcx,%rax), %esi
-	movb	$0, %al
-	callq	_printf
-	movslq	-48(%rbp), %rcx
-	movq	-56(%rbp), %rdi
-	movzbl	(%rdi,%rcx), %esi
-	cmpl	$32, %esi
-	movl	%eax, -84(%rbp)         ## 4-byte Spill
-	jl	LBB4_12
-## BB#11:                               ##   in Loop: Header=BB4_5 Depth=1
-	movslq	-48(%rbp), %rax
-	movq	-56(%rbp), %rcx
-	movzbl	(%rcx,%rax), %edx
-	cmpl	$126, %edx
-	jle	LBB4_13
-LBB4_12:                                ##   in Loop: Header=BB4_5 Depth=1
-	movl	$16, %eax
-	movl	-48(%rbp), %ecx
-	movl	%eax, -88(%rbp)         ## 4-byte Spill
-	movl	%ecx, %eax
-	cltd
-	movl	-88(%rbp), %ecx         ## 4-byte Reload
-	idivl	%ecx
-	movslq	%edx, %rsi
-	movb	$46, -32(%rbp,%rsi)
-	jmp	LBB4_14
-LBB4_13:                                ##   in Loop: Header=BB4_5 Depth=1
-	movl	$16, %eax
-	movslq	-48(%rbp), %rcx
-	movq	-56(%rbp), %rdx
-	movb	(%rdx,%rcx), %sil
-	movl	-48(%rbp), %edi
-	movl	%eax, -92(%rbp)         ## 4-byte Spill
-	movl	%edi, %eax
-	cltd
-	movl	-92(%rbp), %edi         ## 4-byte Reload
-	idivl	%edi
-	movslq	%edx, %rcx
-	movb	%sil, -32(%rbp,%rcx)
-LBB4_14:                                ##   in Loop: Header=BB4_5 Depth=1
-	movl	$16, %eax
-	movl	-48(%rbp), %ecx
-	movl	%eax, -96(%rbp)         ## 4-byte Spill
-	movl	%ecx, %eax
-	cltd
-	movl	-96(%rbp), %ecx         ## 4-byte Reload
-	idivl	%ecx
-	addl	$1, %edx
-	movslq	%edx, %rsi
-	movb	$0, -32(%rbp,%rsi)
-## BB#15:                               ##   in Loop: Header=BB4_5 Depth=1
-	movl	-48(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -48(%rbp)
-	jmp	LBB4_5
-LBB4_16:
-	jmp	LBB4_17
-LBB4_17:                                ## =>This Inner Loop Header: Depth=1
-	movl	$16, %eax
-	movl	-48(%rbp), %ecx
-	movl	%eax, -100(%rbp)        ## 4-byte Spill
-	movl	%ecx, %eax
-	cltd
-	movl	-100(%rbp), %ecx        ## 4-byte Reload
-	idivl	%ecx
-	cmpl	$0, %edx
-	je	LBB4_19
-## BB#18:                               ##   in Loop: Header=BB4_17 Depth=1
-	leaq	L_.str.34(%rip), %rdi
-	movb	$0, %al
-	callq	_printf
-	movl	-48(%rbp), %ecx
-	addl	$1, %ecx
-	movl	%ecx, -48(%rbp)
-	movl	%eax, -104(%rbp)        ## 4-byte Spill
-	jmp	LBB4_17
-LBB4_19:
-	leaq	L_.str.31(%rip), %rdi
-	leaq	-32(%rbp), %rsi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -108(%rbp)        ## 4-byte Spill
-LBB4_20:
-	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
-	movq	(%rax), %rax
-	cmpq	-8(%rbp), %rax
-	jne	LBB4_22
-## BB#21:
-	addq	$112, %rsp
+	leaq	_m(%rip), %rdi
+	movl	$4, %esi
+	callq	_hexDump
+	leaq	_m(%rip), %rdi
+	addq	$36, %rdi
+	movl	$4, %esi
+	callq	_hexDump
+	movl	$50, %esi
+	leaq	_m(%rip), %rdi
+	movl	_m+20(%rip), %eax
+	movl	%eax, %ecx
+	movq	%rdi, %rdx
+	addq	%rcx, %rdx
+	movzwl	_m+36(%rip), %eax
+	movl	%eax, %ecx
+	movl	5006(%rdi,%rcx,4), %eax
+	movl	%eax, %ecx
+	addq	%rcx, %rdx
+	movq	%rdx, %rdi
+	callq	_hexDump
+	callq	_checkIfVgaRamEmpty
 	popq	%rbp
 	retq
-LBB4_22:
-	callq	___stack_chk_fail
 	.cfi_endproc
 
-	.globl	_asm2C_OUT
+	.globl	_hexDump
 	.align	4, 0x90
-_asm2C_OUT:                             ## @asm2C_OUT
+_hexDump:                               ## @hexDump
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -2108,6 +1571,141 @@ Ltmp16:
 	movq	%rsp, %rbp
 Ltmp17:
 	.cfi_def_cfa_register %rbp
+	subq	$80, %rsp
+	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
+	movq	(%rax), %rax
+	movq	%rax, -8(%rbp)
+	movq	%rdi, -40(%rbp)
+	movl	%esi, -44(%rbp)
+	movq	-40(%rbp), %rax
+	movq	%rax, -56(%rbp)
+	cmpl	$0, -44(%rbp)
+	jne	LBB5_2
+## BB#1:
+	jmp	LBB5_19
+LBB5_2:
+	cmpl	$0, -44(%rbp)
+	jge	LBB5_4
+## BB#3:
+	jmp	LBB5_19
+LBB5_4:
+	movl	$0, -48(%rbp)
+LBB5_5:                                 ## =>This Inner Loop Header: Depth=1
+	movl	-48(%rbp), %eax
+	cmpl	-44(%rbp), %eax
+	jge	LBB5_16
+## BB#6:                                ##   in Loop: Header=BB5_5 Depth=1
+	movl	$16, %eax
+	movl	-48(%rbp), %ecx
+	movl	%eax, -60(%rbp)         ## 4-byte Spill
+	movl	%ecx, %eax
+	cltd
+	movl	-60(%rbp), %ecx         ## 4-byte Reload
+	idivl	%ecx
+	cmpl	$0, %edx
+	jne	LBB5_10
+## BB#7:                                ##   in Loop: Header=BB5_5 Depth=1
+	cmpl	$0, -48(%rbp)
+	je	LBB5_9
+## BB#8:                                ##   in Loop: Header=BB5_5 Depth=1
+	jmp	LBB5_9
+LBB5_9:                                 ##   in Loop: Header=BB5_5 Depth=1
+	jmp	LBB5_10
+LBB5_10:                                ##   in Loop: Header=BB5_5 Depth=1
+	movslq	-48(%rbp), %rax
+	movq	-56(%rbp), %rcx
+	movzbl	(%rcx,%rax), %edx
+	cmpl	$32, %edx
+	jl	LBB5_12
+## BB#11:                               ##   in Loop: Header=BB5_5 Depth=1
+	movslq	-48(%rbp), %rax
+	movq	-56(%rbp), %rcx
+	movzbl	(%rcx,%rax), %edx
+	cmpl	$126, %edx
+	jle	LBB5_13
+LBB5_12:                                ##   in Loop: Header=BB5_5 Depth=1
+	movl	$16, %eax
+	movl	-48(%rbp), %ecx
+	movl	%eax, -64(%rbp)         ## 4-byte Spill
+	movl	%ecx, %eax
+	cltd
+	movl	-64(%rbp), %ecx         ## 4-byte Reload
+	idivl	%ecx
+	movslq	%edx, %rsi
+	movb	$46, -32(%rbp,%rsi)
+	jmp	LBB5_14
+LBB5_13:                                ##   in Loop: Header=BB5_5 Depth=1
+	movl	$16, %eax
+	movslq	-48(%rbp), %rcx
+	movq	-56(%rbp), %rdx
+	movb	(%rdx,%rcx), %sil
+	movl	-48(%rbp), %edi
+	movl	%eax, -68(%rbp)         ## 4-byte Spill
+	movl	%edi, %eax
+	cltd
+	movl	-68(%rbp), %edi         ## 4-byte Reload
+	idivl	%edi
+	movslq	%edx, %rcx
+	movb	%sil, -32(%rbp,%rcx)
+LBB5_14:                                ##   in Loop: Header=BB5_5 Depth=1
+	movl	$16, %eax
+	movl	-48(%rbp), %ecx
+	movl	%eax, -72(%rbp)         ## 4-byte Spill
+	movl	%ecx, %eax
+	cltd
+	movl	-72(%rbp), %ecx         ## 4-byte Reload
+	idivl	%ecx
+	addl	$1, %edx
+	movslq	%edx, %rsi
+	movb	$0, -32(%rbp,%rsi)
+## BB#15:                               ##   in Loop: Header=BB5_5 Depth=1
+	movl	-48(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -48(%rbp)
+	jmp	LBB5_5
+LBB5_16:
+	jmp	LBB5_17
+LBB5_17:                                ## =>This Inner Loop Header: Depth=1
+	movl	$16, %eax
+	movl	-48(%rbp), %ecx
+	movl	%eax, -76(%rbp)         ## 4-byte Spill
+	movl	%ecx, %eax
+	cltd
+	movl	-76(%rbp), %ecx         ## 4-byte Reload
+	idivl	%ecx
+	cmpl	$0, %edx
+	je	LBB5_19
+## BB#18:                               ##   in Loop: Header=BB5_17 Depth=1
+	movl	-48(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -48(%rbp)
+	jmp	LBB5_17
+LBB5_19:
+	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
+	movq	(%rax), %rax
+	cmpq	-8(%rbp), %rax
+	jne	LBB5_21
+## BB#20:
+	addq	$80, %rsp
+	popq	%rbp
+	retq
+LBB5_21:
+	callq	___stack_chk_fail
+	.cfi_endproc
+
+	.globl	_asm2C_OUT
+	.align	4, 0x90
+_asm2C_OUT:                             ## @asm2C_OUT
+	.cfi_startproc
+## BB#0:
+	pushq	%rbp
+Ltmp18:
+	.cfi_def_cfa_offset 16
+Ltmp19:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+Ltmp20:
+	.cfi_def_cfa_register %rbp
 	subq	$32, %rsp
 	movw	%di, %ax
 	movw	%ax, -2(%rbp)
@@ -2117,21 +1715,21 @@ Ltmp17:
 	subl	$968, %edi              ## imm = 0x3C8
 	movl	%esi, -12(%rbp)         ## 4-byte Spill
 	movl	%edi, -16(%rbp)         ## 4-byte Spill
-	je	LBB5_1
-	jmp	LBB5_8
-LBB5_8:
+	je	LBB6_1
+	jmp	LBB6_8
+LBB6_8:
 	movl	-12(%rbp), %eax         ## 4-byte Reload
 	subl	$969, %eax              ## imm = 0x3C9
 	movl	%eax, -20(%rbp)         ## 4-byte Spill
-	je	LBB5_2
-	jmp	LBB5_6
-LBB5_1:
+	je	LBB6_2
+	jmp	LBB6_6
+LBB6_1:
 	movl	-8(%rbp), %eax
 	movl	%eax, _asm2C_OUT.indexPalette(%rip)
-	jmp	LBB5_7
-LBB5_2:
+	jmp	LBB6_7
+LBB6_2:
 	cmpl	$768, _asm2C_OUT.indexPalette(%rip) ## imm = 0x300
-	jge	LBB5_4
+	jge	LBB6_4
 ## BB#3:
 	leaq	_m(%rip), %rax
 	movl	-8(%rbp), %ecx
@@ -2141,23 +1739,23 @@ LBB5_2:
 	movl	_asm2C_OUT.indexPalette(%rip), %ecx
 	addl	$1, %ecx
 	movl	%ecx, _asm2C_OUT.indexPalette(%rip)
-	jmp	LBB5_5
-LBB5_4:
-	leaq	L_.str.35(%rip), %rdi
+	jmp	LBB6_5
+LBB6_4:
+	leaq	L_.str.22(%rip), %rdi
 	movl	_asm2C_OUT.indexPalette(%rip), %esi
 	movb	$0, %al
 	callq	_printf
 	movl	%eax, -24(%rbp)         ## 4-byte Spill
-LBB5_5:
-	jmp	LBB5_7
-LBB5_6:
-	leaq	L_.str.36(%rip), %rdi
+LBB6_5:
+	jmp	LBB6_7
+LBB6_6:
+	leaq	L_.str.23(%rip), %rdi
 	movswl	-2(%rbp), %esi
 	movl	-8(%rbp), %edx
 	movb	$0, %al
 	callq	_printf
 	movl	%eax, -28(%rbp)         ## 4-byte Spill
-LBB5_7:
+LBB6_7:
 	addq	$32, %rsp
 	popq	%rbp
 	retq
@@ -2169,12 +1767,12 @@ _asm2C_IN:                              ## @asm2C_IN
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
-Ltmp18:
+Ltmp21:
 	.cfi_def_cfa_offset 16
-Ltmp19:
+Ltmp22:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-Ltmp20:
+Ltmp23:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
 	movw	%di, %ax
@@ -2182,28 +1780,28 @@ Ltmp20:
 	movzwl	%ax, %edi
 	subl	$986, %edi              ## imm = 0x3DA
 	movl	%edi, -8(%rbp)          ## 4-byte Spill
-	jne	LBB6_4
-	jmp	LBB6_1
-LBB6_1:
+	jne	LBB7_4
+	jmp	LBB7_1
+LBB7_1:
 	testb	$1, _asm2C_IN.vblTick(%rip)
-	je	LBB6_3
+	je	LBB7_3
 ## BB#2:
 	movb	$0, _asm2C_IN.vblTick(%rip)
 	movb	$0, -1(%rbp)
-	jmp	LBB6_5
-LBB6_3:
+	jmp	LBB7_5
+LBB7_3:
 	movb	$1, _asm2C_IN.vblTick(%rip)
-	movb	$1, _m+4231(%rip)
+	movb	$1, _m+49(%rip)
 	movb	$8, -1(%rbp)
-	jmp	LBB6_5
-LBB6_4:
-	leaq	L_.str.37(%rip), %rdi
+	jmp	LBB7_5
+LBB7_4:
+	leaq	L_.str.24(%rip), %rdi
 	movswl	-4(%rbp), %esi
 	movb	$0, %al
 	callq	_printf
 	movb	$0, -1(%rbp)
 	movl	%eax, -12(%rbp)         ## 4-byte Spill
-LBB6_5:
+LBB7_5:
 	movsbl	-1(%rbp), %eax
 	addq	$16, %rsp
 	popq	%rbp
@@ -2216,12 +1814,12 @@ _is_little_endian:                      ## @is_little_endian
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
-Ltmp21:
+Ltmp24:
 	.cfi_def_cfa_offset 16
-Ltmp22:
+Ltmp25:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-Ltmp23:
+Ltmp26:
 	.cfi_def_cfa_register %rbp
 	movb	$1, %al
 	andb	$1, %al
@@ -2236,25 +1834,16 @@ _asm2C_init:                            ## @asm2C_init
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
-Ltmp24:
+Ltmp27:
 	.cfi_def_cfa_offset 16
-Ltmp25:
+Ltmp28:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-Ltmp26:
+Ltmp29:
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
 	callq	_is_little_endian
-	leaq	L_.str.38(%rip), %rdi
 	andb	$1, %al
-	movb	%al, _m+4230(%rip)
-	movb	_m+4230(%rip), %al
-	andb	$1, %al
-	movzbl	%al, %esi
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -4(%rbp)          ## 4-byte Spill
-	addq	$16, %rsp
+	movb	%al, _m+48(%rip)
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -2262,6 +1851,28 @@ Ltmp26:
 	.section	__DATA,__data
 	.globl	_m                      ## @m
 _m:
+	.space	4
+	.space	4
+	.space	4
+	.space	4
+	.space	4
+	.space	4
+	.space	4
+	.space	4
+	.space	2
+	.space	2
+	.space	2
+	.space	2
+	.space	2
+	.space	2
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
+	.byte	0                       ## 0x0
 	.byte	4                       ## 0x4
 	.byte	2                       ## 0x2
 	.short	11                      ## 0xb
@@ -2282,38 +1893,16 @@ _m:
 	.ascii	"OKOKOKOK\n\r"
 	.space	4,5
 	.ascii	"OKOKOKOK"
-	.long	10                      ## 0xa
+	.long	62                      ## 0x3e
 	.ascii	"00000000\r\n$"
 	.ascii	"abcd"
 	.byte	4                       ## 0x4
 	.space	4096
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.long	0                       ## 0x0
-	.short	0                       ## 0x0
-	.short	0                       ## 0x0
-	.short	0                       ## 0x0
-	.short	0                       ## 0x0
-	.short	0                       ## 0x0
-	.short	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
-	.byte	0                       ## 0x0
 	.space	768
-	.long	0                       ## 0x0
-	.space	16384
 	.long	1                       ## 0x1
 	.space	512
+	.long	0                       ## 0x0
+	.space	16384
 	.long	0                       ## 0x0
 	.space	4194304
 	.space	64000
@@ -2322,116 +1911,80 @@ _m:
 	.quad	0
 
 	.section	__TEXT,__cstring,cstring_literals
+L___func__.program:                     ## @__func__.program
+	.asciz	"program"
+
 L_.str:                                 ## @.str
-	.asciz	"vgaram_empty : %s\n"
+	.asciz	"data.c"
 
 L_.str.1:                               ## @.str.1
-	.asciz	"true"
+	.asciz	"m.stackPointer<STACK_SIZE"
 
 L_.str.2:                               ## @.str.2
-	.asciz	"false"
+	.asciz	"./memoryMap.log"
 
 L_.str.3:                               ## @.str.3
-	.asciz	"is_little_endian()=%d\n"
+	.asciz	"w"
 
 L_.str.4:                               ## @.str.4
-	.asciz	"sizeof(dd)=%zu\n"
+	.asciz	"xox %x (from beg RW) %x:beginningdata\n"
 
 L_.str.5:                               ## @.str.5
-	.asciz	"sizeof(dd *)=%zu\n"
+	.asciz	"xox %x (from beg RW) %x:var1\n"
 
 L_.str.6:                               ## @.str.6
-	.asciz	"sizeof(dw)=%zu\n"
+	.asciz	"xox %x (from beg RW) %x:var2\n"
 
 L_.str.7:                               ## @.str.7
-	.asciz	"sizeof(db)=%zu\n"
+	.asciz	"xox %x (from beg RW) %x:var3\n"
 
 L_.str.8:                               ## @.str.8
-	.asciz	"sizeof(mem)=%zu\n"
+	.asciz	"xox %x (from beg RW) %x:var4\n"
 
 L_.str.9:                               ## @.str.9
-	.asciz	"eax: %x\n"
+	.asciz	"xox %x (from beg RW) %x:dummy1\n"
 
 L_.str.10:                              ## @.str.10
-	.asciz	"ebx: %x\n"
+	.asciz	"xox %x (from beg RW) %x:var5\n"
 
 L_.str.11:                              ## @.str.11
-	.asciz	"ecx: %x\n"
+	.asciz	"xox %x (from beg RW) %x:var6\n"
 
 L_.str.12:                              ## @.str.12
-	.asciz	"edx: %x\n"
+	.asciz	"xox %x (from beg RW) %x:dummy2\n"
 
 L_.str.13:                              ## @.str.13
-	.asciz	"ebp: %x\n"
+	.asciz	"xox %x (from beg RW) %x:dummy3\n"
 
 L_.str.14:                              ## @.str.14
-	.asciz	"cs: %d -> %p\n"
+	.asciz	"xox %x (from beg RW) %x:dummy4\n"
 
 L_.str.15:                              ## @.str.15
-	.asciz	"ds: %d -> %p\n"
+	.asciz	"xox %x (from beg RW) %x:dummy5\n"
 
 L_.str.16:                              ## @.str.16
-	.asciz	"esi: %x\n"
+	.asciz	"xox %x (from beg RW) %x:dummy6\n"
 
 L_.str.17:                              ## @.str.17
-	.asciz	"ds:esi %p\n"
+	.asciz	"xox %x (from beg RW) %x:dummy7\n"
 
 L_.str.18:                              ## @.str.18
-	.asciz	"es: %d -> %p\n"
+	.asciz	"xox %x (from beg RW) %x:ascii\n"
 
 L_.str.19:                              ## @.str.19
-	.asciz	"edi: %x\n"
+	.asciz	"xox %x (from beg RW) %x:doublequote\n"
 
 L_.str.20:                              ## @.str.20
-	.asciz	"es:edi %p\n"
+	.asciz	"xox %x (from beg RW) %x:enddata\n"
 
 L_.str.21:                              ## @.str.21
-	.asciz	"fs: %d -> %p\n"
-
-L_.str.22:                              ## @.str.22
-	.asciz	"gs: %d -> %p\n"
-
-L_.str.23:                              ## @.str.23
-	.asciz	"adress heap: %p\n"
-
-L_.str.24:                              ## @.str.24
-	.asciz	"adress vgaRam: %p\n"
-
-L_.str.25:                              ## @.str.25
-	.asciz	"first pixels vgaRam: %x\n"
-
-L_.str.26:                              ## @.str.26
-	.asciz	"flags: ZF = %d\n"
-
-L_.str.27:                              ## @.str.27
-	.asciz	"top stack=%d\n"
-
-L_.str.28:                              ## @.str.28
-	.asciz	"hexDump %p:\n"
-
-L_.str.29:                              ## @.str.29
-	.asciz	"  ZERO LENGTH\n"
-
-L_.str.30:                              ## @.str.30
-	.asciz	"  NEGATIVE LENGTH: %i\n"
-
-L_.str.31:                              ## @.str.31
-	.asciz	"  %s\n"
-
-L_.str.32:                              ## @.str.32
-	.asciz	"  %04x "
-
-L_.str.33:                              ## @.str.33
-	.asciz	" %02x"
-
-L_.str.34:                              ## @.str.34
-	.asciz	"   "
+	.asciz	"xox %x (from beg RW) %x:dummy8\n"
 
 .zerofill __DATA,__bss,_asm2C_OUT.indexPalette,4,2 ## @asm2C_OUT.indexPalette
-L_.str.35:                              ## @.str.35
+L_.str.22:                              ## @.str.22
 	.asciz	"error: indexPalette>767 %d\n"
 
-L_.str.36:                              ## @.str.36
+L_.str.23:                              ## @.str.23
 	.asciz	"unknown OUT %d,%d\n"
 
 	.section	__DATA,__data
@@ -2439,110 +1992,50 @@ _asm2C_IN.vblTick:                      ## @asm2C_IN.vblTick
 	.byte	1                       ## 0x1
 
 	.section	__TEXT,__cstring,cstring_literals
-L_.str.37:                              ## @.str.37
+L_.str.24:                              ## @.str.24
 	.asciz	"Unknown IN %d\n"
 
-L_.str.38:                              ## @.str.38
-	.asciz	"asm2C_init is_little_endian:%d\n"
-
 .zerofill __DATA,__bss,_asm2C_INT.file,8,3 ## @asm2C_INT.file
-L_.str.39:                              ## @.str.39
-	.asciz	"asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n"
-
-L_.str.40:                              ## @.str.40
-	.asciz	"Switch to text mode\n"
-
-L_.str.41:                              ## @.str.41
-	.asciz	"Switch to VGA\n"
-
-L_.str.42:                              ## @.str.42
+L_.str.25:                              ## @.str.25
 	.asciz	"%c"
 
-L_.str.43:                              ## @.str.43
+L_.str.26:                              ## @.str.26
 	.asciz	"%s/%s"
 
-L_.str.44:                              ## @.str.44
+L_.str.27:                              ## @.str.27
 	.asciz	"%s"
 
-L_.str.45:                              ## @.str.45
+L_.str.28:                              ## @.str.28
 	.asciz	"rb"
 
-L_.str.46:                              ## @.str.46
-	.asciz	"Opening file %s -> %p\n"
-
-L_.str.47:                              ## @.str.47
+L_.str.29:                              ## @.str.29
 	.asciz	"Error opening file %s\n"
 
-L_.str.48:                              ## @.str.48
-	.asciz	"Closing file. bx:%d\n"
-
-L_.str.49:                              ## @.str.49
+L_.str.30:                              ## @.str.30
 	.asciz	"Error"
 
-L_.str.50:                              ## @.str.50
+L_.str.31:                              ## @.str.31
 	.asciz	"Error closing file ? bx:%d %p\n"
 
-L_.str.51:                              ## @.str.51
-	.asciz	"Reading ecx=%d cx=%d eds=%x edx=%x -> %p file: %p\n"
-
-L_.str.52:                              ## @.str.52
-	.asciz	"feof(file)\n"
-
-L_.str.53:                              ## @.str.53
+L_.str.32:                              ## @.str.32
 	.asciz	"r!=cx cx:%d R:%zu \n"
 
-L_.str.54:                              ## @.str.54
+L_.str.33:                              ## @.str.33
 	.asciz	"Error reading ? %d %zu %p\n"
 
-L_.str.55:                              ## @.str.55
-	.asciz	"Reading OK %p\n"
-
-L_.str.56:                              ## @.str.56
-	.asciz	"Seeking to offset %ld %d\n"
-
-L_.str.57:                              ## @.str.57
+L_.str.34:                              ## @.str.34
 	.asciz	"Error seeking\n"
 
-L_.str.58:                              ## @.str.58
-	.asciz	"Function 0000h - Allocate %d Descriptors\n"
-
-L_.str.59:                              ## @.str.59
+L_.str.35:                              ## @.str.35
 	.asciz	"Not enough free selectors (increase NB_SELECTORS)\n"
 
-L_.str.60:                              ## @.str.60
-	.asciz	"Return %x\n"
-
-L_.str.61:                              ## @.str.61
-	.asciz	"Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n"
-
-L_.str.62:                              ## @.str.62
-	.asciz	"Returns new selector: eax: %d\n"
-
-L_.str.63:                              ## @.str.63
-	.asciz	"Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n"
-
-L_.str.64:                              ## @.str.64
+L_.str.36:                              ## @.str.36
 	.asciz	"Error: selector number doesnt exist\n"
 
-L_.str.65:                              ## @.str.65
-	.asciz	"Address for selector %d: %x\n"
-
-L_.str.66:                              ## @.str.66
-	.asciz	"Function 0008h - Set Segment Limit for selector %d (Ignored)\n"
-
-L_.str.67:                              ## @.str.67
-	.asciz	"Function 0501h - Allocate Memory Block: %d bytes\n"
-
-L_.str.68:                              ## @.str.68
+L_.str.37:                              ## @.str.37
 	.asciz	"Not enough memory (increase HEAP_SIZE)\n"
 
-L_.str.69:                              ## @.str.69
-	.asciz	"New top of heap: %x\n"
-
-L_.str.70:                              ## @.str.70
-	.asciz	"Return %x ebx:ecx %x:%x\n"
-
-L_.str.71:                              ## @.str.71
+L_.str.38:                              ## @.str.38
 	.asciz	"Error DOSInt 0x%x ah:0x%x al:0x%x: not supported.\n"
 
 

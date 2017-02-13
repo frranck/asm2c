@@ -90,7 +90,6 @@ public struct DataPrimaryNode: ExprNode {
     //dataPrimaryNodesMap[name]
     
     public var description: String {
-        
         if nodes.count > 1 {
             return "\(printDataType()) \(name)[\(nodes.count)];\n"
         } else {
@@ -308,7 +307,7 @@ public struct Instruction2Node: CustomStringConvertible {
         case is OffsetNode:
             castRhs = "(\(rhs))"
             if let lhs = lhs as? RegisterNode {
-                castLhs = "m.\(lhs.value)"
+                castLhs = "m.\(lhs.value).dd.val"
             }
         default:
             if shouldPointExpression(expr: rhs) {

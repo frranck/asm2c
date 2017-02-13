@@ -4,17 +4,21 @@
 #define testequ 1
 
 Memory m = {
+{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
+0,0,0,0,0,0, //flags
+0, //isLittle
+0, //exitCode
 {0}, //var0
 {5,5,5,5}, //var
 {0}, //var2
 {0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3}, //var3
 {0}, //dummy1
-0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
-0,0,0,0,0,0, //flags
-0, //isLittle
-0, //exitCode
+
 {0}, //vgaPalette
-0,{0},1,{0},0,{0},{0},{0},{0}, NULL};
+1,{0}, //selectorsPointer+selectors
+0,{0}, //stackPointer+stack
+0,{0}, //heapPointer+heap
+{0},{0},{0}, NULL};
 
 int program() {
 jmp_buf jmpbuffer;
@@ -27,8 +31,8 @@ dest=NULL;src=NULL;i=0; //to avoid a warning.
 if (m.executionFinished) goto moveToBackGround;
 if (m.jumpToBackGround) {
 m.jumpToBackGround = 0;
-#ifdef __LIBRETRO__
-if (!m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
+#ifdef MRBOOM
+if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
 if (m.nosetjmp==2) goto directjeu;
 if (m.nosetjmp==1) goto directmenu;
 #endif
@@ -60,6 +64,17 @@ m.executionFinished = 1;
 moveToBackGround:
 return (m.executionFinished == 0);
 }
+void asm2C_printOffsets(unsigned int offset) {
+FILE * file;
+file=fopen("./memoryMap.log", "w");
+fprintf(file, "xox %x (from beg RW) %x:var0\n",(unsigned int) offsetof(struct Mem,var0)-offset,(unsigned int) offsetof(struct Mem,var0));
+fprintf(file, "xox %x (from beg RW) %x:var\n",(unsigned int) offsetof(struct Mem,var)-offset,(unsigned int) offsetof(struct Mem,var));
+fprintf(file, "xox %x (from beg RW) %x:var2\n",(unsigned int) offsetof(struct Mem,var2)-offset,(unsigned int) offsetof(struct Mem,var2));
+fprintf(file, "xox %x (from beg RW) %x:var3\n",(unsigned int) offsetof(struct Mem,var3)-offset,(unsigned int) offsetof(struct Mem,var3));
+fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
+
+fclose(file);
+}
 
 
 void checkIfVgaRamEmpty() {
@@ -69,6 +84,7 @@ void checkIfVgaRamEmpty() {
         if(m.vgaRam[i])
             vgaram_empty = 0;
     log_debug("vgaram_empty : %s\n", vgaram_empty? "true" : "false");
+    (void) vgaram_empty;
 }
 
 void stackDump() {
@@ -78,23 +94,23 @@ void stackDump() {
     log_debug("sizeof(dw)=%zu\n",sizeof(dw));
     log_debug("sizeof(db)=%zu\n",sizeof(db));
     log_debug("sizeof(mem)=%zu\n",sizeof(m));
-    log_debug("eax: %x\n",m.eax);
+    log_debug("eax: %x\n",READDD(eax));
     hexDump(&m.eax,sizeof(dd));
-    log_debug("ebx: %x\n",m.ebx);
-    log_debug("ecx: %x\n",m.ecx);
-    log_debug("edx: %x\n",m.edx);
-    log_debug("ebp: %x\n",m.ebp);
-    log_debug("cs: %d -> %p\n",m.cs,(void *) realAddress(0,cs));
-    log_debug("ds: %d -> %p\n",m.ds,(void *) realAddress(0,ds));
-    log_debug("esi: %x\n",m.esi);
-    log_debug("ds:esi %p\n",(void *) realAddress(m.esi,ds));
-    log_debug("es: %d -> %p\n",m.es,(void *) realAddress(0,es));
+    log_debug("ebx: %x\n",READDD(ebx));
+    log_debug("ecx: %x\n",READDD(ecx));
+    log_debug("edx: %x\n",READDD(edx));
+    log_debug("ebp: %x\n",READDD(ebp));
+    log_debug("cs: %d -> %p\n",READDW(cs),(void *) realAddress(0,cs));
+    log_debug("ds: %d -> %p\n",READDW(ds),(void *) realAddress(0,ds));
+    log_debug("esi: %x\n",READDD(esi));
+    log_debug("ds:esi %p\n",(void *) realAddress(m.esi.dd.val,ds));
+    log_debug("es: %d -> %p\n",READDW(es),(void *) realAddress(0,es));
     hexDump(&m.es,sizeof(dd));
-    log_debug("edi: %x\n",m.edi);
-    log_debug("es:edi %p\n",(void *) realAddress(m.edi,es));
-    hexDump((void *) realAddress(m.edi,es),50);
-    log_debug("fs: %d -> %p\n",m.fs,(void *) realAddress(0,fs));
-    log_debug("gs: %d -> %p\n",m.gs,(void *) realAddress(0,gs));
+    log_debug("edi: %x\n",READDD(edi));
+    log_debug("es:edi %p\n",(void *) realAddress(m.edi.dd.val,es));
+    hexDump((void *) realAddress(m.edi.dd.val,es),50);
+    log_debug("fs: %d -> %p\n",READDW(fs),(void *) realAddress(0,fs));
+    log_debug("gs: %d -> %p\n",READDW(gs),(void *) realAddress(0,gs));
     log_debug("adress heap: %p\n",(void *) &m.heap);
     log_debug("adress vgaRam: %p\n",(void *) &m.vgaRam);
     log_debug("first pixels vgaRam: %x\n",*m.vgaRam);
@@ -103,14 +119,12 @@ void stackDump() {
     checkIfVgaRamEmpty();
 }
 
-
-
 // thanks to paxdiablo http://stackoverflow.com/users/14860/paxdiablo for the hexDump function
 void hexDump (void *addr, int len) {
     int i;
     unsigned char buff[17];
     unsigned char *pc = (unsigned char*)addr;
-
+    (void) buff;
     log_debug ("hexDump %p:\n", addr);
     
     if (len == 0) {
@@ -223,7 +237,12 @@ _Bool is_little_endian()
 
 void asm2C_init() {
     m.isLittle=is_little_endian();
-    log_debug("asm2C_init is_little_endian:%d\n",m.isLittle);
+#ifdef MSB_FIRST
+    if (m.isLittle) {
+        log_error("Inconsistency: is_little_endian=true and MSB_FIRST defined.\n");
+    }
+#endif
+    log_debug2("asm2C_init is_little_endian:%d\n",m.isLittle);
 }
 
 void asm2C_INT(int a) {
@@ -236,7 +255,7 @@ void asm2C_INT(int a) {
     dw cx=READDW(ecx);
     dw dx=READDW(edx);
     m.CF = 0;
-    log_debug("asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n",ah,al,ax,bx,cx,dx);
+    log_debug2("asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n",ah,al,ax,bx,cx,dx);
     
     switch(a) {
         case 0x10:
@@ -244,11 +263,11 @@ void asm2C_INT(int a) {
             switch(ax)
             {
                 case 0x03: {
-                    log_debug("Switch to text mode\n");
+                    log_debug2("Switch to text mode\n");
                     return;
                 }
                 case 0x13: {
-                    log_debug("Switch to VGA\n");
+                    log_debug2("Switch to VGA\n");
                     stackDump();
                     return;
                 }
@@ -260,7 +279,7 @@ void asm2C_INT(int a) {
         {
             case 0x9:
             {
-                char * s=(char *) realAddress(m.edx,ds);
+                char * s=(char *) realAddress(m.edx.dd.val,ds);
                 for (i=0;s[i]!='$';i++) {
                     printf("%c", s[i]);
                 }
@@ -270,21 +289,21 @@ void asm2C_INT(int a) {
             {
                 //MOV(8,8,READDBh(edx),(db)2);
                 // TOFIX
-                m.edx=0x200;
+                m.edx.dd.val=0x200;
                 return;
             }
             case 0x3d:
             {
                 char fileName[1000];
                 if (m.path!=NULL) {
-                    sprintf(fileName,"%s/%s",m.path,(const char *) realAddress(m.edx, ds));
+                    sprintf(fileName,"%s/%s",m.path,(const char *) realAddress(m.edx.dd.val, ds));
                 } else {
-                    sprintf(fileName,"%s",(const char *) realAddress(m.edx, ds));
+                    sprintf(fileName,"%s",(const char *) realAddress(m.edx.dd.val, ds));
                 }
                 file=fopen(fileName, "rb"); //TOFIX, multiple files support
-                log_debug("Opening file %s -> %p\n",fileName,(void *) file);
+                log_debug2("Opening file %s -> %p\n",fileName,(void *) file);
                 if (file!=NULL) {
-                    m.eax=1; //TOFIX
+                    m.eax.dd.val=1; //TOFIX
                 } else {
                     m.CF = 1;
                     log_error("Error opening file %s\n",fileName);
@@ -307,7 +326,7 @@ void asm2C_INT(int a) {
             {
               // bx: file handle to close
               //TOFIX
-              log_debug("Closing file. bx:%d\n",bx);
+              log_debug2("Closing file. bx:%d\n",bx);
               if (fclose(file))  {
                     m.CF = 1;
                       perror("Error");
@@ -333,13 +352,12 @@ void asm2C_INT(int a) {
                     CF set on error AX = error code (05h,06h)
                     */
                 //char grosbuff[100000];
-                void * buffer=(db *) realAddress(m.edx, ds);
-                //buffer=grosbuff;
-                log_debug("Reading ecx=%d cx=%d eds=%x edx=%x -> %p file: %p\n",m.ecx,cx,m.ds,m.edx,buffer,(void *)  file);
+                void * buffer=(db *) realAddress(m.edx.dd.val, ds);
+               // log_debug2("Reading ecx=%d cx=%d eds=%x edx=%x -> %p file: %p\n",m.ecx.dd.val,cx,m.ds,m.edx,buffer,(void *)  file);
 
                 if (feof(file)) {
-                    log_debug("feof(file)\n");
-                  m.eax=0;
+                    log_debug2("feof(file)\n");
+                  m.eax.dd.val=0;
                 } else {
                     size_t r=fread (buffer,1,cx,file);
                   if (r!=cx) {
@@ -350,9 +368,9 @@ void asm2C_INT(int a) {
                       m.CF = 1;
                     }
                   } else {
-                      log_debug("Reading OK %p\n",(void *) file);
+                      log_debug2("Reading OK %p\n",(void *) file);
                   }
-                  m.eax=r;
+                  m.eax.dd.val=r;
                 }
                 /*
                 if (ax!=cx) {
@@ -390,7 +408,7 @@ void asm2C_INT(int a) {
                         break;
                 }
                 long int offset=(cx<<16)+dx;
-                log_debug("Seeking to offset %ld %d\n",offset,seek);
+                log_debug2("Seeking to offset %ld %d\n",offset,seek);
                 if (fseek(file,offset,seek)!=0) {
                     log_error("Error seeking\n");
                 }
@@ -427,15 +445,15 @@ void asm2C_INT(int a) {
                 ;    carry flag clear
                 ;    AX     = base selector
                  */
-                log_debug("Function 0000h - Allocate %d Descriptors\n",cx);
+                log_debug2("Function 0000h - Allocate %d Descriptors\n",cx);
                 if (m.selectorsPointer+cx>=NB_SELECTORS) {
                     m.CF = 1;
                     log_error("Not enough free selectors (increase NB_SELECTORS)\n");
                     return;
                 } else {
-                    m.eax = m.selectorsPointer;
+                    m.eax.dd.val = m.selectorsPointer;
                     m.selectorsPointer+=cx;
-                    log_debug("Return %x\n",m.eax);
+                    log_debug2("Return %x\n",m.eax.dd.val);
                 }
                 return;
             }
@@ -451,7 +469,7 @@ void asm2C_INT(int a) {
                  if failed:
                  carry flag set
                 */
-                log_debug("Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n",m.ebx);
+                log_debug2("Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n",m.ebx.dd.val);
                 if (m.selectorsPointer+1>=NB_SELECTORS) {
                     m.CF = 1;
                     log_error("Not enough free selectors (increase NB_SELECTORS)\n");
@@ -460,8 +478,8 @@ void asm2C_INT(int a) {
                 // TOFIX ?
                 // always return vga adress.
                 m.selectors[m.selectorsPointer]=offsetof(struct Mem,vgaRam); // bx;
-                m.eax=m.selectorsPointer;
-                log_debug("Returns new selector: eax: %d\n",m.eax);
+                m.eax.dd.val=m.selectorsPointer;
+                log_debug2("Returns new selector: eax: %d\n",m.eax.dd.val);
                 m.selectorsPointer++;
 
                 // Multiple calls for the same real mode segment return the same selector. The returned descriptor should never be modified or freed. <- TOFIX
@@ -477,14 +495,14 @@ void asm2C_INT(int a) {
                 */
             case 0x07:
             {
-                log_debug("Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n",m.ebx,m.edx,m.ecx);
+                log_debug2("Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n",READDD(ebx),READDD(edx),READDD(ecx));
                 if (bx>m.selectorsPointer) {
                     m.CF = 1;
                     log_error("Error: selector number doesnt exist\n");
                     return;
                 }
                 m.selectors[bx]=(READDW(edx)&0xffff)+(READDW(ecx)<<16);
-                log_debug("Address for selector %d: %x\n",bx,m.selectors[bx]);
+                log_debug2("Address for selector %d: %x\n",bx,m.selectors[bx]);
                 return;
             }
             case 0x08:
@@ -505,7 +523,7 @@ void asm2C_INT(int a) {
                  */
 
                 // To implement...
-                log_debug("Function 0008h - Set Segment Limit for selector %d (Ignored)\n",bx);
+                log_debug2("Function 0008h - Set Segment Limit for selector %d (Ignored)\n",bx);
                 return;
             }
             case 0x501:
@@ -520,7 +538,7 @@ void asm2C_INT(int a) {
                 ;    SI:DI  = memory block handle (used to resize and free block)
                 */
                 int32_t nbBlocks=(bx<<16)+cx;
-                log_debug("Function 0501h - Allocate Memory Block: %d bytes\n",nbBlocks);
+                log_debug2("Function 0501h - Allocate Memory Block: %d bytes\n",nbBlocks);
 
                 if (m.heapPointer+nbBlocks>=HEAP_SIZE) {
                     m.CF = 1;
@@ -530,14 +548,13 @@ void asm2C_INT(int a) {
                     dd a=offsetof(struct Mem,heap)+m.heapPointer;
                     m.heapPointer+=nbBlocks;
                     {
-                        dd n=offsetof(struct Mem,heap)+m.heapPointer;
-                        log_debug("New top of heap: %x\n",n);
+                        log_debug2("New top of heap: %x\n",(dd) offsetof(struct Mem,heap)+m.heapPointer);
                     }
-                    m.ecx=a & 0xFFFF;
-                    m.ebx=a >> 16;
-                    m.edi=0; // TOFIX
-                    m.esi=0; // TOFIX
-                    log_debug("Return %x ebx:ecx %x:%x\n",a,m.ebx,m.ecx);
+                    m.ecx.dd.val=a & 0xFFFF;
+                    m.ebx.dd.val=a >> 16;
+                    m.edi.dd.val=0; // TOFIX
+                    m.esi.dd.val=0; // TOFIX
+                    log_debug2("Return %x ebx:ecx %x:%x\n",a,m.ebx.dd.val,m.ecx.dd.val);
                     return;
                 }
                 break;
@@ -582,6 +599,7 @@ void asm2C_INT(int a) {
     m.CF = 1;
     log_error("Error DOSInt 0x%x ah:0x%x al:0x%x: not supported.\n",a,ah,al);
 }
+
 
 #ifdef INCLUDEMAIN
 int main() {

@@ -65,7 +65,7 @@ runTest() {
     echo "compiling ${filename}.c"
     cp -f ../Resources/Makefile ${filename}/
     cp -f ../Resources/link.T ${filename}/
-    (cd ${filename};make test DEBUG=1 INCLUDEMAIN=1 OBJECTS=${filename}.o TARGET_NAME=${filename})
+    (cd ${filename};make test DEBUG=2 INCLUDEMAIN=1 OBJECTS=${filename}.o TARGET_NAME=${filename})
 
 if [ $? -ne 0 ]
 then

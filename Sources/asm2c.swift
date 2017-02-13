@@ -83,7 +83,57 @@ class asm2c {
                     }
                 }
             )
+            
+            let printOffsets = multiline( "void asm2C_printOffsets(unsigned int offset) {",
+                                          "FILE * file;",
+                                          "file=fopen(\"./memoryMap.log\", \"w\");",
+                                          dataPrimaryNodes.reduce("") {prev, lastline in
+                                            let offsetString="offsetof(struct Mem,\(lastline.name))"
+                                            return "\(prev)fprintf(file, \"xox %x (from beg RW) %x:\(lastline.name)\\n\",(unsigned int) \(offsetString)-offset,(unsigned int) \(offsetString));\n"
+                },
+                                          "fclose(file);",
+                                          "}"
+            )
+            var showlines=false;
 
+            // *** only For MrBoom
+            var fixBigEndian = multiline(
+                "#define INITVAR_dd(a,b) \\",
+                "{ \\",
+                "unsigned int offset=a-offsetof(struct Mem,replayer_saver); \\",
+                "uint32_t * pointer=(uint32_t *) (((char *) data)+offset); \\",
+                "for (i=0;i<b;i++) { \\",
+                "pointer[i]=SWAP32(pointer[i]); \\",
+                "}}",
+                "#define INITVAR_dw(a,b) \\",
+                "{ \\",
+                "unsigned int offset=a-offsetof(struct Mem,replayer_saver); \\",
+                "uint16_t * pointer=(uint16_t *) (((char *) data)+offset); \\",
+                "for (i=0;i<b;i++) { \\",
+                "pointer[i]=SWAP16(pointer[i]); \\",
+                "}}",
+                                          "void fixBigEndian(void *data) {",
+                                          "int i;",
+                                          dataPrimaryNodes.reduce("") {prev, lastline in
+                                            let offsetString="offsetof(struct Mem,\(lastline.name))"
+                                            var initLine="INITVAR_\(lastline.getSizeDirective())(\(offsetString),\(lastline.nodes.count));\n"
+                                            
+                                            if lastline.name=="replayer_saver" {
+                                                showlines=true
+                                            }
+                                            
+                                            if lastline.kind.uppercased()=="DB" || showlines==false {
+                                                initLine="";
+                                            }
+                                            return "\(prev)\(initLine)"
+                                            },
+                                          "}"
+            )
+            if (showlines==false) {
+                fixBigEndian="";
+            }
+            // ***
+            
             let defines = equ.reduce("") {prev, lastline in
                                return "\(prev)\(lastline)"
 			  }
@@ -102,12 +152,16 @@ class asm2c {
                                          "#include \"\(include).h\"",
                                           defines,
                                          "Memory m = {", // jmpbuffer",
-                                         "\(memoryValue)0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers",
+                                         "{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers",
                                          "0,0,0,0,0,0, //flags",
                                          "0, //isLittle",
                                          "0, //exitCode",
+                                         "\(memoryValue)",
                                          "{0}, //vgaPalette",
-                                         "0,{0},1,{0},0,{0},{0},{0},{0}, NULL};\n",
+                                         "1,{0}, //selectorsPointer+selectors",
+                                         "0,{0}, //stackPointer+stack",
+                                         "0,{0}, //heapPointer+heap",
+                                         "{0},{0},{0}, NULL};\n",
                                          "int program() {",
                                          "jmp_buf jmpbuffer;",
                                          "void * dest;",
@@ -119,8 +173,8 @@ class asm2c {
                                          "if (m.executionFinished) goto moveToBackGround;",
                                          "if (m.jumpToBackGround) {",
                                          "m.jumpToBackGround = 0;",
-                                         "#ifdef __LIBRETRO__",
-                                         "if (!m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.",
+                                         "#ifdef MRBOOM",
+                                         "if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.",
                                          "if (m.nosetjmp==2) goto directjeu;",
                                          "if (m.nosetjmp==1) goto directmenu;",
                                          "#endif",
@@ -131,7 +185,9 @@ class asm2c {
                                          "moveToBackGround:",
                                          "return (m.executionFinished == 0);",
                                          "}",
+                                         printOffsets,
                                          asmC,
+                                         fixBigEndian,
                                          "#ifdef INCLUDEMAIN",
                                          "int main() {",
                                          "asm2C_init();stackDump();while (program()) { }",
@@ -152,22 +208,22 @@ class asm2c {
 					  "#ifndef \(include.uppercased())_H__",
                                           "#define \(include.uppercased())_H__",
                                            asmH,
-                                          "typedef struct __attribute__((packed)) Mem {",
-                                          memory,
-                                          "dd eax;",
-                                          "dd ebx;",
-                                          "dd ecx;",
-                                          "dd edx;",
-                                          "dd esi;",
-                                          "dd edi;",
-                                          "dd ebp;",
-                                          "dd esp;",
-                                          "dw cs;",
-                                          "dw ds;",
-                                          "dw es;",
-                                          "dw fs;",
-                                          "dw gs;",
-                                          "dw ss;",
+                                          "#pragma pack(push, 1)",
+                                          "typedef struct Mem {",
+                                          "registry32Bits eax;",
+                                          "registry32Bits ebx;",
+                                          "registry32Bits ecx;",
+                                          "registry32Bits edx;",
+                                          "registry32Bits esi;",
+                                          "registry32Bits edi;",
+                                          "registry32Bits ebp;",
+                                          "registry32Bits esp;",
+                                          "registry16Bits cs;",
+                                          "registry16Bits ds;",
+                                          "registry16Bits es;",
+                                          "registry16Bits fs;",
+                                          "registry16Bits gs;",
+                                          "registry16Bits ss;",
                                           "_Bool CF;",
                                           "_Bool ZF;",
                                           "_Bool DF;",
@@ -176,11 +232,12 @@ class asm2c {
                                           "_Bool jumpToBackGround;",
                                           "_Bool executionFinished;",
                                           "db exitCode;",
+                                          memory,
                                           "db vgaPalette[256*3];",
-                                          "int stackPointer;",
-                                          "dd stack[STACK_SIZE];",
                                           "dd selectorsPointer;",
                                           "dd selectors[NB_SELECTORS];",
+                                          "int stackPointer;",
+                                          "dd stack[STACK_SIZE];",
                                           "dd heapPointer;",
                                           "db heap[HEAP_SIZE];",
                                           "db vgaRamPaddingBefore[VGARAM_SIZE];",
@@ -188,6 +245,7 @@ class asm2c {
                                           "db vgaRamPaddingAfter[VGARAM_SIZE];",
                                           "char *path;",
                                           "} Memory;",
+                                          "#pragma pack(pop)",
                                           "int program();",
                                           defineSizeOfs,
                                           "#endif",

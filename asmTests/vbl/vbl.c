@@ -2,6 +2,10 @@
 #include "vbl.h"
 
 Memory m = {
+{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
+0,0,0,0,0,0, //flags
+0, //isLittle
+0, //exitCode
 {0,0,0,0,0,21,0,0,42,0,0,63,9,0,0,9}, //pal_jeu
 {0,21,9,0,42,9,0,63,18,0,0,18,0,21,18,0}, //dummy1
 {42,18,0,63,27,0,0,27,0,21,27,0,42,27,0,63}, //dummy2
@@ -51,12 +55,12 @@ Memory m = {
 {63,21,45,63,42,45,63,63,54,63,0,54,63,21,54,63}, //dummy46
 {42,54,63,63,63,63,0,63,63,21,63,63,42,63,63,63}, //dummy47
 {0}, //dummy48
-0,0,0,0,0,0,0,0,0,0,0,0,0,0, // registers
-0,0,0,0,0,0, //flags
-0, //isLittle
-0, //exitCode
+
 {0}, //vgaPalette
-0,{0},1,{0},0,{0},{0},{0},{0}, NULL};
+1,{0}, //selectorsPointer+selectors
+0,{0}, //stackPointer+stack
+0,{0}, //heapPointer+heap
+{0},{0},{0}, NULL};
 
 int program() {
 jmp_buf jmpbuffer;
@@ -69,8 +73,8 @@ dest=NULL;src=NULL;i=0; //to avoid a warning.
 if (m.executionFinished) goto moveToBackGround;
 if (m.jumpToBackGround) {
 m.jumpToBackGround = 0;
-#ifdef __LIBRETRO__
-if (!m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
+#ifdef MRBOOM
+if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
 if (m.nosetjmp==2) goto directjeu;
 if (m.nosetjmp==1) goto directmenu;
 #endif
@@ -127,7 +131,7 @@ R(INT(33));
 //PROC affpal
 affpal:
 R(PUSHAD);
-R(MOV(32,m.esi,32,(((dd)offsetof(struct Mem,pal_jeu)))));
+R(MOV(32,m.esi.dd.val,32,(((dd)offsetof(struct Mem,pal_jeu)))));
 R(MOV(16,READDW(edx),16,(dw)968));
 R(XOR(8,READDBl(eax),8,(db)READDBl(eax)));
 OUT(READDW(edx),READDBl(eax));
@@ -146,6 +150,61 @@ m.executionFinished = 1;
 moveToBackGround:
 return (m.executionFinished == 0);
 }
+void asm2C_printOffsets(unsigned int offset) {
+FILE * file;
+file=fopen("./memoryMap.log", "w");
+fprintf(file, "xox %x (from beg RW) %x:pal_jeu\n",(unsigned int) offsetof(struct Mem,pal_jeu)-offset,(unsigned int) offsetof(struct Mem,pal_jeu));
+fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
+fprintf(file, "xox %x (from beg RW) %x:dummy2\n",(unsigned int) offsetof(struct Mem,dummy2)-offset,(unsigned int) offsetof(struct Mem,dummy2));
+fprintf(file, "xox %x (from beg RW) %x:dummy3\n",(unsigned int) offsetof(struct Mem,dummy3)-offset,(unsigned int) offsetof(struct Mem,dummy3));
+fprintf(file, "xox %x (from beg RW) %x:dummy4\n",(unsigned int) offsetof(struct Mem,dummy4)-offset,(unsigned int) offsetof(struct Mem,dummy4));
+fprintf(file, "xox %x (from beg RW) %x:dummy5\n",(unsigned int) offsetof(struct Mem,dummy5)-offset,(unsigned int) offsetof(struct Mem,dummy5));
+fprintf(file, "xox %x (from beg RW) %x:dummy6\n",(unsigned int) offsetof(struct Mem,dummy6)-offset,(unsigned int) offsetof(struct Mem,dummy6));
+fprintf(file, "xox %x (from beg RW) %x:dummy7\n",(unsigned int) offsetof(struct Mem,dummy7)-offset,(unsigned int) offsetof(struct Mem,dummy7));
+fprintf(file, "xox %x (from beg RW) %x:dummy8\n",(unsigned int) offsetof(struct Mem,dummy8)-offset,(unsigned int) offsetof(struct Mem,dummy8));
+fprintf(file, "xox %x (from beg RW) %x:dummy9\n",(unsigned int) offsetof(struct Mem,dummy9)-offset,(unsigned int) offsetof(struct Mem,dummy9));
+fprintf(file, "xox %x (from beg RW) %x:dummy10\n",(unsigned int) offsetof(struct Mem,dummy10)-offset,(unsigned int) offsetof(struct Mem,dummy10));
+fprintf(file, "xox %x (from beg RW) %x:dummy11\n",(unsigned int) offsetof(struct Mem,dummy11)-offset,(unsigned int) offsetof(struct Mem,dummy11));
+fprintf(file, "xox %x (from beg RW) %x:dummy12\n",(unsigned int) offsetof(struct Mem,dummy12)-offset,(unsigned int) offsetof(struct Mem,dummy12));
+fprintf(file, "xox %x (from beg RW) %x:dummy13\n",(unsigned int) offsetof(struct Mem,dummy13)-offset,(unsigned int) offsetof(struct Mem,dummy13));
+fprintf(file, "xox %x (from beg RW) %x:dummy14\n",(unsigned int) offsetof(struct Mem,dummy14)-offset,(unsigned int) offsetof(struct Mem,dummy14));
+fprintf(file, "xox %x (from beg RW) %x:dummy15\n",(unsigned int) offsetof(struct Mem,dummy15)-offset,(unsigned int) offsetof(struct Mem,dummy15));
+fprintf(file, "xox %x (from beg RW) %x:dummy16\n",(unsigned int) offsetof(struct Mem,dummy16)-offset,(unsigned int) offsetof(struct Mem,dummy16));
+fprintf(file, "xox %x (from beg RW) %x:dummy17\n",(unsigned int) offsetof(struct Mem,dummy17)-offset,(unsigned int) offsetof(struct Mem,dummy17));
+fprintf(file, "xox %x (from beg RW) %x:dummy18\n",(unsigned int) offsetof(struct Mem,dummy18)-offset,(unsigned int) offsetof(struct Mem,dummy18));
+fprintf(file, "xox %x (from beg RW) %x:dummy19\n",(unsigned int) offsetof(struct Mem,dummy19)-offset,(unsigned int) offsetof(struct Mem,dummy19));
+fprintf(file, "xox %x (from beg RW) %x:dummy20\n",(unsigned int) offsetof(struct Mem,dummy20)-offset,(unsigned int) offsetof(struct Mem,dummy20));
+fprintf(file, "xox %x (from beg RW) %x:dummy21\n",(unsigned int) offsetof(struct Mem,dummy21)-offset,(unsigned int) offsetof(struct Mem,dummy21));
+fprintf(file, "xox %x (from beg RW) %x:dummy22\n",(unsigned int) offsetof(struct Mem,dummy22)-offset,(unsigned int) offsetof(struct Mem,dummy22));
+fprintf(file, "xox %x (from beg RW) %x:dummy23\n",(unsigned int) offsetof(struct Mem,dummy23)-offset,(unsigned int) offsetof(struct Mem,dummy23));
+fprintf(file, "xox %x (from beg RW) %x:dummy24\n",(unsigned int) offsetof(struct Mem,dummy24)-offset,(unsigned int) offsetof(struct Mem,dummy24));
+fprintf(file, "xox %x (from beg RW) %x:dummy25\n",(unsigned int) offsetof(struct Mem,dummy25)-offset,(unsigned int) offsetof(struct Mem,dummy25));
+fprintf(file, "xox %x (from beg RW) %x:dummy26\n",(unsigned int) offsetof(struct Mem,dummy26)-offset,(unsigned int) offsetof(struct Mem,dummy26));
+fprintf(file, "xox %x (from beg RW) %x:dummy27\n",(unsigned int) offsetof(struct Mem,dummy27)-offset,(unsigned int) offsetof(struct Mem,dummy27));
+fprintf(file, "xox %x (from beg RW) %x:dummy28\n",(unsigned int) offsetof(struct Mem,dummy28)-offset,(unsigned int) offsetof(struct Mem,dummy28));
+fprintf(file, "xox %x (from beg RW) %x:dummy29\n",(unsigned int) offsetof(struct Mem,dummy29)-offset,(unsigned int) offsetof(struct Mem,dummy29));
+fprintf(file, "xox %x (from beg RW) %x:dummy30\n",(unsigned int) offsetof(struct Mem,dummy30)-offset,(unsigned int) offsetof(struct Mem,dummy30));
+fprintf(file, "xox %x (from beg RW) %x:dummy31\n",(unsigned int) offsetof(struct Mem,dummy31)-offset,(unsigned int) offsetof(struct Mem,dummy31));
+fprintf(file, "xox %x (from beg RW) %x:dummy32\n",(unsigned int) offsetof(struct Mem,dummy32)-offset,(unsigned int) offsetof(struct Mem,dummy32));
+fprintf(file, "xox %x (from beg RW) %x:dummy33\n",(unsigned int) offsetof(struct Mem,dummy33)-offset,(unsigned int) offsetof(struct Mem,dummy33));
+fprintf(file, "xox %x (from beg RW) %x:dummy34\n",(unsigned int) offsetof(struct Mem,dummy34)-offset,(unsigned int) offsetof(struct Mem,dummy34));
+fprintf(file, "xox %x (from beg RW) %x:dummy35\n",(unsigned int) offsetof(struct Mem,dummy35)-offset,(unsigned int) offsetof(struct Mem,dummy35));
+fprintf(file, "xox %x (from beg RW) %x:dummy36\n",(unsigned int) offsetof(struct Mem,dummy36)-offset,(unsigned int) offsetof(struct Mem,dummy36));
+fprintf(file, "xox %x (from beg RW) %x:dummy37\n",(unsigned int) offsetof(struct Mem,dummy37)-offset,(unsigned int) offsetof(struct Mem,dummy37));
+fprintf(file, "xox %x (from beg RW) %x:dummy38\n",(unsigned int) offsetof(struct Mem,dummy38)-offset,(unsigned int) offsetof(struct Mem,dummy38));
+fprintf(file, "xox %x (from beg RW) %x:dummy39\n",(unsigned int) offsetof(struct Mem,dummy39)-offset,(unsigned int) offsetof(struct Mem,dummy39));
+fprintf(file, "xox %x (from beg RW) %x:dummy40\n",(unsigned int) offsetof(struct Mem,dummy40)-offset,(unsigned int) offsetof(struct Mem,dummy40));
+fprintf(file, "xox %x (from beg RW) %x:dummy41\n",(unsigned int) offsetof(struct Mem,dummy41)-offset,(unsigned int) offsetof(struct Mem,dummy41));
+fprintf(file, "xox %x (from beg RW) %x:dummy42\n",(unsigned int) offsetof(struct Mem,dummy42)-offset,(unsigned int) offsetof(struct Mem,dummy42));
+fprintf(file, "xox %x (from beg RW) %x:dummy43\n",(unsigned int) offsetof(struct Mem,dummy43)-offset,(unsigned int) offsetof(struct Mem,dummy43));
+fprintf(file, "xox %x (from beg RW) %x:dummy44\n",(unsigned int) offsetof(struct Mem,dummy44)-offset,(unsigned int) offsetof(struct Mem,dummy44));
+fprintf(file, "xox %x (from beg RW) %x:dummy45\n",(unsigned int) offsetof(struct Mem,dummy45)-offset,(unsigned int) offsetof(struct Mem,dummy45));
+fprintf(file, "xox %x (from beg RW) %x:dummy46\n",(unsigned int) offsetof(struct Mem,dummy46)-offset,(unsigned int) offsetof(struct Mem,dummy46));
+fprintf(file, "xox %x (from beg RW) %x:dummy47\n",(unsigned int) offsetof(struct Mem,dummy47)-offset,(unsigned int) offsetof(struct Mem,dummy47));
+fprintf(file, "xox %x (from beg RW) %x:dummy48\n",(unsigned int) offsetof(struct Mem,dummy48)-offset,(unsigned int) offsetof(struct Mem,dummy48));
+
+fclose(file);
+}
 
 
 void checkIfVgaRamEmpty() {
@@ -155,6 +214,7 @@ void checkIfVgaRamEmpty() {
         if(m.vgaRam[i])
             vgaram_empty = 0;
     log_debug("vgaram_empty : %s\n", vgaram_empty? "true" : "false");
+    (void) vgaram_empty;
 }
 
 void stackDump() {
@@ -164,23 +224,23 @@ void stackDump() {
     log_debug("sizeof(dw)=%zu\n",sizeof(dw));
     log_debug("sizeof(db)=%zu\n",sizeof(db));
     log_debug("sizeof(mem)=%zu\n",sizeof(m));
-    log_debug("eax: %x\n",m.eax);
+    log_debug("eax: %x\n",READDD(eax));
     hexDump(&m.eax,sizeof(dd));
-    log_debug("ebx: %x\n",m.ebx);
-    log_debug("ecx: %x\n",m.ecx);
-    log_debug("edx: %x\n",m.edx);
-    log_debug("ebp: %x\n",m.ebp);
-    log_debug("cs: %d -> %p\n",m.cs,(void *) realAddress(0,cs));
-    log_debug("ds: %d -> %p\n",m.ds,(void *) realAddress(0,ds));
-    log_debug("esi: %x\n",m.esi);
-    log_debug("ds:esi %p\n",(void *) realAddress(m.esi,ds));
-    log_debug("es: %d -> %p\n",m.es,(void *) realAddress(0,es));
+    log_debug("ebx: %x\n",READDD(ebx));
+    log_debug("ecx: %x\n",READDD(ecx));
+    log_debug("edx: %x\n",READDD(edx));
+    log_debug("ebp: %x\n",READDD(ebp));
+    log_debug("cs: %d -> %p\n",READDW(cs),(void *) realAddress(0,cs));
+    log_debug("ds: %d -> %p\n",READDW(ds),(void *) realAddress(0,ds));
+    log_debug("esi: %x\n",READDD(esi));
+    log_debug("ds:esi %p\n",(void *) realAddress(m.esi.dd.val,ds));
+    log_debug("es: %d -> %p\n",READDW(es),(void *) realAddress(0,es));
     hexDump(&m.es,sizeof(dd));
-    log_debug("edi: %x\n",m.edi);
-    log_debug("es:edi %p\n",(void *) realAddress(m.edi,es));
-    hexDump((void *) realAddress(m.edi,es),50);
-    log_debug("fs: %d -> %p\n",m.fs,(void *) realAddress(0,fs));
-    log_debug("gs: %d -> %p\n",m.gs,(void *) realAddress(0,gs));
+    log_debug("edi: %x\n",READDD(edi));
+    log_debug("es:edi %p\n",(void *) realAddress(m.edi.dd.val,es));
+    hexDump((void *) realAddress(m.edi.dd.val,es),50);
+    log_debug("fs: %d -> %p\n",READDW(fs),(void *) realAddress(0,fs));
+    log_debug("gs: %d -> %p\n",READDW(gs),(void *) realAddress(0,gs));
     log_debug("adress heap: %p\n",(void *) &m.heap);
     log_debug("adress vgaRam: %p\n",(void *) &m.vgaRam);
     log_debug("first pixels vgaRam: %x\n",*m.vgaRam);
@@ -189,14 +249,12 @@ void stackDump() {
     checkIfVgaRamEmpty();
 }
 
-
-
 // thanks to paxdiablo http://stackoverflow.com/users/14860/paxdiablo for the hexDump function
 void hexDump (void *addr, int len) {
     int i;
     unsigned char buff[17];
     unsigned char *pc = (unsigned char*)addr;
-
+    (void) buff;
     log_debug ("hexDump %p:\n", addr);
     
     if (len == 0) {
@@ -309,7 +367,12 @@ _Bool is_little_endian()
 
 void asm2C_init() {
     m.isLittle=is_little_endian();
-    log_debug("asm2C_init is_little_endian:%d\n",m.isLittle);
+#ifdef MSB_FIRST
+    if (m.isLittle) {
+        log_error("Inconsistency: is_little_endian=true and MSB_FIRST defined.\n");
+    }
+#endif
+    log_debug2("asm2C_init is_little_endian:%d\n",m.isLittle);
 }
 
 void asm2C_INT(int a) {
@@ -322,7 +385,7 @@ void asm2C_INT(int a) {
     dw cx=READDW(ecx);
     dw dx=READDW(edx);
     m.CF = 0;
-    log_debug("asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n",ah,al,ax,bx,cx,dx);
+    log_debug2("asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n",ah,al,ax,bx,cx,dx);
     
     switch(a) {
         case 0x10:
@@ -330,11 +393,11 @@ void asm2C_INT(int a) {
             switch(ax)
             {
                 case 0x03: {
-                    log_debug("Switch to text mode\n");
+                    log_debug2("Switch to text mode\n");
                     return;
                 }
                 case 0x13: {
-                    log_debug("Switch to VGA\n");
+                    log_debug2("Switch to VGA\n");
                     stackDump();
                     return;
                 }
@@ -346,7 +409,7 @@ void asm2C_INT(int a) {
         {
             case 0x9:
             {
-                char * s=(char *) realAddress(m.edx,ds);
+                char * s=(char *) realAddress(m.edx.dd.val,ds);
                 for (i=0;s[i]!='$';i++) {
                     printf("%c", s[i]);
                 }
@@ -356,21 +419,21 @@ void asm2C_INT(int a) {
             {
                 //MOV(8,8,READDBh(edx),(db)2);
                 // TOFIX
-                m.edx=0x200;
+                m.edx.dd.val=0x200;
                 return;
             }
             case 0x3d:
             {
                 char fileName[1000];
                 if (m.path!=NULL) {
-                    sprintf(fileName,"%s/%s",m.path,(const char *) realAddress(m.edx, ds));
+                    sprintf(fileName,"%s/%s",m.path,(const char *) realAddress(m.edx.dd.val, ds));
                 } else {
-                    sprintf(fileName,"%s",(const char *) realAddress(m.edx, ds));
+                    sprintf(fileName,"%s",(const char *) realAddress(m.edx.dd.val, ds));
                 }
                 file=fopen(fileName, "rb"); //TOFIX, multiple files support
-                log_debug("Opening file %s -> %p\n",fileName,(void *) file);
+                log_debug2("Opening file %s -> %p\n",fileName,(void *) file);
                 if (file!=NULL) {
-                    m.eax=1; //TOFIX
+                    m.eax.dd.val=1; //TOFIX
                 } else {
                     m.CF = 1;
                     log_error("Error opening file %s\n",fileName);
@@ -393,7 +456,7 @@ void asm2C_INT(int a) {
             {
               // bx: file handle to close
               //TOFIX
-              log_debug("Closing file. bx:%d\n",bx);
+              log_debug2("Closing file. bx:%d\n",bx);
               if (fclose(file))  {
                     m.CF = 1;
                       perror("Error");
@@ -419,13 +482,12 @@ void asm2C_INT(int a) {
                     CF set on error AX = error code (05h,06h)
                     */
                 //char grosbuff[100000];
-                void * buffer=(db *) realAddress(m.edx, ds);
-                //buffer=grosbuff;
-                log_debug("Reading ecx=%d cx=%d eds=%x edx=%x -> %p file: %p\n",m.ecx,cx,m.ds,m.edx,buffer,(void *)  file);
+                void * buffer=(db *) realAddress(m.edx.dd.val, ds);
+               // log_debug2("Reading ecx=%d cx=%d eds=%x edx=%x -> %p file: %p\n",m.ecx.dd.val,cx,m.ds,m.edx,buffer,(void *)  file);
 
                 if (feof(file)) {
-                    log_debug("feof(file)\n");
-                  m.eax=0;
+                    log_debug2("feof(file)\n");
+                  m.eax.dd.val=0;
                 } else {
                     size_t r=fread (buffer,1,cx,file);
                   if (r!=cx) {
@@ -436,9 +498,9 @@ void asm2C_INT(int a) {
                       m.CF = 1;
                     }
                   } else {
-                      log_debug("Reading OK %p\n",(void *) file);
+                      log_debug2("Reading OK %p\n",(void *) file);
                   }
-                  m.eax=r;
+                  m.eax.dd.val=r;
                 }
                 /*
                 if (ax!=cx) {
@@ -476,7 +538,7 @@ void asm2C_INT(int a) {
                         break;
                 }
                 long int offset=(cx<<16)+dx;
-                log_debug("Seeking to offset %ld %d\n",offset,seek);
+                log_debug2("Seeking to offset %ld %d\n",offset,seek);
                 if (fseek(file,offset,seek)!=0) {
                     log_error("Error seeking\n");
                 }
@@ -513,15 +575,15 @@ void asm2C_INT(int a) {
                 ;    carry flag clear
                 ;    AX     = base selector
                  */
-                log_debug("Function 0000h - Allocate %d Descriptors\n",cx);
+                log_debug2("Function 0000h - Allocate %d Descriptors\n",cx);
                 if (m.selectorsPointer+cx>=NB_SELECTORS) {
                     m.CF = 1;
                     log_error("Not enough free selectors (increase NB_SELECTORS)\n");
                     return;
                 } else {
-                    m.eax = m.selectorsPointer;
+                    m.eax.dd.val = m.selectorsPointer;
                     m.selectorsPointer+=cx;
-                    log_debug("Return %x\n",m.eax);
+                    log_debug2("Return %x\n",m.eax.dd.val);
                 }
                 return;
             }
@@ -537,7 +599,7 @@ void asm2C_INT(int a) {
                  if failed:
                  carry flag set
                 */
-                log_debug("Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n",m.ebx);
+                log_debug2("Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n",m.ebx.dd.val);
                 if (m.selectorsPointer+1>=NB_SELECTORS) {
                     m.CF = 1;
                     log_error("Not enough free selectors (increase NB_SELECTORS)\n");
@@ -546,8 +608,8 @@ void asm2C_INT(int a) {
                 // TOFIX ?
                 // always return vga adress.
                 m.selectors[m.selectorsPointer]=offsetof(struct Mem,vgaRam); // bx;
-                m.eax=m.selectorsPointer;
-                log_debug("Returns new selector: eax: %d\n",m.eax);
+                m.eax.dd.val=m.selectorsPointer;
+                log_debug2("Returns new selector: eax: %d\n",m.eax.dd.val);
                 m.selectorsPointer++;
 
                 // Multiple calls for the same real mode segment return the same selector. The returned descriptor should never be modified or freed. <- TOFIX
@@ -563,14 +625,14 @@ void asm2C_INT(int a) {
                 */
             case 0x07:
             {
-                log_debug("Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n",m.ebx,m.edx,m.ecx);
+                log_debug2("Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n",READDD(ebx),READDD(edx),READDD(ecx));
                 if (bx>m.selectorsPointer) {
                     m.CF = 1;
                     log_error("Error: selector number doesnt exist\n");
                     return;
                 }
                 m.selectors[bx]=(READDW(edx)&0xffff)+(READDW(ecx)<<16);
-                log_debug("Address for selector %d: %x\n",bx,m.selectors[bx]);
+                log_debug2("Address for selector %d: %x\n",bx,m.selectors[bx]);
                 return;
             }
             case 0x08:
@@ -591,7 +653,7 @@ void asm2C_INT(int a) {
                  */
 
                 // To implement...
-                log_debug("Function 0008h - Set Segment Limit for selector %d (Ignored)\n",bx);
+                log_debug2("Function 0008h - Set Segment Limit for selector %d (Ignored)\n",bx);
                 return;
             }
             case 0x501:
@@ -606,7 +668,7 @@ void asm2C_INT(int a) {
                 ;    SI:DI  = memory block handle (used to resize and free block)
                 */
                 int32_t nbBlocks=(bx<<16)+cx;
-                log_debug("Function 0501h - Allocate Memory Block: %d bytes\n",nbBlocks);
+                log_debug2("Function 0501h - Allocate Memory Block: %d bytes\n",nbBlocks);
 
                 if (m.heapPointer+nbBlocks>=HEAP_SIZE) {
                     m.CF = 1;
@@ -616,14 +678,13 @@ void asm2C_INT(int a) {
                     dd a=offsetof(struct Mem,heap)+m.heapPointer;
                     m.heapPointer+=nbBlocks;
                     {
-                        dd n=offsetof(struct Mem,heap)+m.heapPointer;
-                        log_debug("New top of heap: %x\n",n);
+                        log_debug2("New top of heap: %x\n",(dd) offsetof(struct Mem,heap)+m.heapPointer);
                     }
-                    m.ecx=a & 0xFFFF;
-                    m.ebx=a >> 16;
-                    m.edi=0; // TOFIX
-                    m.esi=0; // TOFIX
-                    log_debug("Return %x ebx:ecx %x:%x\n",a,m.ebx,m.ecx);
+                    m.ecx.dd.val=a & 0xFFFF;
+                    m.ebx.dd.val=a >> 16;
+                    m.edi.dd.val=0; // TOFIX
+                    m.esi.dd.val=0; // TOFIX
+                    log_debug2("Return %x ebx:ecx %x:%x\n",a,m.ebx.dd.val,m.ecx.dd.val);
                     return;
                 }
                 break;
@@ -668,6 +729,7 @@ void asm2C_INT(int a) {
     m.CF = 1;
     log_error("Error DOSInt 0x%x ah:0x%x al:0x%x: not supported.\n",a,ah,al);
 }
+
 
 #ifdef INCLUDEMAIN
 int main() {

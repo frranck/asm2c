@@ -24,6 +24,7 @@ else ifneq ($(findstring Darwin,$(shell uname -a)),)
 	arch = intel
 ifeq ($(shell uname -p),powerpc)
 	arch = ppc
+    CFLAGS += -DMSB_FIRST
 endif
 else ifneq ($(findstring MINGW,$(shell uname -a)),)
 	system_platform = win
@@ -96,7 +97,16 @@ else ifeq ($(platform), vita)
    CC = arm-vita-eabi-gcc
    AR = arm-vita-eabi-ar
    CFLAGS += -Wl,-q -Wall -O3
-	STATIC_LINKING = 1
+   STATIC_LINKING = 1
+else ifeq ($(platform), wiiu)
+   TARGET := $(TARGET_NAME)_libretro_$(platform).a
+   CC = powerpc-eabi-gcc$(EXE_EXT)
+   CXX = powerpc-eabi-g++$(EXE_EXT)
+   AR = powerpc-eabi-ar$(EXE_EXT)
+   CFLAGS += -mwup -mcpu=750 -meabi -mhard-float -DMSB_FIRST
+   CFLAGS += -DUSE_FILE32API
+   CFLAGS += -U__INT32_TYPE__ -U __UINT32_TYPE__ -D__INT32_TYPE__=int
+   STATIC_LINKING = 1
 else
    CC = gcc
    TARGET := $(TARGET_NAME)_libretro.dll
@@ -105,11 +115,11 @@ endif
 
 LDFLAGS += $(LIBM)
 
-ifeq ($(DEBUG), 1)
-   CFLAGS += -O0 -g -DDEBUG
-else
-   CFLAGS += -O2
+ifneq ($(DEBUG),)
+CFLAGS += -g -DDEBUG=$(DEBUG)
 endif
+
+CFLAGS += -O3
 
 ifeq ($(INCLUDEMAIN), 1)
 CFLAGS += -DINCLUDEMAIN

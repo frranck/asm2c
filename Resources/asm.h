@@ -6,6 +6,7 @@
 #include <setjmp.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <assert.h>
 
 #if defined(_WIN32) || defined(__INTEL_COMPILER)
 #define INLINE __inline
@@ -17,21 +18,103 @@
 #define INLINE
 #endif
 
-#define realAddress(offset,segment) ((db *)&m+(dd)offset+m.selectors[m.segment])
+#define realAddress(offset,segment) ((db *)&m+(dd)offset+m.selectors[m.segment.dw.val])
 
-#define db unsigned char
-#define dw unsigned short
-#define dd unsigned int
+#define db uint8_t
+#define dw uint16_t
+#define dd uint32_t
+
+#ifdef MSB_FIRST
+typedef struct dblReg {
+    db v0;
+    db v1;
+    db v2;
+    db val;
+} dblReg;
+typedef struct dbhReg {
+    db v0;
+    db v1;
+    db val;
+    db v2;
+} dbhReg;
+typedef struct dwReg {
+    dw v0;
+    dw val;
+} dwReg;
+typedef struct dblReg16 {
+    db v0;
+    db val;
+} dblReg16;
+typedef struct dbhReg16 {
+    db val;
+    db v0;
+} dbhReg16;
+#else
+typedef struct dblReg {
+    db val;
+    db v0;
+    db v1;
+    db v2;
+} dblReg;
+typedef struct dbhReg {
+    db v0;
+    db val;
+    db v1;
+    db v2;
+} dbhReg;
+typedef struct dwReg {
+    dw val;
+    dw v0;
+} dwReg;
+typedef struct dblReg16 {
+    db val;
+    db v0;
+} dblReg16;
+typedef struct dbhReg16 {
+    db v0;
+    db val;
+} dbhReg16;
+#endif
+
+typedef struct ddReg {
+    dd val;
+} ddReg;
+
+
+typedef union registry32Bits
+{
+    struct dblReg dbl;
+    struct dbhReg dbh;
+    struct dwReg dw;
+    struct ddReg dd;
+} registry32Bits;
+
+
+typedef struct dwReg16 {
+    dw val;
+} dwReg16;
+
+
+
+typedef union registry16Bits
+{
+    struct dblReg16 dbl;
+    struct dbhReg16 dbh;
+    struct dwReg16 dw;
+} registry16Bits;
+
 
 #define VGARAM_SIZE 320*200
 #define STACK_SIZE 1024*sizeof(dd)
 #define HEAP_SIZE 1024*1024*4
 #define NB_SELECTORS 128
 
-#define PUSHAD memcpy (&m.stack[m.stackPointer], &m.eax, sizeof (dd)*8);m.stackPointer+=sizeof(dd)*8
-#define POPAD m.stackPointer-=sizeof(dd)*8;memcpy (&m.eax, &m.stack[m.stackPointer], sizeof (dd)*8)
+#define PUSHAD memcpy (&m.stack[m.stackPointer], &m.eax.dd.val, sizeof (dd)*8);m.stackPointer+=sizeof(dd)*8;assert(m.stackPointer<STACK_SIZE)
 
-#define PUSH(nbBits,a) memcpy (&m.stack[m.stackPointer], &a, sizeof (a));m.stackPointer+=sizeof(a)
+#define POPAD m.stackPointer-=sizeof(dd)*8;memcpy (&m.eax.dd.val, &m.stack[m.stackPointer], sizeof (dd)*8)
+
+#define PUSH(nbBits,a) memcpy (&m.stack[m.stackPointer], &a, sizeof (a));m.stackPointer+=sizeof(a);assert(m.stackPointer<STACK_SIZE)
+
 #define POP(nbBits,a) m.stackPointer-=sizeof(a);memcpy (&a, &m.stack[m.stackPointer], sizeof (a))
 
 #define AFFECT_ZF(a) m.ZF=(a==0)
@@ -56,16 +139,23 @@
 #define READDWp(a) ((dw *) &m.a)
 #define READDBp(a) ((db *) &m.a)
 
-#define READDD(a) (*(dd *) &m.a)
+#define READDD(a) (m.a.dd.val)
 
-#define READDW(a) (*(dw *)(((db *) &m.a)+(m.isLittle?0:(sizeOf ## a==2?0:2))))
-#define READDBh(a) (*(((db *) &m.a)+(m.isLittle?1:(sizeOf ## a==2?0:2))))
-#define READDBl(a) (*(((db *) &m.a)+(m.isLittle?0:(sizeOf ## a==2?1:3))))
+#ifdef MSB_FIRST
+#define READDBhW(a) (*(((db *) &m.a)+0))
+#define READDBhD(a) (*(((db *) &m.a)+2))
+#define READDBlW(a) (*(((db *) &m.a)+1))
+#define READDBlD(a) (*(((db *) &m.a)+3))
+#else
+#define READDBhW(a) (*(((db *) &m.a)+1))
+#define READDBhD(a) (*(((db *) &m.a)+1))
+#define READDBlW(a) (*(((db *) &m.a)))
+#define READDBlD(a) (*(((db *) &m.a)))
+#endif
 
-#define READDBhW(a) (*(((db *) &m.a)+(m.isLittle?1:0)))
-#define READDBhD(a) (*(((db *) &m.a)+(m.isLittle?1:2)))
-#define READDBlW(a) (*(((db *) &m.a)+(m.isLittle?0:1)))
-#define READDBlD(a) (*(((db *) &m.a)+(m.isLittle?0:3)))
+#define READDW(a) (*((dw *) &m.a.dw.val))
+#define READDBh(a) (*((db *) &m.a.dbh.val))
+#define READDBl(a) (*((db *) &m.a.dbl.val))
 
 #define ADD(nbBits,a,nbBitsSrc,b) a=a+b;AFFECT_ZF(a);AFFECT_CF(a<b);AFFECT_SF(nbBits,a);
 #define SUB(nbBits,a,nbBitsSrc,b) a=a-b;AFFECT_ZF(a);AFFECT_CF(b<a);AFFECT_SF(nbBits,a);
@@ -105,54 +195,69 @@
 #define LEA(nbBits,dest,nbBitsSrc,src) dest = src
 
 // MOVSx (DF FLAG not implemented)
-#define MOVS(a,ecx) src=realAddress(m.esi,ds);dest=realAddress(m.edi,es); \
+#define MOVS(a,ecx) src=realAddress(m.esi.dd.val,ds);dest=realAddress(m.edi.dd.val,es); \
 if (labs(((char *)dest)-((char *)src))<=a) { \
     for(i=0;i<ecx;i++) {  \
-        src=realAddress(m.esi,ds);dest=realAddress(m.edi,es); \
-        memmove(dest,src,a);m.edi+=a;m.esi+=a; } \
+        src=realAddress(m.esi.dd.val,ds);dest=realAddress(m.edi.dd.val,es); \
+        memmove(dest,src,a);m.edi.dd.val+=a;m.esi.dd.val+=a; } \
 } else { \
-    memmove(dest,src,a*ecx);m.edi+=a*ecx;m.esi+=a*ecx; \
+    memmove(dest,src,a*ecx);m.edi.dd.val+=a*ecx;m.esi.dd.val+=a*ecx; \
 }
 
 #define MOVSB MOVS(1,1)
 #define MOVSW MOVS(2,1)
 #define MOVSD MOVS(4,1)
 
-#define REP_MOVS(b) MOVS(b,m.ecx)
+#define REP_MOVS(b) MOVS(b,m.ecx.dd.val)
 #define REP_MOVSB REP_MOVS(1)
 #define REP_MOVSW REP_MOVS(2)
 #define REP_MOVSD REP_MOVS(4)
 
-#define STOS(a,b) memcpy (realAddress(m.edi,es), ((db *)&m.eax)+b, a);m.edi+=a
-#define STOSB STOS(1,(m.isLittle?0:3))
-#define STOSW STOS(2,(m.isLittle?0:2))
+#define STOS(a,b) memcpy (realAddress(m.edi.dd.val,es), ((db *)&m.eax.dd.val)+b, a);m.edi.dd.val+=a
+
+#ifdef MSB_FIRST
+#define STOSB STOS(1,3)
+#define STOSW STOS(2,2)
+#else
+#define STOSB STOS(1,0)
+#define STOSW STOS(2,0)
+#endif
+
 #define STOSD STOS(4,0)
 
-#define REP_STOSB for (i=0;i<m.ecx;i++) { STOSB; }
-#define REP_STOSW for (i=0;i<m.ecx;i++) { STOSW; }
-#define REP_STOSD for (i=0;i<m.ecx;i++) { STOSD; }
+#define REP_STOSB for (i=0;i<m.ecx.dd.val;i++) { STOSB; }
+#define REP_STOSW for (i=0;i<m.ecx.dd.val;i++) { STOSW; }
+#define REP_STOSD for (i=0;i<m.ecx.dd.val;i++) { STOSD; }
 
-#define LODS(a,b) memcpy (((db *)&m.eax)+b, realAddress(m.esi,ds), a);m.esi+=a
-#define LODSB LODS(1,(m.isLittle?0:3))
-#define LODSW LODS(2,(m.isLittle?0:2))
+#define LODS(a,b) memcpy (((db *)&m.eax.dd.val)+b, realAddress(m.esi.dd.val,ds), a);m.esi.dd.val+=a
+
+#ifdef MSB_FIRST
+#define LODSB LODS(1,3)
+#define LODSW LODS(2,2)
+#else
+#define LODSB LODS(1,0)
+#define LODSW LODS(2,0)
+#endif
+
 #define LODSD LODS(4,0)
 
-#define REP_LODS(a,b) for (i=0;i<m.ecx;i++) { LODS(a,b); }
-#define REP_LODSB REP_LODS(1,(m.isLittle?0:3))
-#define REP_LODSW REP_LODS(2,(m.isLittle?0:2))
+#define REP_LODS(a,b) for (i=0;i<m.ecx.dd.val;i++) { LODS(a,b); }
+
+#ifdef MSB_FIRST
+#define REP_LODSB REP_LODS(1,3)
+#define REP_LODSW REP_LODS(2,2)
+#else
+#define REP_LODSB REP_LODS(1,0)
+#define REP_LODSW REP_LODS(2,0)
+#endif
+
 #define REP_LODSD REP_LODS(4,0)
 
 // JMP - Unconditional Jump
 #define JMP(label) GOTOLABEL(label)
 #define GOTOLABEL(a) goto a
 
-#ifndef DEBUG
-#define R(a) a
-#else
-#define R(a) printf("l:%d:%s\n",__LINE__,#a);a
-#endif
-
-#define LOOP(label) DEC(32,m.ecx);JNZ(label)
+#define LOOP(label) DEC(32,m.ecx.dd.val);JNZ(label)
 
 #define CLD m.DF=0
 #define STD m.DF=1
@@ -161,6 +266,8 @@ void stackDump();
 void hexDump (void *addr, int len);
 void asm2C_INT(int a);
 void asm2C_init();
+void asm2C_printOffsets(unsigned int offset);
+
 // directjeu nosetjmp,2
 // directmenu
 #define INT(a) asm2C_INT(a);TESTJUMPTOBACKGROUND
@@ -195,11 +302,44 @@ if (setjmp(jmpbuffer) == 0) { \
 extern retro_log_printf_t log_cb;
 #define log_error(...) log_cb(RETRO_LOG_ERROR,__VA_ARGS__);
 #define log_info(...) log_cb(RETRO_LOG_INFO,__VA_ARGS__);
-#define log_debug(...) log_cb(RETRO_LOG_DEBUG,__VA_ARGS__);
+    #ifdef DEBUG
+    #define log_debug(...) log_cb(RETRO_LOG_DEBUG,__VA_ARGS__);
+    #else
+    #define log_debug(...)
+    #endif
 #else
 #define log_error(...) printf(__VA_ARGS__);
 #define log_info(...) printf(__VA_ARGS__);
-#define log_debug(...) printf(__VA_ARGS__);
+    #ifdef DEBUG
+    #define log_debug(...) printf(__VA_ARGS__);
+    #else
+    #define log_debug(...)
+    #endif
 #endif
 
+#if DEBUG==2
+    #define R(a) log_debug("l:%d:%s\n",__LINE__,#a);a
+    #define log_debug2(...) printf(__VA_ARGS__);
+#else
+    #define R(a) a
+    #define log_debug2(...)
+#endif
+
+_Bool is_little_endian();
+
+#if defined(_MSC_VER)
+#define SWAP16 _byteswap_ushort
+#define SWAP32 _byteswap_ulong
+#else
+#define SWAP16(x) ((uint16_t)(                  \
+(((uint16_t)(x) & 0x00ff) << 8)      | \
+(((uint16_t)(x) & 0xff00) >> 8)        \
+))
+#define SWAP32(x) ((uint32_t)(           \
+(((uint32_t)(x) & 0x000000ff) << 24) | \
+(((uint32_t)(x) & 0x0000ff00) <<  8) | \
+(((uint32_t)(x) & 0x00ff0000) >>  8) | \
+(((uint32_t)(x) & 0xff000000) >> 24)   \
+))
+#endif
 
