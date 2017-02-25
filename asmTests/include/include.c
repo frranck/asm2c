@@ -11,7 +11,8 @@ Memory m = {
 {0}, //vgaPalette
 1,{0}, //selectorsPointer+selectors
 0,{0}, //stackPointer+stack
-0,{0}, //heapPointer+heap
+0, //heapPointer
+{0}, //heap
 {0},{0},{0}, NULL};
 
 int program() {
@@ -521,6 +522,7 @@ void asm2C_INT(int a) {
                 if (m.heapPointer+nbBlocks>=HEAP_SIZE) {
                     m.CF = 1;
                     log_error("Not enough memory (increase HEAP_SIZE)\n");
+                    exit(1);
                     return;
                 } else {
                     dd a=offsetof(struct Mem,heap)+m.heapPointer;

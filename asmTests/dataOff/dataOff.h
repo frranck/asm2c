@@ -306,7 +306,7 @@ extern retro_log_printf_t log_cb;
 #define log_error(...) log_cb(RETRO_LOG_ERROR,__VA_ARGS__);
 #define log_info(...) log_cb(RETRO_LOG_INFO,__VA_ARGS__);
     #ifdef DEBUG
-    #define log_debug(...) log_cb(RETRO_LOG_DEBUG,__VA_ARGS__);
+    #define log_debug(...) printf(__VA_ARGS__);
     #else
     #define log_debug(...)
     #endif
@@ -379,7 +379,7 @@ db dummy1[4096];
 db vgaPalette[256*3];
 dd selectorsPointer;
 dd selectors[NB_SELECTORS];
-int stackPointer;
+int32_t stackPointer;
 dd stack[STACK_SIZE];
 dd heapPointer;
 db heap[HEAP_SIZE];

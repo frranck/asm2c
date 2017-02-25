@@ -466,6 +466,7 @@ void asm2C_INT(int a) {
                 if (m.heapPointer+nbBlocks>=HEAP_SIZE) {
                     m.CF = 1;
                     log_error("Not enough memory (increase HEAP_SIZE)\n");
+                    exit(1);
                     return;
                 } else {
                     dd a=offsetof(struct Mem,heap)+m.heapPointer;

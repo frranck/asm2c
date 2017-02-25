@@ -7,7 +7,7 @@ import Foundation
 
 class asm2c {
 
-    func convertToC(fileName: String, fileNameOutputC: String, fileNameOutputH: String, include: String, ressourceDirectory:String) {
+    func convertToC(fileName: String, fileNameOutputC: String, fileNameOutputH: String, include: String, ressourceDirectory:String, fileNameHeap: String) {
         print("reading: <\(fileName)>\n")
         print("output: <\(fileNameOutputC)>\n")
 
@@ -24,10 +24,16 @@ class asm2c {
             guard let asmCFile = URL(string: "\(ressourceDirectory)/asm.c") else {
                 return;
             }
-            
             let asmH = try String(contentsOf: asmHFile)
             let asmC = try String(contentsOf: asmCFile)
-            
+
+            var heapInit = "{0}"
+            if let urlHeap = URL(string: fileNameHeap) {
+                if let heapInitFile = try? String(contentsOf: urlHeap) {
+                    heapInit=heapInitFile
+                }
+            }
+
             let source = try String(contentsOf: urlFile, encoding: String.Encoding.isoLatin1).replace(target: "\r", withString: "")
 
             let lines: [String] = source.components(separatedBy: "\n")
@@ -160,7 +166,8 @@ class asm2c {
                                          "{0}, //vgaPalette",
                                          "1,{0}, //selectorsPointer+selectors",
                                          "0,{0}, //stackPointer+stack",
-                                         "0,{0}, //heapPointer+heap",
+                                         "0, //heapPointer",
+                                         "\(heapInit), //heap",
                                          "{0},{0},{0}, NULL};\n",
                                          "int program() {",
                                          "jmp_buf jmpbuffer;",
@@ -236,7 +243,7 @@ class asm2c {
                                           "db vgaPalette[256*3];",
                                           "dd selectorsPointer;",
                                           "dd selectors[NB_SELECTORS];",
-                                          "int stackPointer;",
+                                          "int32_t stackPointer;",
                                           "dd stack[STACK_SIZE];",
                                           "dd heapPointer;",
                                           "db heap[HEAP_SIZE];",

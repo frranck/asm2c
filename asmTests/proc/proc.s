@@ -129,7 +129,7 @@ LBB0_4:
 ## BB#6:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$39, %edx
+	movl	$40, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_7:
@@ -183,7 +183,7 @@ LBB0_9:
 ## BB#11:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$42, %edx
+	movl	$43, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_12:
@@ -384,7 +384,7 @@ LBB0_25:
 ## BB#27:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$63, %edx
+	movl	$64, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_28:
@@ -489,7 +489,7 @@ LBB0_33:
 ## BB#36:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$77, %edx
+	movl	$78, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_37:
@@ -973,8 +973,9 @@ LBB1_53:
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_printf
+	movl	$1, %edi
 	movl	%eax, -1208(%rbp)       ## 4-byte Spill
-	jmp	LBB1_61
+	callq	_exit
 LBB1_55:
 	movl	_m+17724(%rip), %eax
 	movl	%eax, %ecx

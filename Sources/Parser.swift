@@ -290,15 +290,9 @@ class Parser {
 
     func parseDupDataContent() throws -> [ExprNode] {
         var nodes = [ExprNode]()
-#if os(Linux)
-        _ = popCurrentToken()
-    //    fatal error: init(format:_:) is not yet implemented: file Foundation/NSExpression.swift, line 140
-
-#else
         guard case Token.ParensOpen() = popCurrentToken() else {
             throw Errors.ExpectedToken(.ParensOpen)
         }
-#endif
         let currentLine = currentLineNumber()
         while (index < tokens.count && currentLine == currentLineNumber()) {
             switch (peekCurrentToken()) {

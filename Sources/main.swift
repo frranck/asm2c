@@ -14,6 +14,10 @@ if argCount>2 {
         
         let asmFileNameNoExtension = asmFileName.replace(target: ".asm", withString: "", option: .caseInsensitive)
         
+        var fileNameHeap = sourcePath.replace(target: ".asm", withString: ".heap", option: .caseInsensitive)
+        
+        let heapFileName = asmFileName.replace(target: ".asm", withString: ".heap", option: .caseInsensitive)
+        
         let fileNameOutputNoMacros=sourcePath.replace(target: asmFileName, withString: "\(asmFileNameNoExtension)/\(asmFileNameNoExtension).nomacro", option: .caseInsensitive)
         
         let fileNameOutputC=sourcePath.replace(target: asmFileName, withString: "\(asmFileNameNoExtension)/\(asmFileNameNoExtension).c", option: .caseInsensitive)
@@ -22,7 +26,7 @@ if argCount>2 {
         let macros = Macros()
         macros.expandMacros(fileName: sourcePath, fileNameOutput: fileNameOutputNoMacros)
         
-        asm2c().convertToC(fileName: fileNameOutputNoMacros, fileNameOutputC: fileNameOutputC, fileNameOutputH: fileNameOutputH, include: asmFileNameNoExtension, ressourceDirectory: ressourcePath)
+        asm2c().convertToC(fileName: fileNameOutputNoMacros, fileNameOutputC: fileNameOutputC, fileNameOutputH: fileNameOutputH, include: asmFileNameNoExtension, ressourceDirectory: ressourcePath, fileNameHeap: fileNameHeap)
     }
 } else {
     print("Missing argument. <path to file to convert> <path to resource directory with asm.h and c files>\n")
