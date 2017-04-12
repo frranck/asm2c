@@ -32,12 +32,14 @@ LBB0_2:
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
 	movb	$0, _m+49(%rip)
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %r8d
 	subq	$148, %r8
 	movl	%r8d, %ecx
 	movl	%ecx, _m+6200(%rip)
 	movq	%rax, %r8
-	movslq	_m+6200(%rip), %r9
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %r9d
 	shlq	$2, %r9
 	addq	%r9, %rdi
 	movq	%rdi, -192(%rbp)        ## 8-byte Spill
@@ -68,15 +70,18 @@ LBB0_4:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -89,7 +94,7 @@ LBB0_4:
 ## BB#7:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$85, %edx
+	movl	$87, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_8:
@@ -110,15 +115,18 @@ LBB0_11:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -131,7 +139,7 @@ LBB0_11:
 ## BB#13:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$86, %edx
+	movl	$88, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_14:
@@ -157,15 +165,18 @@ LBB0_16:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -178,7 +189,7 @@ LBB0_16:
 ## BB#19:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$89, %edx
+	movl	$91, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_20:
@@ -267,15 +278,18 @@ LBB0_28:                                ## =>This Inner Loop Header: Depth=1
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -288,7 +302,7 @@ LBB0_28:                                ## =>This Inner Loop Header: Depth=1
 ## BB#31:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$99, %edx
+	movl	$101, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_32:
@@ -341,15 +355,18 @@ LBB0_38:                                ## =>This Inner Loop Header: Depth=1
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -362,7 +379,7 @@ LBB0_38:                                ## =>This Inner Loop Header: Depth=1
 ## BB#41:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$103, %edx
+	movl	$105, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_42:
@@ -426,15 +443,18 @@ LBB0_49:                                ##   Parent Loop BB0_48 Depth=1
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -447,7 +467,7 @@ LBB0_49:                                ##   Parent Loop BB0_48 Depth=1
 ## BB#52:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$113, %edx
+	movl	$115, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_53:
@@ -501,15 +521,18 @@ LBB0_59:                                ##   Parent Loop BB0_48 Depth=1
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -522,7 +545,7 @@ LBB0_59:                                ##   Parent Loop BB0_48 Depth=1
 ## BB#62:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$117, %edx
+	movl	$119, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_63:
@@ -585,15 +608,18 @@ LBB0_70:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -606,7 +632,7 @@ LBB0_70:
 ## BB#73:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$122, %edx
+	movl	$124, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_74:
@@ -649,15 +675,18 @@ LBB0_77:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$6204, %rdi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %r8
+	movl	_m+6200(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -670,7 +699,7 @@ LBB0_77:
 ## BB#81:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$131, %edx
+	movl	$133, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_82:
@@ -688,30 +717,33 @@ LBB0_86:
 	movq	$-1, %rcx
 	movq	%rax, %rsi
 	addq	$6204, %rsi             ## imm = 0x183C
-	movslq	_m+6200(%rip), %rdi
-	shlq	$2, %rdi
-	addq	%rdi, %rsi
+	movl	_m+6200(%rip), %edi
+	movl	%edi, %r8d
+	shlq	$2, %r8
+	addq	%r8, %rsi
 	movq	%rsi, %rdi
 	movq	%rax, %rsi
 	callq	___memcpy_chk
-	movslq	_m+6200(%rip), %rcx
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$32, %rcx
-	movl	%ecx, %r8d
-	movl	%r8d, _m+6200(%rip)
-	movslq	_m+6200(%rip), %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+6200(%rip)
+	movl	_m+6200(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
-	setb	%r9b
-	xorb	$-1, %r9b
-	andb	$1, %r9b
-	movzbl	%r9b, %r8d
-	movslq	%r8d, %rcx
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
 	cmpq	$0, %rcx
 	movq	%rax, -296(%rbp)        ## 8-byte Spill
 	je	LBB0_88
 ## BB#87:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$134, %edx
+	movl	$136, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_88:
@@ -782,11 +814,13 @@ LBB0_92:
 	leaq	_m(%rip), %rdi
 	movq	%rdi, %r8
 	addq	$6204, %r8              ## imm = 0x183C
-	movslq	_m+6200(%rip), %r9
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %r9d
 	subq	$32, %r9
 	movl	%r9d, %ecx
 	movl	%ecx, _m+6200(%rip)
-	movslq	_m+6200(%rip), %r9
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %r9d
 	movq	6204(%rdi,%r9,4), %r10
 	movq	%r10, _m(%rip)
 	movq	6212(%rdi,%r9,4), %r10
@@ -795,12 +829,14 @@ LBB0_92:
 	movq	%r10, _m+16(%rip)
 	movq	6228(%rdi,%r9,4), %rdi
 	movq	%rdi, _m+24(%rip)
-	movslq	_m+6200(%rip), %rdi
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %edi
 	subq	$148, %rdi
 	movl	%edi, %ecx
 	movl	%ecx, _m+6200(%rip)
 	movq	%rax, %rdi
-	movslq	_m+6200(%rip), %r9
+	movl	_m+6200(%rip), %ecx
+	movl	%ecx, %r9d
 	shlq	$2, %r9
 	addq	%r9, %r8
 	movl	%esi, -300(%rbp)        ## 4-byte Spill

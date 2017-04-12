@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <assert.h>
+#include <stdbool.h>
 
 #if defined(_WIN32) || defined(__INTEL_COMPILER)
 #define INLINE __inline
@@ -325,7 +326,7 @@ extern retro_log_printf_t log_cb;
     #define log_debug2(...)
 #endif
 
-_Bool is_little_endian();
+bool is_little_endian();
 
 #if defined(_MSC_VER)
 #define SWAP16 _byteswap_ushort

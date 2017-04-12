@@ -114,7 +114,7 @@ void asm2C_OUT(int16_t address, int data) {
 }
 
 int8_t asm2C_IN(int16_t address) {
-    static _Bool vblTick = 1;
+    static bool vblTick = 1;
     switch(address) {
         case 0x3DA:
             if (vblTick) {
@@ -140,7 +140,7 @@ int8_t asm2C_IN(int16_t address) {
  * Returns: greater than 0 if little-endian,
  * otherwise big-endian.
  **/
-_Bool is_little_endian()
+bool is_little_endian()
 {
 #if defined(__x86_64) || defined(__i386) || defined(_M_IX86) || defined(_M_X64)
     return 1;

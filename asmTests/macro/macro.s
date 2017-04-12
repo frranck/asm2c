@@ -32,12 +32,14 @@ LBB0_2:
 	leaq	_m(%rip), %rdi
 	addq	$5489, %rdi             ## imm = 0x1571
 	movb	$0, _m+49(%rip)
-	movslq	_m+5485(%rip), %r8
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %r8d
 	subq	$148, %r8
 	movl	%r8d, %ecx
 	movl	%ecx, _m+5485(%rip)
 	movq	%rax, %r8
-	movslq	_m+5485(%rip), %r9
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %r9d
 	shlq	$2, %r9
 	addq	%r9, %rdi
 	movq	%rdi, -192(%rbp)        ## 8-byte Spill
@@ -83,32 +85,35 @@ LBB0_6:
 	movq	$-1, %rsi
 	addq	$5489, %rax             ## imm = 0x1571
 	movl	$122, _m(%rip)
-	movslq	_m+5485(%rip), %rdi
-	shlq	$2, %rdi
-	addq	%rdi, %rax
+	movl	_m+5485(%rip), %edi
+	movl	%edi, %r8d
+	shlq	$2, %r8
+	addq	%r8, %rax
 	movq	%rax, %rdi
 	movq	%rsi, -216(%rbp)        ## 8-byte Spill
 	movq	%rcx, %rsi
 	movq	-216(%rbp), %rcx        ## 8-byte Reload
 	callq	___memcpy_chk
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$2, %rcx
-	movl	%ecx, %r8d
-	movl	%r8d, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+5485(%rip)
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
-	setb	%r9b
-	xorb	$-1, %r9b
-	andb	$1, %r9b
-	movzbl	%r9b, %r8d
-	movslq	%r8d, %rcx
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
 	cmpq	$0, %rcx
 	movq	%rax, -224(%rbp)        ## 8-byte Spill
 	je	LBB0_8
 ## BB#7:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$46, %edx
+	movl	$48, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_8:
@@ -121,32 +126,35 @@ LBB0_9:
                                         ## 
 	movq	$-1, %rsi
 	addq	$5489, %rax             ## imm = 0x1571
-	movslq	_m+5485(%rip), %rdi
-	shlq	$2, %rdi
-	addq	%rdi, %rax
+	movl	_m+5485(%rip), %edi
+	movl	%edi, %r8d
+	shlq	$2, %r8
+	addq	%r8, %rax
 	movq	%rax, %rdi
 	movq	%rsi, -232(%rbp)        ## 8-byte Spill
 	movq	%rcx, %rsi
 	movq	-232(%rbp), %rcx        ## 8-byte Reload
 	callq	___memcpy_chk
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$2, %rcx
-	movl	%ecx, %r8d
-	movl	%r8d, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+5485(%rip)
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
-	setb	%r9b
-	xorb	$-1, %r9b
-	andb	$1, %r9b
-	movzbl	%r9b, %r8d
-	movslq	%r8d, %rcx
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
 	cmpq	$0, %rcx
 	movq	%rax, -240(%rbp)        ## 8-byte Spill
 	je	LBB0_11
 ## BB#10:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$47, %edx
+	movl	$49, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_11:
@@ -158,30 +166,33 @@ LBB0_12:
 	movq	$-1, %rcx
 	movq	%rax, %rsi
 	addq	$5489, %rsi             ## imm = 0x1571
-	movslq	_m+5485(%rip), %rdi
-	shlq	$2, %rdi
-	addq	%rdi, %rsi
+	movl	_m+5485(%rip), %edi
+	movl	%edi, %r8d
+	shlq	$2, %r8
+	addq	%r8, %rsi
 	movq	%rsi, %rdi
 	movq	%rax, %rsi
 	callq	___memcpy_chk
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$4, %rcx
-	movl	%ecx, %r8d
-	movl	%r8d, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+5485(%rip)
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
-	setb	%r9b
-	xorb	$-1, %r9b
-	andb	$1, %r9b
-	movzbl	%r9b, %r8d
-	movslq	%r8d, %rcx
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
 	cmpq	$0, %rcx
 	movq	%rax, -248(%rbp)        ## 8-byte Spill
 	je	LBB0_14
 ## BB#13:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$48, %edx
+	movl	$50, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_14:
@@ -194,69 +205,80 @@ LBB0_15:
                                         ## 
 	movq	$-1, %rsi
 	addq	$5489, %rax             ## imm = 0x1571
-	movslq	_m+5485(%rip), %rdi
-	shlq	$2, %rdi
-	addq	%rdi, %rax
+	movl	_m+5485(%rip), %edi
+	movl	%edi, %r8d
+	shlq	$2, %r8
+	addq	%r8, %rax
 	movq	%rax, %rdi
 	movq	%rsi, -256(%rbp)        ## 8-byte Spill
 	movq	%rcx, %rsi
 	movq	-256(%rbp), %rcx        ## 8-byte Reload
 	callq	___memcpy_chk
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$4, %rcx
-	movl	%ecx, %r8d
-	movl	%r8d, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
+	movl	%ecx, %r9d
+	movl	%r9d, _m+5485(%rip)
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
-	setb	%r9b
-	xorb	$-1, %r9b
-	andb	$1, %r9b
-	movzbl	%r9b, %r8d
-	movslq	%r8d, %rcx
+	setb	%r10b
+	xorb	$-1, %r10b
+	andb	$1, %r10b
+	movzbl	%r10b, %r9d
+	movslq	%r9d, %rcx
 	cmpq	$0, %rcx
 	movq	%rax, -264(%rbp)        ## 8-byte Spill
 	je	LBB0_17
 ## BB#16:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$49, %edx
+	movl	$51, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_17:
 	jmp	LBB0_18
 LBB0_18:
 	leaq	_m(%rip), %rax
-	movslq	_m+5485(%rip), %rcx
-	subq	$4, %rcx
+	movl	_m+5485(%rip), %ecx
 	movl	%ecx, %edx
-	movl	%edx, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
-	movl	5489(%rax,%rcx,4), %edx
-	movl	%edx, _m+4(%rip)
-	movslq	_m+5485(%rip), %rcx
-	subq	$4, %rcx
+	subq	$4, %rdx
+	movl	%edx, %ecx
+	movl	%ecx, _m+5485(%rip)
+	movl	_m+5485(%rip), %ecx
 	movl	%ecx, %edx
-	movl	%edx, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
-	movl	5489(%rax,%rcx,4), %edx
-	movl	%edx, _m(%rip)
-	movslq	_m+5485(%rip), %rcx
-	subq	$2, %rcx
+	movl	5489(%rax,%rdx,4), %ecx
+	movl	%ecx, _m+4(%rip)
+	movl	_m+5485(%rip), %ecx
 	movl	%ecx, %edx
-	movl	%edx, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
-	movw	5489(%rax,%rcx,4), %si
+	subq	$4, %rdx
+	movl	%edx, %ecx
+	movl	%ecx, _m+5485(%rip)
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %edx
+	movl	5489(%rax,%rdx,4), %ecx
+	movl	%ecx, _m(%rip)
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %edx
+	subq	$2, %rdx
+	movl	%edx, %ecx
+	movl	%ecx, _m+5485(%rip)
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %edx
+	movw	5489(%rax,%rdx,4), %si
 	movw	%si, _m+34(%rip)
-	movslq	_m+5485(%rip), %rcx
-	subq	$2, %rcx
+	movl	_m+5485(%rip), %ecx
 	movl	%ecx, %edx
-	movl	%edx, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
-	movw	5489(%rax,%rcx,4), %si
+	subq	$2, %rdx
+	movl	%edx, %ecx
+	movl	%ecx, _m+5485(%rip)
+	movl	_m+5485(%rip), %ecx
+	movl	%ecx, %edx
+	movw	5489(%rax,%rdx,4), %si
 	movw	%si, _m+36(%rip)
-	movl	_m(%rip), %edx
-	subl	$122, %edx
-	cmpl	$0, %edx
+	movl	_m(%rip), %ecx
+	subl	$122, %ecx
+	cmpl	$0, %ecx
 	sete	%dil
 	andb	$1, %dil
 	movb	%dil, _m+45(%rip)
@@ -264,10 +286,10 @@ LBB0_18:
 	setb	%dil
 	andb	$1, %dil
 	movb	%dil, _m+44(%rip)
-	movl	_m(%rip), %edx
-	subl	$122, %edx
-	shrl	$31, %edx
-	cmpl	$0, %edx
+	movl	_m(%rip), %ecx
+	subl	$122, %ecx
+	shrl	$31, %ecx
+	cmpl	$0, %ecx
 	setne	%dil
 	andb	$1, %dil
 	movb	%dil, _m+47(%rip)
@@ -421,15 +443,18 @@ LBB0_32:
 	leaq	-160(%rbp), %rsi
 	leaq	_m(%rip), %rdi
 	addq	$5489, %rdi             ## imm = 0x1571
-	movslq	_m+5485(%rip), %r8
+	movl	_m+5485(%rip), %eax
+	movl	%eax, %r8d
 	shlq	$2, %r8
 	addq	%r8, %rdi
 	callq	___memcpy_chk
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	addq	$148, %rcx
 	movl	%ecx, %r9d
 	movl	%r9d, _m+5485(%rip)
-	movslq	_m+5485(%rip), %rcx
+	movl	_m+5485(%rip), %r9d
+	movl	%r9d, %ecx
 	cmpq	$4096, %rcx             ## imm = 0x1000
 	setb	%r10b
 	xorb	$-1, %r10b
@@ -442,7 +467,7 @@ LBB0_32:
 ## BB#35:
 	leaq	L___func__.program(%rip), %rdi
 	leaq	L_.str(%rip), %rsi
-	movl	$85, %edx
+	movl	$87, %edx
 	leaq	L_.str.1(%rip), %rcx
 	callq	___assert_rtn
 LBB0_36:
