@@ -215,12 +215,11 @@ class asm2c {
             
             let outputStringH = multiline( generatedBy,
 					  "#ifndef \(include.uppercased())_H__",
-                
+                                          asmH,
                                           "#ifdef __cplusplus",
                                           "extern \"C\" {",
                                           "#endif",
                                           "#define \(include.uppercased())_H__",
-                                           asmH,
                                           "#pragma pack(push, 1)",
                                           "typedef struct Mem {",
                                           "registry32Bits eax;",
