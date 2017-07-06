@@ -907,7 +907,7 @@ Ltmp5:
 	movzwl	-1026(%rbp), %edi
 	movq	%rsp, %rax
 	movl	%edi, (%rax)
-	leaq	L_.str.93(%rip), %rdi
+	leaq	L_.str.94(%rip), %rdi
 	xorl	%r10d, %r10d
 	movb	%r10b, %r11b
 	movb	%r11b, %al
@@ -946,12 +946,12 @@ LBB1_74:
 	je	LBB1_3
 	jmp	LBB1_4
 LBB1_2:
-	leaq	L_.str.94(%rip), %rdi
+	leaq	L_.str.95(%rip), %rdi
 	movb	$0, %al
 	callq	_log_debug2
 	jmp	LBB1_61
 LBB1_3:
-	leaq	L_.str.95(%rip), %rdi
+	leaq	L_.str.96(%rip), %rdi
 	movb	$0, %al
 	callq	_log_debug2
 	callq	_stackDump
@@ -992,7 +992,7 @@ LBB1_7:                                 ## =>This Inner Loop Header: Depth=1
 	cmpl	$36, %edx
 	je	LBB1_10
 ## BB#8:                                ##   in Loop: Header=BB1_7 Depth=1
-	leaq	L_.str.96(%rip), %rdi
+	leaq	L_.str.97(%rip), %rdi
 	movslq	-1016(%rbp), %rax
 	movq	-1040(%rbp), %rcx
 	movsbl	(%rcx,%rax), %esi
@@ -1016,7 +1016,7 @@ LBB1_12:
 	xorl	%esi, %esi
 	movl	$1000, %eax             ## imm = 0x3E8
 	movl	%eax, %edx
-	leaq	L_.str.97(%rip), %rcx
+	leaq	L_.str.98(%rip), %rcx
 	leaq	_m(%rip), %rdi
 	leaq	-1008(%rbp), %r8
 	movq	_m+4408896(%rip), %r9
@@ -1058,10 +1058,10 @@ LBB1_14:
 	callq	___sprintf_chk
 	movl	%eax, -1136(%rbp)       ## 4-byte Spill
 LBB1_15:
-	leaq	L_.str.98(%rip), %rsi
+	leaq	L_.str.99(%rip), %rsi
 	leaq	-1008(%rbp), %rdi
 	callq	_fopen
-	leaq	L_.str.99(%rip), %rdi
+	leaq	L_.str.100(%rip), %rdi
 	leaq	-1008(%rbp), %rsi
 	movq	%rax, _asm2C_INT.file(%rip)
 	movq	_asm2C_INT.file(%rip), %rax
@@ -1074,7 +1074,7 @@ LBB1_15:
 	movl	$1, _m(%rip)
 	jmp	LBB1_18
 LBB1_17:
-	leaq	L_.str.100(%rip), %rdi
+	leaq	L_.str.101(%rip), %rdi
 	leaq	-1008(%rbp), %rsi
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
@@ -1082,7 +1082,7 @@ LBB1_17:
 LBB1_18:
 	jmp	LBB1_61
 LBB1_19:
-	leaq	L_.str.101(%rip), %rdi
+	leaq	L_.str.102(%rip), %rdi
 	movzwl	-1022(%rbp), %esi
 	movb	$0, %al
 	callq	_log_debug2
@@ -1091,10 +1091,10 @@ LBB1_19:
 	cmpl	$0, %eax
 	je	LBB1_21
 ## BB#20:
-	leaq	L_.str.102(%rip), %rdi
+	leaq	L_.str.103(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	callq	_perror
-	leaq	L_.str.103(%rip), %rdi
+	leaq	L_.str.104(%rip), %rdi
 	movzwl	-1022(%rbp), %esi
 	movq	_asm2C_INT.file(%rip), %rax
 	movq	%rax, %rdx
@@ -1120,7 +1120,7 @@ LBB1_22:
 	cmpl	$0, %eax
 	je	LBB1_24
 ## BB#23:
-	leaq	L_.str.104(%rip), %rdi
+	leaq	L_.str.105(%rip), %rdi
 	movb	$0, %al
 	callq	_log_debug2
 	movl	$0, _m(%rip)
@@ -1140,9 +1140,9 @@ LBB1_24:
 	cmpq	%rcx, %rax
 	je	LBB1_28
 ## BB#25:
-	leaq	L_.str.102(%rip), %rdi
+	leaq	L_.str.103(%rip), %rdi
 	callq	_perror
-	leaq	L_.str.105(%rip), %rdi
+	leaq	L_.str.106(%rip), %rdi
 	movzwl	-1024(%rbp), %esi
 	movq	-1056(%rbp), %rdx
 	movb	$0, %al
@@ -1152,7 +1152,7 @@ LBB1_24:
 	cmpl	$0, %eax
 	jne	LBB1_27
 ## BB#26:
-	leaq	L_.str.106(%rip), %rdi
+	leaq	L_.str.107(%rip), %rdi
 	movzwl	-1024(%rbp), %esi
 	movq	-1056(%rbp), %rdx
 	movq	_asm2C_INT.file(%rip), %rax
@@ -1163,7 +1163,7 @@ LBB1_24:
 LBB1_27:
 	jmp	LBB1_29
 LBB1_28:
-	leaq	L_.str.107(%rip), %rdi
+	leaq	L_.str.108(%rip), %rdi
 	movq	_asm2C_INT.file(%rip), %rax
 	movq	%rax, %rsi
 	movb	$0, %al
@@ -1202,7 +1202,7 @@ LBB1_33:
 LBB1_34:
 	movl	$2, -1060(%rbp)
 LBB1_35:
-	leaq	L_.str.108(%rip), %rdi
+	leaq	L_.str.109(%rip), %rdi
 	movzwl	-1024(%rbp), %eax
 	shll	$16, %eax
 	movzwl	-1026(%rbp), %ecx
@@ -1220,7 +1220,7 @@ LBB1_35:
 	cmpl	$0, %eax
 	je	LBB1_37
 ## BB#36:
-	leaq	L_.str.109(%rip), %rdi
+	leaq	L_.str.110(%rip), %rdi
 	movb	$0, %al
 	callq	_log_error
 LBB1_37:
@@ -1273,7 +1273,7 @@ LBB1_73:
 	je	LBB1_53
 	jmp	LBB1_57
 LBB1_42:
-	leaq	L_.str.110(%rip), %rdi
+	leaq	L_.str.111(%rip), %rdi
 	movzwl	-1024(%rbp), %esi
 	movb	$0, %al
 	callq	_log_debug2
@@ -1283,13 +1283,13 @@ LBB1_42:
 	cmpl	$128, %esi
 	jb	LBB1_44
 ## BB#43:
-	leaq	L_.str.111(%rip), %rdi
+	leaq	L_.str.112(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_log_error
 	jmp	LBB1_61
 LBB1_44:
-	leaq	L_.str.112(%rip), %rdi
+	leaq	L_.str.113(%rip), %rdi
 	movl	_m+5684(%rip), %eax
 	movl	%eax, _m(%rip)
 	movzwl	-1024(%rbp), %eax
@@ -1301,7 +1301,7 @@ LBB1_44:
 ## BB#45:
 	jmp	LBB1_61
 LBB1_46:
-	leaq	L_.str.113(%rip), %rdi
+	leaq	L_.str.114(%rip), %rdi
 	movl	_m+4(%rip), %esi
 	movb	$0, %al
 	callq	_log_debug2
@@ -1310,13 +1310,13 @@ LBB1_46:
 	cmpl	$128, %esi
 	jb	LBB1_48
 ## BB#47:
-	leaq	L_.str.111(%rip), %rdi
+	leaq	L_.str.112(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_log_error
 	jmp	LBB1_61
 LBB1_48:
-	leaq	L_.str.114(%rip), %rdi
+	leaq	L_.str.115(%rip), %rdi
 	leaq	_m(%rip), %rax
 	movl	_m+5684(%rip), %ecx
 	movl	%ecx, %edx
@@ -1331,7 +1331,7 @@ LBB1_48:
 	movl	%ecx, _m+5684(%rip)
 	jmp	LBB1_61
 LBB1_49:
-	leaq	L_.str.115(%rip), %rdi
+	leaq	L_.str.116(%rip), %rdi
 	movl	_m+4(%rip), %esi
 	movl	_m+12(%rip), %edx
 	movl	_m+8(%rip), %ecx
@@ -1341,13 +1341,13 @@ LBB1_49:
 	cmpl	_m+5684(%rip), %ecx
 	jbe	LBB1_51
 ## BB#50:
-	leaq	L_.str.116(%rip), %rdi
+	leaq	L_.str.117(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_log_error
 	jmp	LBB1_61
 LBB1_51:
-	leaq	L_.str.117(%rip), %rdi
+	leaq	L_.str.118(%rip), %rdi
 	leaq	_m(%rip), %rax
 	movzwl	_m+12(%rip), %ecx
 	andl	$65535, %ecx            ## imm = 0xFFFF
@@ -1365,13 +1365,13 @@ LBB1_51:
 	callq	_log_debug2
 	jmp	LBB1_61
 LBB1_52:
-	leaq	L_.str.118(%rip), %rdi
+	leaq	L_.str.119(%rip), %rdi
 	movzwl	-1022(%rbp), %esi
 	movb	$0, %al
 	callq	_log_debug2
 	jmp	LBB1_61
 LBB1_53:
-	leaq	L_.str.119(%rip), %rdi
+	leaq	L_.str.120(%rip), %rdi
 	movzwl	-1022(%rbp), %eax
 	shll	$16, %eax
 	movzwl	-1024(%rbp), %ecx
@@ -1385,14 +1385,14 @@ LBB1_53:
 	cmpl	$4194304, %ecx          ## imm = 0x400000
 	jb	LBB1_55
 ## BB#54:
-	leaq	L_.str.120(%rip), %rdi
+	leaq	L_.str.121(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	movb	$0, %al
 	callq	_log_error
 	movl	$1, %edi
 	callq	_exit
 LBB1_55:
-	leaq	L_.str.121(%rip), %rdi
+	leaq	L_.str.122(%rip), %rdi
 	movl	_m+22588(%rip), %eax
 	movl	%eax, %ecx
 	addq	$22592, %rcx            ## imm = 0x5840
@@ -1406,7 +1406,7 @@ LBB1_55:
 	movl	%eax, %esi
 	movb	$0, %al
 	callq	_log_debug2
-	leaq	L_.str.122(%rip), %rdi
+	leaq	L_.str.123(%rip), %rdi
 	movl	-1080(%rbp), %esi
 	andl	$65535, %esi            ## imm = 0xFFFF
 	movl	%esi, _m+8(%rip)
@@ -1430,7 +1430,7 @@ LBB1_58:
 LBB1_59:
 	jmp	LBB1_60
 LBB1_60:
-	leaq	L_.str.123(%rip), %rdi
+	leaq	L_.str.124(%rip), %rdi
 	movb	$1, _m+44(%rip)
 	movl	-1012(%rbp), %esi
 	movzbl	-1017(%rbp), %edx
@@ -2183,94 +2183,9 @@ Ltmp19:
 	movq	%rsp, %rbp
 Ltmp20:
 	.cfi_def_cfa_register %rbp
-	subq	$1472, %rsp             ## imm = 0x5C0
-	testb	%al, %al
-	movaps	%xmm7, -1280(%rbp)      ## 16-byte Spill
-	movaps	%xmm6, -1296(%rbp)      ## 16-byte Spill
-	movaps	%xmm5, -1312(%rbp)      ## 16-byte Spill
-	movaps	%xmm4, -1328(%rbp)      ## 16-byte Spill
-	movaps	%xmm3, -1344(%rbp)      ## 16-byte Spill
-	movaps	%xmm2, -1360(%rbp)      ## 16-byte Spill
-	movaps	%xmm1, -1376(%rbp)      ## 16-byte Spill
-	movaps	%xmm0, -1392(%rbp)      ## 16-byte Spill
-	movq	%rdi, -1400(%rbp)       ## 8-byte Spill
-	movq	%r9, -1408(%rbp)        ## 8-byte Spill
-	movq	%r8, -1416(%rbp)        ## 8-byte Spill
-	movq	%rcx, -1424(%rbp)       ## 8-byte Spill
-	movq	%rdx, -1432(%rbp)       ## 8-byte Spill
-	movq	%rsi, -1440(%rbp)       ## 8-byte Spill
-	je	LBB6_6
-## BB#5:
-	movaps	-1392(%rbp), %xmm0      ## 16-byte Reload
-	movaps	%xmm0, -1216(%rbp)
-	movaps	-1376(%rbp), %xmm1      ## 16-byte Reload
-	movaps	%xmm1, -1200(%rbp)
-	movaps	-1360(%rbp), %xmm2      ## 16-byte Reload
-	movaps	%xmm2, -1184(%rbp)
-	movaps	-1344(%rbp), %xmm3      ## 16-byte Reload
-	movaps	%xmm3, -1168(%rbp)
-	movaps	-1328(%rbp), %xmm4      ## 16-byte Reload
-	movaps	%xmm4, -1152(%rbp)
-	movaps	-1312(%rbp), %xmm5      ## 16-byte Reload
-	movaps	%xmm5, -1136(%rbp)
-	movaps	-1296(%rbp), %xmm6      ## 16-byte Reload
-	movaps	%xmm6, -1120(%rbp)
-	movaps	-1280(%rbp), %xmm7      ## 16-byte Reload
-	movaps	%xmm7, -1104(%rbp)
-LBB6_6:
-	movq	-1408(%rbp), %rax       ## 8-byte Reload
-	movq	%rax, -1224(%rbp)
-	movq	-1416(%rbp), %rcx       ## 8-byte Reload
-	movq	%rcx, -1232(%rbp)
-	movq	-1424(%rbp), %rdx       ## 8-byte Reload
-	movq	%rdx, -1240(%rbp)
-	movq	-1432(%rbp), %rsi       ## 8-byte Reload
-	movq	%rsi, -1248(%rbp)
-	movq	-1440(%rbp), %rdi       ## 8-byte Reload
-	movq	%rdi, -1256(%rbp)
-	movq	-1400(%rbp), %r8        ## 8-byte Reload
-	xorl	%esi, %esi
-	movl	$1024, %r9d             ## imm = 0x400
-	movl	%r9d, %edx
-	leaq	-1072(%rbp), %r10
-	leaq	-1040(%rbp), %rdi
-	movq	___stack_chk_guard@GOTPCREL(%rip), %r11
-	movq	(%r11), %r11
-	movq	%r11, -8(%rbp)
-	movq	%r8, -1080(%rbp)
-	movq	%r10, %r8
-	leaq	-1264(%rbp), %r11
-	movq	%r11, 16(%r8)
-	leaq	16(%rbp), %r11
-	movq	%r11, 8(%r8)
-	movl	$48, 4(%r8)
-	movl	$8, (%r8)
-	movq	-1080(%rbp), %rcx
-	movq	%r10, %r8
-	callq	___vsprintf_chk
-	leaq	-1072(%rbp), %rcx
-	cmpq	$0, _logDebug(%rip)
-	movl	%eax, -1444(%rbp)       ## 4-byte Spill
-	movq	%rcx, -1456(%rbp)       ## 8-byte Spill
-	je	LBB6_2
-## BB#1:
-	leaq	L_.str.53(%rip), %rsi
-	leaq	-1040(%rbp), %rdx
-	movq	_logDebug(%rip), %rdi
-	movb	$0, %al
-	callq	_fprintf
-	movl	%eax, -1460(%rbp)       ## 4-byte Spill
-LBB6_2:
-	movq	___stack_chk_guard@GOTPCREL(%rip), %rax
-	movq	(%rax), %rax
-	cmpq	-8(%rbp), %rax
-	jne	LBB6_4
-## BB#3:
-	addq	$1472, %rsp             ## imm = 0x5C0
+	movq	%rdi, -8(%rbp)
 	popq	%rbp
 	retq
-LBB6_4:
-	callq	___stack_chk_fail
 	.cfi_endproc
 
 	.globl	_log_info
@@ -2817,9 +2732,9 @@ LBB11_22:
 	callq	___stack_chk_fail
 	.cfi_endproc
 
-	.globl	_is_little_endian
+	.globl	_is_little_endian_real_check
 	.align	4, 0x90
-_is_little_endian:                      ## @is_little_endian
+_is_little_endian_real_check:           ## @is_little_endian_real_check
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
@@ -2829,6 +2744,28 @@ Ltmp37:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 Ltmp38:
+	.cfi_def_cfa_register %rbp
+	movw	$1, -8(%rbp)
+	cmpb	$0, -8(%rbp)
+	setne	%al
+	andb	$1, %al
+	movzbl	%al, %eax
+	popq	%rbp
+	retq
+	.cfi_endproc
+
+	.globl	_is_little_endian
+	.align	4, 0x90
+_is_little_endian:                      ## @is_little_endian
+	.cfi_startproc
+## BB#0:
+	pushq	%rbp
+Ltmp39:
+	.cfi_def_cfa_offset 16
+Ltmp40:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+Ltmp41:
 	.cfi_def_cfa_register %rbp
 	movb	$1, %al
 	andb	$1, %al
@@ -2843,22 +2780,41 @@ _asm2C_init:                            ## @asm2C_init
 	.cfi_startproc
 ## BB#0:
 	pushq	%rbp
-Ltmp39:
+Ltmp42:
 	.cfi_def_cfa_offset 16
-Ltmp40:
+Ltmp43:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-Ltmp41:
+Ltmp44:
 	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
 	callq	_is_little_endian
-	leaq	L_.str.92(%rip), %rdi
 	andb	$1, %al
 	movb	%al, _m+48(%rip)
+	movb	_m+48(%rip), %al
+	andb	$1, %al
+	movzbl	%al, %ecx
+	movl	%ecx, -4(%rbp)          ## 4-byte Spill
+	callq	_is_little_endian_real_check
+	andb	$1, %al
+	movzbl	%al, %ecx
+	movl	-4(%rbp), %edx          ## 4-byte Reload
+	cmpl	%ecx, %edx
+	je	LBB14_2
+## BB#1:
+	leaq	L_.str.92(%rip), %rdi
+	movb	$0, %al
+	callq	_log_error
+	movl	$1, %edi
+	callq	_exit
+LBB14_2:
+	leaq	L_.str.93(%rip), %rdi
 	movb	_m+48(%rip), %al
 	andb	$1, %al
 	movzbl	%al, %esi
 	movb	$0, %al
 	callq	_log_debug2
+	addq	$16, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -3239,100 +3195,103 @@ L_.str.91:                              ## @.str.91
 	.asciz	"Unknown IN %d\n"
 
 L_.str.92:                              ## @.str.92
+	.asciz	"Inconsistency in little/big endianess detection. Please check if the Makefile sets MSB_FIRST properly for this architecture.\n"
+
+L_.str.93:                              ## @.str.93
 	.asciz	"asm2C_init is_little_endian:%d\n"
 
 .zerofill __DATA,__bss,_asm2C_INT.file,8,3 ## @asm2C_INT.file
-L_.str.93:                              ## @.str.93
+L_.str.94:                              ## @.str.94
 	.asciz	"asm2C_INT ah=%x al=%x ax=%x bx=%x cx=%x dx=%x\n"
 
-L_.str.94:                              ## @.str.94
+L_.str.95:                              ## @.str.95
 	.asciz	"Switch to text mode\n"
 
-L_.str.95:                              ## @.str.95
+L_.str.96:                              ## @.str.96
 	.asciz	"Switch to VGA\n"
 
-L_.str.96:                              ## @.str.96
+L_.str.97:                              ## @.str.97
 	.asciz	"%c"
 
-L_.str.97:                              ## @.str.97
+L_.str.98:                              ## @.str.98
 	.asciz	"%s/%s"
 
-L_.str.98:                              ## @.str.98
+L_.str.99:                              ## @.str.99
 	.asciz	"rb"
 
-L_.str.99:                              ## @.str.99
+L_.str.100:                             ## @.str.100
 	.asciz	"Opening file %s -> %p\n"
 
-L_.str.100:                             ## @.str.100
+L_.str.101:                             ## @.str.101
 	.asciz	"Error opening file %s\n"
 
-L_.str.101:                             ## @.str.101
+L_.str.102:                             ## @.str.102
 	.asciz	"Closing file. bx:%d\n"
 
-L_.str.102:                             ## @.str.102
+L_.str.103:                             ## @.str.103
 	.asciz	"Error"
 
-L_.str.103:                             ## @.str.103
+L_.str.104:                             ## @.str.104
 	.asciz	"Error closing file ? bx:%d %p\n"
 
-L_.str.104:                             ## @.str.104
+L_.str.105:                             ## @.str.105
 	.asciz	"feof(file)\n"
 
-L_.str.105:                             ## @.str.105
+L_.str.106:                             ## @.str.106
 	.asciz	"r!=cx cx:%d R:%zu \n"
 
-L_.str.106:                             ## @.str.106
+L_.str.107:                             ## @.str.107
 	.asciz	"Error reading ? %d %zu %p\n"
 
-L_.str.107:                             ## @.str.107
+L_.str.108:                             ## @.str.108
 	.asciz	"Reading OK %p\n"
 
-L_.str.108:                             ## @.str.108
+L_.str.109:                             ## @.str.109
 	.asciz	"Seeking to offset %ld %d\n"
 
-L_.str.109:                             ## @.str.109
+L_.str.110:                             ## @.str.110
 	.asciz	"Error seeking\n"
 
-L_.str.110:                             ## @.str.110
+L_.str.111:                             ## @.str.111
 	.asciz	"Function 0000h - Allocate %d Descriptors\n"
 
-L_.str.111:                             ## @.str.111
+L_.str.112:                             ## @.str.112
 	.asciz	"Not enough free selectors (increase NB_SELECTORS)\n"
 
-L_.str.112:                             ## @.str.112
+L_.str.113:                             ## @.str.113
 	.asciz	"Return %x\n"
 
-L_.str.113:                             ## @.str.113
+L_.str.114:                             ## @.str.114
 	.asciz	"Function 0002h - Converts a real mode segment into a protected mode descriptor real mode segment: %d\n"
 
-L_.str.114:                             ## @.str.114
+L_.str.115:                             ## @.str.115
 	.asciz	"Returns new selector: eax: %d\n"
 
-L_.str.115:                             ## @.str.115
+L_.str.116:                             ## @.str.116
 	.asciz	"Function 0007h - Set Segment Base Address: ebx: %x, edx:%x ecx:%x\n"
 
-L_.str.116:                             ## @.str.116
+L_.str.117:                             ## @.str.117
 	.asciz	"Error: selector number doesnt exist\n"
 
-L_.str.117:                             ## @.str.117
+L_.str.118:                             ## @.str.118
 	.asciz	"Address for selector %d: %x\n"
 
-L_.str.118:                             ## @.str.118
+L_.str.119:                             ## @.str.119
 	.asciz	"Function 0008h - Set Segment Limit for selector %d (Ignored)\n"
 
-L_.str.119:                             ## @.str.119
+L_.str.120:                             ## @.str.120
 	.asciz	"Function 0501h - Allocate Memory Block: %d bytes\n"
 
-L_.str.120:                             ## @.str.120
+L_.str.121:                             ## @.str.121
 	.asciz	"Not enough memory (increase HEAP_SIZE)\n"
 
-L_.str.121:                             ## @.str.121
+L_.str.122:                             ## @.str.122
 	.asciz	"New top of heap: %x\n"
 
-L_.str.122:                             ## @.str.122
+L_.str.123:                             ## @.str.123
 	.asciz	"Return %x ebx:ecx %x:%x\n"
 
-L_.str.123:                             ## @.str.123
+L_.str.124:                             ## @.str.124
 	.asciz	"Error DOSInt 0x%x ah:0x%x al:0x%x: not supported.\n"
 
 

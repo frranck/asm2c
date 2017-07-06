@@ -4,260 +4,263 @@
 #pragma GCC diagnostic ignored "-Wunused-label"
 
 Memory m = {
-{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
-0,0,0,0,0,0, //flags
-0, //isLittle
-0, //exitCode
-{0,0,0,0,0,21,0,0,42,0,0,63,9,0,0,9}, //pal_jeu
-{0,21,9,0,42,9,0,63,18,0,0,18,0,21,18,0}, //dummy1
-{42,18,0,63,27,0,0,27,0,21,27,0,42,27,0,63}, //dummy2
-{36,0,0,36,0,21,36,0,42,36,0,63,45,0,0,45}, //dummy3
-{0,21,45,0,42,45,0,63,54,0,0,54,0,21,54,0}, //dummy4
-{42,54,0,63,63,0,0,63,0,21,63,0,42,63,0,63}, //dummy5
-{0,9,0,0,9,21,0,9,42,0,9,63,9,9,0,9}, //dummy6
-{9,21,9,9,42,9,9,63,18,9,0,18,9,21,18,9}, //dummy7
-{42,18,9,63,27,9,0,27,9,21,27,9,42,27,9,63}, //dummy8
-{36,9,0,36,9,21,36,9,42,36,9,63,45,9,0,45}, //dummy9
-{9,21,45,9,42,45,9,63,54,9,0,54,9,21,54,9}, //dummy10
-{42,54,9,63,63,9,0,63,9,21,63,9,42,63,9,63}, //dummy11
-{0,18,0,0,18,21,0,18,42,0,18,63,9,18,0,9}, //dummy12
-{18,21,9,18,42,9,18,63,18,18,0,18,18,21,18,18}, //dummy13
-{42,18,18,63,27,18,0,27,18,21,27,18,42,27,18,63}, //dummy14
-{36,18,0,36,18,21,36,18,42,36,18,63,45,18,0,45}, //dummy15
-{18,21,45,18,42,45,18,63,54,18,0,54,18,21,54,18}, //dummy16
-{42,54,18,63,63,18,0,63,18,21,63,18,42,63,18,63}, //dummy17
-{0,27,0,0,27,21,0,27,42,0,27,63,9,27,0,9}, //dummy18
-{27,21,9,27,42,9,27,63,18,27,0,18,27,21,18,27}, //dummy19
-{42,18,27,63,27,27,0,27,27,21,27,27,42,27,27,63}, //dummy20
-{36,27,0,36,27,21,36,27,42,36,27,63,45,27,0,45}, //dummy21
-{27,21,45,27,42,45,27,63,54,27,0,54,27,21,54,27}, //dummy22
-{42,54,27,63,63,27,0,63,27,21,63,27,42,63,27,63}, //dummy23
-{0,36,0,0,36,21,0,36,42,0,36,63,9,36,0,9}, //dummy24
-{36,21,9,36,42,9,36,63,18,36,0,18,36,21,18,36}, //dummy25
-{42,18,36,63,27,36,0,27,36,21,27,36,42,27,36,63}, //dummy26
-{36,36,0,36,36,21,36,36,42,36,36,63,45,36,0,45}, //dummy27
-{36,21,45,36,42,45,36,63,54,36,0,54,36,21,54,36}, //dummy28
-{42,54,36,63,63,36,0,63,36,21,63,36,42,63,36,63}, //dummy29
-{0,45,0,0,45,21,0,45,42,0,45,63,9,45,0,9}, //dummy30
-{45,21,9,45,42,9,45,63,18,45,0,18,45,21,18,45}, //dummy31
-{42,18,45,63,27,45,0,27,45,21,27,45,42,27,45,63}, //dummy32
-{36,45,0,36,45,21,36,45,42,36,45,63,45,45,0,45}, //dummy33
-{45,21,45,45,42,45,45,63,54,45,0,54,45,21,54,45}, //dummy34
-{42,54,45,63,63,45,0,63,45,21,63,45,42,63,45,63}, //dummy35
-{0,54,0,0,54,21,0,54,42,0,54,63,9,54,0,9}, //dummy36
-{54,21,9,54,42,9,54,63,18,54,0,18,54,21,18,54}, //dummy37
-{42,18,54,63,27,54,0,27,54,21,27,54,42,27,54,63}, //dummy38
-{36,54,0,36,54,21,36,54,42,36,54,63,45,54,0,45}, //dummy39
-{54,21,45,54,42,45,54,63,54,54,0,54,54,21,54,54}, //dummy40
-{42,54,54,63,63,54,0,63,54,21,63,54,42,63,54,63}, //dummy41
-{0,63,0,0,63,21,0,63,42,0,63,63,9,63,0,9}, //dummy42
-{63,21,9,63,42,9,63,63,18,63,0,18,63,21,18,63}, //dummy43
-{42,18,63,63,27,63,0,27,63,21,27,63,42,27,63,63}, //dummy44
-{36,63,0,36,63,21,36,63,42,36,63,63,45,63,0,45}, //dummy45
-{63,21,45,63,42,45,63,63,54,63,0,54,63,21,54,63}, //dummy46
-{42,54,63,63,63,63,0,63,63,21,63,63,42,63,63,63}, //dummy47
-{0}, //dummy48
+	{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
+	0,0,0,0,0,0, //flags
+	0, //isLittle
+	0, //exitCode
+	{0,0,0,0,0,21,0,0,42,0,0,63,9,0,0,9}, //pal_jeu
+	{0,21,9,0,42,9,0,63,18,0,0,18,0,21,18,0}, //dummy1
+	{42,18,0,63,27,0,0,27,0,21,27,0,42,27,0,63}, //dummy2
+	{36,0,0,36,0,21,36,0,42,36,0,63,45,0,0,45}, //dummy3
+	{0,21,45,0,42,45,0,63,54,0,0,54,0,21,54,0}, //dummy4
+	{42,54,0,63,63,0,0,63,0,21,63,0,42,63,0,63}, //dummy5
+	{0,9,0,0,9,21,0,9,42,0,9,63,9,9,0,9}, //dummy6
+	{9,21,9,9,42,9,9,63,18,9,0,18,9,21,18,9}, //dummy7
+	{42,18,9,63,27,9,0,27,9,21,27,9,42,27,9,63}, //dummy8
+	{36,9,0,36,9,21,36,9,42,36,9,63,45,9,0,45}, //dummy9
+	{9,21,45,9,42,45,9,63,54,9,0,54,9,21,54,9}, //dummy10
+	{42,54,9,63,63,9,0,63,9,21,63,9,42,63,9,63}, //dummy11
+	{0,18,0,0,18,21,0,18,42,0,18,63,9,18,0,9}, //dummy12
+	{18,21,9,18,42,9,18,63,18,18,0,18,18,21,18,18}, //dummy13
+	{42,18,18,63,27,18,0,27,18,21,27,18,42,27,18,63}, //dummy14
+	{36,18,0,36,18,21,36,18,42,36,18,63,45,18,0,45}, //dummy15
+	{18,21,45,18,42,45,18,63,54,18,0,54,18,21,54,18}, //dummy16
+	{42,54,18,63,63,18,0,63,18,21,63,18,42,63,18,63}, //dummy17
+	{0,27,0,0,27,21,0,27,42,0,27,63,9,27,0,9}, //dummy18
+	{27,21,9,27,42,9,27,63,18,27,0,18,27,21,18,27}, //dummy19
+	{42,18,27,63,27,27,0,27,27,21,27,27,42,27,27,63}, //dummy20
+	{36,27,0,36,27,21,36,27,42,36,27,63,45,27,0,45}, //dummy21
+	{27,21,45,27,42,45,27,63,54,27,0,54,27,21,54,27}, //dummy22
+	{42,54,27,63,63,27,0,63,27,21,63,27,42,63,27,63}, //dummy23
+	{0,36,0,0,36,21,0,36,42,0,36,63,9,36,0,9}, //dummy24
+	{36,21,9,36,42,9,36,63,18,36,0,18,36,21,18,36}, //dummy25
+	{42,18,36,63,27,36,0,27,36,21,27,36,42,27,36,63}, //dummy26
+	{36,36,0,36,36,21,36,36,42,36,36,63,45,36,0,45}, //dummy27
+	{36,21,45,36,42,45,36,63,54,36,0,54,36,21,54,36}, //dummy28
+	{42,54,36,63,63,36,0,63,36,21,63,36,42,63,36,63}, //dummy29
+	{0,45,0,0,45,21,0,45,42,0,45,63,9,45,0,9}, //dummy30
+	{45,21,9,45,42,9,45,63,18,45,0,18,45,21,18,45}, //dummy31
+	{42,18,45,63,27,45,0,27,45,21,27,45,42,27,45,63}, //dummy32
+	{36,45,0,36,45,21,36,45,42,36,45,63,45,45,0,45}, //dummy33
+	{45,21,45,45,42,45,45,63,54,45,0,54,45,21,54,45}, //dummy34
+	{42,54,45,63,63,45,0,63,45,21,63,45,42,63,45,63}, //dummy35
+	{0,54,0,0,54,21,0,54,42,0,54,63,9,54,0,9}, //dummy36
+	{54,21,9,54,42,9,54,63,18,54,0,18,54,21,18,54}, //dummy37
+	{42,18,54,63,27,54,0,27,54,21,27,54,42,27,54,63}, //dummy38
+	{36,54,0,36,54,21,36,54,42,36,54,63,45,54,0,45}, //dummy39
+	{54,21,45,54,42,45,54,63,54,54,0,54,54,21,54,54}, //dummy40
+	{42,54,54,63,63,54,0,63,54,21,63,54,42,63,54,63}, //dummy41
+	{0,63,0,0,63,21,0,63,42,0,63,63,9,63,0,9}, //dummy42
+	{63,21,9,63,42,9,63,63,18,63,0,18,63,21,18,63}, //dummy43
+	{42,18,63,63,27,63,0,27,63,21,27,63,42,27,63,63}, //dummy44
+	{36,63,0,36,63,21,36,63,42,36,63,63,45,63,0,45}, //dummy45
+	{63,21,45,63,42,45,63,63,54,63,0,54,63,21,54,63}, //dummy46
+	{42,54,63,63,63,63,0,63,63,21,63,63,42,63,63,63}, //dummy47
+	{0}, //dummy48
 
-{0}, //vgaPalette
-1,{0}, //selectorsPointer+selectors
-0,{0}, //stackPointer+stack
-0, //heapPointer
-{0}, //heap
-{0},{0},{0}, NULL};
+	{0}, //vgaPalette
+	1,{0}, //selectorsPointer+selectors
+	0,{0}, //stackPointer+stack
+	0, //heapPointer
+	{0}, //heap
+	{0},{0},{0}, NULL
+};
 
 int program() {
-jmp_buf jmpbuffer;
-void * dest;
-void * src;
-int i;
+	jmp_buf jmpbuffer;
+	void * dest;
+	void * src;
+	int i;
 #ifdef INCLUDEMAIN
-dest=NULL;src=NULL;i=0; //to avoid a warning.
+	dest=NULL; src=NULL; i=0; //to avoid a warning.
 #endif
-if (m.executionFinished) goto moveToBackGround;
-if (m.jumpToBackGround) {
-m.jumpToBackGround = 0;
+	if (m.executionFinished) goto moveToBackGround;
+	if (m.jumpToBackGround) {
+		m.jumpToBackGround = 0;
 #ifdef MRBOOM
-if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
-if (m.nosetjmp==2) goto directjeu;
-if (m.nosetjmp==1) goto directmenu;
+		if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
+		if (m.nosetjmp==2) goto directjeu;
+		if (m.nosetjmp==1) goto directmenu;
 #endif
-RET;
-}
-R(MOV(16,READDW(eax),16,(dw)19));
-R(INT(16));
-CALL(affpal);
-R(MOV(32,READDD(ebx),32,(dd)40960));
-R(MOV(16,READDW(eax),16,(dw)2));
-R(INT(49));
-R(MOV(16,READDW(es),16,(dw)READDW(eax)));
-R(XOR(32,READDD(edi),32,(dd)READDD(edi)));
-R(MOV(32,READDD(eax),32,(dd)2007695104));
-R(MOV(32,READDD(ecx),32,(dd)((320*200)/4)));
-R(REP_STOSD);
-R(MOV(32,*((dd *) realAddress(((20*320)+160), es)),32,(dd)2007695104));
-R(MOV(32,*((dd *) realAddress(0, es)),32,(dd)2007695104));
-R(MOV(16,READDW(edx),16,(dw)986));
+		RET;
+	}
+	R(MOV(16,READDW(eax),16,(dw)19));
+	R(INT(16));
+	CALL(affpal);
+	R(MOV(32,READDD(ebx),32,(dd)40960));
+	R(MOV(16,READDW(eax),16,(dw)2));
+	R(INT(49));
+	R(MOV(16,READDW(es),16,(dw)READDW(eax)));
+	R(XOR(32,READDD(edi),32,(dd)READDD(edi)));
+	R(MOV(32,READDD(eax),32,(dd)2007695104));
+	R(MOV(32,READDD(ecx),32,(dd)((320*200)/4)));
+	R(REP_STOSD);
+	R(MOV(32,*((dd *) realAddress(((20*320)+160), es)),32,(dd)2007695104));
+	R(MOV(32,*((dd *) realAddress(0, es)),32,(dd)2007695104));
+	R(MOV(16,READDW(edx),16,(dw)986));
 arobasevbl12:
-IN(READDBl(eax),READDW(edx));
-R(TEST(8,READDBl(eax),8,(db)8));
-R(JNE(arobasevbl12));
+	IN(READDBl(eax),READDW(edx));
+	R(TEST(8,READDBl(eax),8,(db)8));
+	R(JNE(arobasevbl12));
 arobasevbl22:
-IN(READDBl(eax),READDW(edx));
-R(TEST(8,READDBl(eax),8,(db)8));
-R(JE(arobasevbl22));
-R(MOV(16,READDW(edx),16,(dw)968));
-R(MOV(8,READDBl(eax),8,(db)0));
-OUT(READDW(edx),READDBl(eax));
-R(MOV(32,READDD(ecx),32,(dd)60));
+	IN(READDBl(eax),READDW(edx));
+	R(TEST(8,READDBl(eax),8,(db)8));
+	R(JE(arobasevbl22));
+	R(MOV(16,READDW(edx),16,(dw)968));
+	R(MOV(8,READDBl(eax),8,(db)0));
+	OUT(READDW(edx),READDBl(eax));
+	R(MOV(32,READDD(ecx),32,(dd)60));
 dffd:
-R(MOV(16,READDW(edx),16,(dw)986));
+	R(MOV(16,READDW(edx),16,(dw)986));
 arobasevbl1:
-IN(READDBl(eax),READDW(edx));
-R(TEST(8,READDBl(eax),8,(db)8));
-R(JNE(arobasevbl1));
+	IN(READDBl(eax),READDW(edx));
+	R(TEST(8,READDBl(eax),8,(db)8));
+	R(JNE(arobasevbl1));
 arobasevbl2:
-IN(READDBl(eax),READDW(edx));
-R(TEST(8,READDBl(eax),8,(db)8));
-R(JE(arobasevbl2));
-R(LOOP(dffd));
-R(MOV(16,READDW(eax),16,(dw)3));
-R(INT(16));
-R(MOV(32,READDD(edi),32,(dd)1));
-R(MOV(32,READDD(esi),32,(dd)2));
-R(XOR(32,READDD(eax),32,(dd)READDD(eax)));
-R(JMP(exitlabel));
+	IN(READDBl(eax),READDW(edx));
+	R(TEST(8,READDBl(eax),8,(db)8));
+	R(JE(arobasevbl2));
+	R(LOOP(dffd));
+	R(MOV(16,READDW(eax),16,(dw)3));
+	R(INT(16));
+	R(MOV(32,READDD(edi),32,(dd)1));
+	R(MOV(32,READDD(esi),32,(dd)2));
+	R(XOR(32,READDD(eax),32,(dd)READDD(eax)));
+	R(JMP(exitlabel));
 failure:
-R(MOV(8,READDBl(eax),8,(db)1));
+	R(MOV(8,READDBl(eax),8,(db)1));
 exitlabel:
-R(MOV(8,READDBh(eax),8,(db)76));
-R(INT(33));
+	R(MOV(8,READDBh(eax),8,(db)76));
+	R(INT(33));
 //PROC affpal
 affpal:
-R(PUSHAD);
-R(MOV(32,m.esi.dd.val,32,(((dd)offsetof(struct Mem,pal_jeu)))));
-R(MOV(16,READDW(edx),16,(dw)968));
-R(XOR(8,READDBl(eax),8,(db)READDBl(eax)));
-OUT(READDW(edx),READDBl(eax));
-R(MOV(16,READDW(edx),16,(dw)969));
-R(MOV(16,READDW(ecx),16,(dw)(256*3)));
+	R(PUSHAD);
+	R(MOV(32,m.esi.dd.val,32,(((dd)offsetof(struct Mem,pal_jeu)))));
+	R(MOV(16,READDW(edx),16,(dw)968));
+	R(XOR(8,READDBl(eax),8,(db)READDBl(eax)));
+	OUT(READDW(edx),READDBl(eax));
+	R(MOV(16,READDW(edx),16,(dw)969));
+	R(MOV(16,READDW(ecx),16,(dw)(256*3)));
 arobasearobasesaaccvaaaax:
-R(LODSB);
-OUT(READDW(edx),READDBl(eax));
-R(DEC(16,(READDW(ecx))));
-R(JNZ(arobasearobasesaaccvaaaax));
-R(POPAD);
-RET;
+	R(LODSB);
+	OUT(READDW(edx),READDBl(eax));
+	R(DEC(16,(READDW(ecx))));
+	R(JNZ(arobasearobasesaaccvaaaax));
+	R(POPAD);
+	RET;
 
 
-m.executionFinished = 1;
+	m.executionFinished = 1;
 moveToBackGround:
-return (m.executionFinished == 0);
+	return (m.executionFinished == 0);
 }
 void asm2C_printOffsets(unsigned int offset) {
-FILE * file;
-file=fopen("./memoryMap.log", "w");
-fprintf(file, "xox %x (from beg RW) %x:pal_jeu\n",(unsigned int) offsetof(struct Mem,pal_jeu)-offset,(unsigned int) offsetof(struct Mem,pal_jeu));
-fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
-fprintf(file, "xox %x (from beg RW) %x:dummy2\n",(unsigned int) offsetof(struct Mem,dummy2)-offset,(unsigned int) offsetof(struct Mem,dummy2));
-fprintf(file, "xox %x (from beg RW) %x:dummy3\n",(unsigned int) offsetof(struct Mem,dummy3)-offset,(unsigned int) offsetof(struct Mem,dummy3));
-fprintf(file, "xox %x (from beg RW) %x:dummy4\n",(unsigned int) offsetof(struct Mem,dummy4)-offset,(unsigned int) offsetof(struct Mem,dummy4));
-fprintf(file, "xox %x (from beg RW) %x:dummy5\n",(unsigned int) offsetof(struct Mem,dummy5)-offset,(unsigned int) offsetof(struct Mem,dummy5));
-fprintf(file, "xox %x (from beg RW) %x:dummy6\n",(unsigned int) offsetof(struct Mem,dummy6)-offset,(unsigned int) offsetof(struct Mem,dummy6));
-fprintf(file, "xox %x (from beg RW) %x:dummy7\n",(unsigned int) offsetof(struct Mem,dummy7)-offset,(unsigned int) offsetof(struct Mem,dummy7));
-fprintf(file, "xox %x (from beg RW) %x:dummy8\n",(unsigned int) offsetof(struct Mem,dummy8)-offset,(unsigned int) offsetof(struct Mem,dummy8));
-fprintf(file, "xox %x (from beg RW) %x:dummy9\n",(unsigned int) offsetof(struct Mem,dummy9)-offset,(unsigned int) offsetof(struct Mem,dummy9));
-fprintf(file, "xox %x (from beg RW) %x:dummy10\n",(unsigned int) offsetof(struct Mem,dummy10)-offset,(unsigned int) offsetof(struct Mem,dummy10));
-fprintf(file, "xox %x (from beg RW) %x:dummy11\n",(unsigned int) offsetof(struct Mem,dummy11)-offset,(unsigned int) offsetof(struct Mem,dummy11));
-fprintf(file, "xox %x (from beg RW) %x:dummy12\n",(unsigned int) offsetof(struct Mem,dummy12)-offset,(unsigned int) offsetof(struct Mem,dummy12));
-fprintf(file, "xox %x (from beg RW) %x:dummy13\n",(unsigned int) offsetof(struct Mem,dummy13)-offset,(unsigned int) offsetof(struct Mem,dummy13));
-fprintf(file, "xox %x (from beg RW) %x:dummy14\n",(unsigned int) offsetof(struct Mem,dummy14)-offset,(unsigned int) offsetof(struct Mem,dummy14));
-fprintf(file, "xox %x (from beg RW) %x:dummy15\n",(unsigned int) offsetof(struct Mem,dummy15)-offset,(unsigned int) offsetof(struct Mem,dummy15));
-fprintf(file, "xox %x (from beg RW) %x:dummy16\n",(unsigned int) offsetof(struct Mem,dummy16)-offset,(unsigned int) offsetof(struct Mem,dummy16));
-fprintf(file, "xox %x (from beg RW) %x:dummy17\n",(unsigned int) offsetof(struct Mem,dummy17)-offset,(unsigned int) offsetof(struct Mem,dummy17));
-fprintf(file, "xox %x (from beg RW) %x:dummy18\n",(unsigned int) offsetof(struct Mem,dummy18)-offset,(unsigned int) offsetof(struct Mem,dummy18));
-fprintf(file, "xox %x (from beg RW) %x:dummy19\n",(unsigned int) offsetof(struct Mem,dummy19)-offset,(unsigned int) offsetof(struct Mem,dummy19));
-fprintf(file, "xox %x (from beg RW) %x:dummy20\n",(unsigned int) offsetof(struct Mem,dummy20)-offset,(unsigned int) offsetof(struct Mem,dummy20));
-fprintf(file, "xox %x (from beg RW) %x:dummy21\n",(unsigned int) offsetof(struct Mem,dummy21)-offset,(unsigned int) offsetof(struct Mem,dummy21));
-fprintf(file, "xox %x (from beg RW) %x:dummy22\n",(unsigned int) offsetof(struct Mem,dummy22)-offset,(unsigned int) offsetof(struct Mem,dummy22));
-fprintf(file, "xox %x (from beg RW) %x:dummy23\n",(unsigned int) offsetof(struct Mem,dummy23)-offset,(unsigned int) offsetof(struct Mem,dummy23));
-fprintf(file, "xox %x (from beg RW) %x:dummy24\n",(unsigned int) offsetof(struct Mem,dummy24)-offset,(unsigned int) offsetof(struct Mem,dummy24));
-fprintf(file, "xox %x (from beg RW) %x:dummy25\n",(unsigned int) offsetof(struct Mem,dummy25)-offset,(unsigned int) offsetof(struct Mem,dummy25));
-fprintf(file, "xox %x (from beg RW) %x:dummy26\n",(unsigned int) offsetof(struct Mem,dummy26)-offset,(unsigned int) offsetof(struct Mem,dummy26));
-fprintf(file, "xox %x (from beg RW) %x:dummy27\n",(unsigned int) offsetof(struct Mem,dummy27)-offset,(unsigned int) offsetof(struct Mem,dummy27));
-fprintf(file, "xox %x (from beg RW) %x:dummy28\n",(unsigned int) offsetof(struct Mem,dummy28)-offset,(unsigned int) offsetof(struct Mem,dummy28));
-fprintf(file, "xox %x (from beg RW) %x:dummy29\n",(unsigned int) offsetof(struct Mem,dummy29)-offset,(unsigned int) offsetof(struct Mem,dummy29));
-fprintf(file, "xox %x (from beg RW) %x:dummy30\n",(unsigned int) offsetof(struct Mem,dummy30)-offset,(unsigned int) offsetof(struct Mem,dummy30));
-fprintf(file, "xox %x (from beg RW) %x:dummy31\n",(unsigned int) offsetof(struct Mem,dummy31)-offset,(unsigned int) offsetof(struct Mem,dummy31));
-fprintf(file, "xox %x (from beg RW) %x:dummy32\n",(unsigned int) offsetof(struct Mem,dummy32)-offset,(unsigned int) offsetof(struct Mem,dummy32));
-fprintf(file, "xox %x (from beg RW) %x:dummy33\n",(unsigned int) offsetof(struct Mem,dummy33)-offset,(unsigned int) offsetof(struct Mem,dummy33));
-fprintf(file, "xox %x (from beg RW) %x:dummy34\n",(unsigned int) offsetof(struct Mem,dummy34)-offset,(unsigned int) offsetof(struct Mem,dummy34));
-fprintf(file, "xox %x (from beg RW) %x:dummy35\n",(unsigned int) offsetof(struct Mem,dummy35)-offset,(unsigned int) offsetof(struct Mem,dummy35));
-fprintf(file, "xox %x (from beg RW) %x:dummy36\n",(unsigned int) offsetof(struct Mem,dummy36)-offset,(unsigned int) offsetof(struct Mem,dummy36));
-fprintf(file, "xox %x (from beg RW) %x:dummy37\n",(unsigned int) offsetof(struct Mem,dummy37)-offset,(unsigned int) offsetof(struct Mem,dummy37));
-fprintf(file, "xox %x (from beg RW) %x:dummy38\n",(unsigned int) offsetof(struct Mem,dummy38)-offset,(unsigned int) offsetof(struct Mem,dummy38));
-fprintf(file, "xox %x (from beg RW) %x:dummy39\n",(unsigned int) offsetof(struct Mem,dummy39)-offset,(unsigned int) offsetof(struct Mem,dummy39));
-fprintf(file, "xox %x (from beg RW) %x:dummy40\n",(unsigned int) offsetof(struct Mem,dummy40)-offset,(unsigned int) offsetof(struct Mem,dummy40));
-fprintf(file, "xox %x (from beg RW) %x:dummy41\n",(unsigned int) offsetof(struct Mem,dummy41)-offset,(unsigned int) offsetof(struct Mem,dummy41));
-fprintf(file, "xox %x (from beg RW) %x:dummy42\n",(unsigned int) offsetof(struct Mem,dummy42)-offset,(unsigned int) offsetof(struct Mem,dummy42));
-fprintf(file, "xox %x (from beg RW) %x:dummy43\n",(unsigned int) offsetof(struct Mem,dummy43)-offset,(unsigned int) offsetof(struct Mem,dummy43));
-fprintf(file, "xox %x (from beg RW) %x:dummy44\n",(unsigned int) offsetof(struct Mem,dummy44)-offset,(unsigned int) offsetof(struct Mem,dummy44));
-fprintf(file, "xox %x (from beg RW) %x:dummy45\n",(unsigned int) offsetof(struct Mem,dummy45)-offset,(unsigned int) offsetof(struct Mem,dummy45));
-fprintf(file, "xox %x (from beg RW) %x:dummy46\n",(unsigned int) offsetof(struct Mem,dummy46)-offset,(unsigned int) offsetof(struct Mem,dummy46));
-fprintf(file, "xox %x (from beg RW) %x:dummy47\n",(unsigned int) offsetof(struct Mem,dummy47)-offset,(unsigned int) offsetof(struct Mem,dummy47));
-fprintf(file, "xox %x (from beg RW) %x:dummy48\n",(unsigned int) offsetof(struct Mem,dummy48)-offset,(unsigned int) offsetof(struct Mem,dummy48));
+	FILE * file;
+	file=fopen("./memoryMap.log", "w");
+	fprintf(file, "xox %x (from beg RW) %x:pal_jeu\n",(unsigned int) offsetof(struct Mem,pal_jeu)-offset,(unsigned int) offsetof(struct Mem,pal_jeu));
+	fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
+	fprintf(file, "xox %x (from beg RW) %x:dummy2\n",(unsigned int) offsetof(struct Mem,dummy2)-offset,(unsigned int) offsetof(struct Mem,dummy2));
+	fprintf(file, "xox %x (from beg RW) %x:dummy3\n",(unsigned int) offsetof(struct Mem,dummy3)-offset,(unsigned int) offsetof(struct Mem,dummy3));
+	fprintf(file, "xox %x (from beg RW) %x:dummy4\n",(unsigned int) offsetof(struct Mem,dummy4)-offset,(unsigned int) offsetof(struct Mem,dummy4));
+	fprintf(file, "xox %x (from beg RW) %x:dummy5\n",(unsigned int) offsetof(struct Mem,dummy5)-offset,(unsigned int) offsetof(struct Mem,dummy5));
+	fprintf(file, "xox %x (from beg RW) %x:dummy6\n",(unsigned int) offsetof(struct Mem,dummy6)-offset,(unsigned int) offsetof(struct Mem,dummy6));
+	fprintf(file, "xox %x (from beg RW) %x:dummy7\n",(unsigned int) offsetof(struct Mem,dummy7)-offset,(unsigned int) offsetof(struct Mem,dummy7));
+	fprintf(file, "xox %x (from beg RW) %x:dummy8\n",(unsigned int) offsetof(struct Mem,dummy8)-offset,(unsigned int) offsetof(struct Mem,dummy8));
+	fprintf(file, "xox %x (from beg RW) %x:dummy9\n",(unsigned int) offsetof(struct Mem,dummy9)-offset,(unsigned int) offsetof(struct Mem,dummy9));
+	fprintf(file, "xox %x (from beg RW) %x:dummy10\n",(unsigned int) offsetof(struct Mem,dummy10)-offset,(unsigned int) offsetof(struct Mem,dummy10));
+	fprintf(file, "xox %x (from beg RW) %x:dummy11\n",(unsigned int) offsetof(struct Mem,dummy11)-offset,(unsigned int) offsetof(struct Mem,dummy11));
+	fprintf(file, "xox %x (from beg RW) %x:dummy12\n",(unsigned int) offsetof(struct Mem,dummy12)-offset,(unsigned int) offsetof(struct Mem,dummy12));
+	fprintf(file, "xox %x (from beg RW) %x:dummy13\n",(unsigned int) offsetof(struct Mem,dummy13)-offset,(unsigned int) offsetof(struct Mem,dummy13));
+	fprintf(file, "xox %x (from beg RW) %x:dummy14\n",(unsigned int) offsetof(struct Mem,dummy14)-offset,(unsigned int) offsetof(struct Mem,dummy14));
+	fprintf(file, "xox %x (from beg RW) %x:dummy15\n",(unsigned int) offsetof(struct Mem,dummy15)-offset,(unsigned int) offsetof(struct Mem,dummy15));
+	fprintf(file, "xox %x (from beg RW) %x:dummy16\n",(unsigned int) offsetof(struct Mem,dummy16)-offset,(unsigned int) offsetof(struct Mem,dummy16));
+	fprintf(file, "xox %x (from beg RW) %x:dummy17\n",(unsigned int) offsetof(struct Mem,dummy17)-offset,(unsigned int) offsetof(struct Mem,dummy17));
+	fprintf(file, "xox %x (from beg RW) %x:dummy18\n",(unsigned int) offsetof(struct Mem,dummy18)-offset,(unsigned int) offsetof(struct Mem,dummy18));
+	fprintf(file, "xox %x (from beg RW) %x:dummy19\n",(unsigned int) offsetof(struct Mem,dummy19)-offset,(unsigned int) offsetof(struct Mem,dummy19));
+	fprintf(file, "xox %x (from beg RW) %x:dummy20\n",(unsigned int) offsetof(struct Mem,dummy20)-offset,(unsigned int) offsetof(struct Mem,dummy20));
+	fprintf(file, "xox %x (from beg RW) %x:dummy21\n",(unsigned int) offsetof(struct Mem,dummy21)-offset,(unsigned int) offsetof(struct Mem,dummy21));
+	fprintf(file, "xox %x (from beg RW) %x:dummy22\n",(unsigned int) offsetof(struct Mem,dummy22)-offset,(unsigned int) offsetof(struct Mem,dummy22));
+	fprintf(file, "xox %x (from beg RW) %x:dummy23\n",(unsigned int) offsetof(struct Mem,dummy23)-offset,(unsigned int) offsetof(struct Mem,dummy23));
+	fprintf(file, "xox %x (from beg RW) %x:dummy24\n",(unsigned int) offsetof(struct Mem,dummy24)-offset,(unsigned int) offsetof(struct Mem,dummy24));
+	fprintf(file, "xox %x (from beg RW) %x:dummy25\n",(unsigned int) offsetof(struct Mem,dummy25)-offset,(unsigned int) offsetof(struct Mem,dummy25));
+	fprintf(file, "xox %x (from beg RW) %x:dummy26\n",(unsigned int) offsetof(struct Mem,dummy26)-offset,(unsigned int) offsetof(struct Mem,dummy26));
+	fprintf(file, "xox %x (from beg RW) %x:dummy27\n",(unsigned int) offsetof(struct Mem,dummy27)-offset,(unsigned int) offsetof(struct Mem,dummy27));
+	fprintf(file, "xox %x (from beg RW) %x:dummy28\n",(unsigned int) offsetof(struct Mem,dummy28)-offset,(unsigned int) offsetof(struct Mem,dummy28));
+	fprintf(file, "xox %x (from beg RW) %x:dummy29\n",(unsigned int) offsetof(struct Mem,dummy29)-offset,(unsigned int) offsetof(struct Mem,dummy29));
+	fprintf(file, "xox %x (from beg RW) %x:dummy30\n",(unsigned int) offsetof(struct Mem,dummy30)-offset,(unsigned int) offsetof(struct Mem,dummy30));
+	fprintf(file, "xox %x (from beg RW) %x:dummy31\n",(unsigned int) offsetof(struct Mem,dummy31)-offset,(unsigned int) offsetof(struct Mem,dummy31));
+	fprintf(file, "xox %x (from beg RW) %x:dummy32\n",(unsigned int) offsetof(struct Mem,dummy32)-offset,(unsigned int) offsetof(struct Mem,dummy32));
+	fprintf(file, "xox %x (from beg RW) %x:dummy33\n",(unsigned int) offsetof(struct Mem,dummy33)-offset,(unsigned int) offsetof(struct Mem,dummy33));
+	fprintf(file, "xox %x (from beg RW) %x:dummy34\n",(unsigned int) offsetof(struct Mem,dummy34)-offset,(unsigned int) offsetof(struct Mem,dummy34));
+	fprintf(file, "xox %x (from beg RW) %x:dummy35\n",(unsigned int) offsetof(struct Mem,dummy35)-offset,(unsigned int) offsetof(struct Mem,dummy35));
+	fprintf(file, "xox %x (from beg RW) %x:dummy36\n",(unsigned int) offsetof(struct Mem,dummy36)-offset,(unsigned int) offsetof(struct Mem,dummy36));
+	fprintf(file, "xox %x (from beg RW) %x:dummy37\n",(unsigned int) offsetof(struct Mem,dummy37)-offset,(unsigned int) offsetof(struct Mem,dummy37));
+	fprintf(file, "xox %x (from beg RW) %x:dummy38\n",(unsigned int) offsetof(struct Mem,dummy38)-offset,(unsigned int) offsetof(struct Mem,dummy38));
+	fprintf(file, "xox %x (from beg RW) %x:dummy39\n",(unsigned int) offsetof(struct Mem,dummy39)-offset,(unsigned int) offsetof(struct Mem,dummy39));
+	fprintf(file, "xox %x (from beg RW) %x:dummy40\n",(unsigned int) offsetof(struct Mem,dummy40)-offset,(unsigned int) offsetof(struct Mem,dummy40));
+	fprintf(file, "xox %x (from beg RW) %x:dummy41\n",(unsigned int) offsetof(struct Mem,dummy41)-offset,(unsigned int) offsetof(struct Mem,dummy41));
+	fprintf(file, "xox %x (from beg RW) %x:dummy42\n",(unsigned int) offsetof(struct Mem,dummy42)-offset,(unsigned int) offsetof(struct Mem,dummy42));
+	fprintf(file, "xox %x (from beg RW) %x:dummy43\n",(unsigned int) offsetof(struct Mem,dummy43)-offset,(unsigned int) offsetof(struct Mem,dummy43));
+	fprintf(file, "xox %x (from beg RW) %x:dummy44\n",(unsigned int) offsetof(struct Mem,dummy44)-offset,(unsigned int) offsetof(struct Mem,dummy44));
+	fprintf(file, "xox %x (from beg RW) %x:dummy45\n",(unsigned int) offsetof(struct Mem,dummy45)-offset,(unsigned int) offsetof(struct Mem,dummy45));
+	fprintf(file, "xox %x (from beg RW) %x:dummy46\n",(unsigned int) offsetof(struct Mem,dummy46)-offset,(unsigned int) offsetof(struct Mem,dummy46));
+	fprintf(file, "xox %x (from beg RW) %x:dummy47\n",(unsigned int) offsetof(struct Mem,dummy47)-offset,(unsigned int) offsetof(struct Mem,dummy47));
+	fprintf(file, "xox %x (from beg RW) %x:dummy48\n",(unsigned int) offsetof(struct Mem,dummy48)-offset,(unsigned int) offsetof(struct Mem,dummy48));
 
-fclose(file);
+	fclose(file);
 }
 
 FILE * logDebug=NULL;
 
 #define MAX_FMT_SIZE 1024
 void log_error(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_ERROR,"%s",argptr);
+	log_cb(RETRO_LOG_ERROR,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 void log_debug(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+#ifdef DEBUG
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-	printf("%s", argptr);
+	log_cb(RETRO_LOG_DEBUG,"%s",formatted_string);
 #else
-	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+#endif
 #endif
 }
 
 void log_info(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_INFO,"%s",argptr);
+	log_cb(RETRO_LOG_INFO,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 
 void log_debug2(const char *fmt, ...) {
 #if DEBUG==2
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
-    log_debug(formatted_string);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
+	log_debug(formatted_string);
 #endif
 }
 
@@ -393,6 +396,17 @@ int8_t asm2C_IN(int16_t address) {
 	}
 }
 
+bool is_little_endian_real_check() {
+	union
+	{
+		uint16_t x;
+		uint8_t y[2];
+	} u;
+
+	u.x = 1;
+	return u.y[0];
+}
+
 /**
  * is_little_endian:
  *
@@ -408,24 +422,23 @@ bool is_little_endian()
 #elif defined(MSB_FIRST)
 	return 0;
 #else
-	union
-	{
-		uint16_t x;
-		uint8_t y[2];
-	} u;
-
-	u.x = 1;
-	return u.y[0];
+	return is_little_endian_real_check();
 #endif
 }
+
 
 void asm2C_init() {
 	m.isLittle=is_little_endian();
 #ifdef MSB_FIRST
 	if (m.isLittle) {
 		log_error("Inconsistency: is_little_endian=true and MSB_FIRST defined.\n");
+		exit(1);
 	}
 #endif
+	if (m.isLittle!=is_little_endian_real_check()) {
+		log_error("Inconsistency in little/big endianess detection. Please check if the Makefile sets MSB_FIRST properly for this architecture.\n");
+		exit(1);
+	}
 	log_debug2("asm2C_init is_little_endian:%d\n",m.isLittle);
 }
 
@@ -788,8 +801,8 @@ void asm2C_INT(int a) {
 
 #ifdef INCLUDEMAIN
 int main() {
-asm2C_init();stackDump();while (program()) { }
-return m.exitCode;
+	asm2C_init(); stackDump(); while (program()) { }
+	return m.exitCode;
 }
 #endif
 

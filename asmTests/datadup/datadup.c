@@ -6,128 +6,131 @@
 #define testequ 1
 
 Memory m = {
-{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
-0,0,0,0,0,0, //flags
-0, //isLittle
-0, //exitCode
-{0}, //var0
-{5,5,5,5}, //var
-{0}, //var2
-{0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3}, //var3
-{0}, //dummy1
+	{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers
+	0,0,0,0,0,0, //flags
+	0, //isLittle
+	0, //exitCode
+	{0}, //var0
+	{5,5,5,5}, //var
+	{0}, //var2
+	{0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3,0,(testequ*2),(2*2),3}, //var3
+	{0}, //dummy1
 
-{0}, //vgaPalette
-1,{0}, //selectorsPointer+selectors
-0,{0}, //stackPointer+stack
-0, //heapPointer
-{0}, //heap
-{0},{0},{0}, NULL};
+	{0}, //vgaPalette
+	1,{0}, //selectorsPointer+selectors
+	0,{0}, //stackPointer+stack
+	0, //heapPointer
+	{0}, //heap
+	{0},{0},{0}, NULL
+};
 
 int program() {
-jmp_buf jmpbuffer;
-void * dest;
-void * src;
-int i;
+	jmp_buf jmpbuffer;
+	void * dest;
+	void * src;
+	int i;
 #ifdef INCLUDEMAIN
-dest=NULL;src=NULL;i=0; //to avoid a warning.
+	dest=NULL; src=NULL; i=0; //to avoid a warning.
 #endif
-if (m.executionFinished) goto moveToBackGround;
-if (m.jumpToBackGround) {
-m.jumpToBackGround = 0;
+	if (m.executionFinished) goto moveToBackGround;
+	if (m.jumpToBackGround) {
+		m.jumpToBackGround = 0;
 #ifdef MRBOOM
-if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
-if (m.nosetjmp==2) goto directjeu;
-if (m.nosetjmp==1) goto directmenu;
+		if (m.nosetjmp) m.stackPointer=0; // this an an hack to avoid setJmp in saved state.
+		if (m.nosetjmp==2) goto directjeu;
+		if (m.nosetjmp==1) goto directmenu;
 #endif
-RET;
-}
-R(CMP(8,*((db *) realAddress(offsetof(struct Mem,var), ds)),8,(db)5));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress(offsetof(struct Mem,var2), ds)),8,(db)0));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)+3), ds)),8,(db)5));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)+4), ds)),8,(db)0));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var2)-1), ds)),8,(db)5));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var0)+5), ds)),8,(db)0));
-R(JNE(failure));
-R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)-1), ds)),8,(db)0));
-R(JNE(failure));
-R(MOV(8,READDBl(eax),8,(db)0));
-R(JMP(exitlabel));
+		RET;
+	}
+	R(CMP(8,*((db *) realAddress(offsetof(struct Mem,var), ds)),8,(db)5));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress(offsetof(struct Mem,var2), ds)),8,(db)0));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)+3), ds)),8,(db)5));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)+4), ds)),8,(db)0));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var2)-1), ds)),8,(db)5));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var0)+5), ds)),8,(db)0));
+	R(JNE(failure));
+	R(CMP(8,*((db *) realAddress((offsetof(struct Mem,var)-1), ds)),8,(db)0));
+	R(JNE(failure));
+	R(MOV(8,READDBl(eax),8,(db)0));
+	R(JMP(exitlabel));
 failure:
-R(MOV(8,READDBl(eax),8,(db)1));
+	R(MOV(8,READDBl(eax),8,(db)1));
 exitlabel:
-R(MOV(8,READDBh(eax),8,(db)76));
-R(INT(33));
+	R(MOV(8,READDBh(eax),8,(db)76));
+	R(INT(33));
 
-m.executionFinished = 1;
+	m.executionFinished = 1;
 moveToBackGround:
-return (m.executionFinished == 0);
+	return (m.executionFinished == 0);
 }
 void asm2C_printOffsets(unsigned int offset) {
-FILE * file;
-file=fopen("./memoryMap.log", "w");
-fprintf(file, "xox %x (from beg RW) %x:var0\n",(unsigned int) offsetof(struct Mem,var0)-offset,(unsigned int) offsetof(struct Mem,var0));
-fprintf(file, "xox %x (from beg RW) %x:var\n",(unsigned int) offsetof(struct Mem,var)-offset,(unsigned int) offsetof(struct Mem,var));
-fprintf(file, "xox %x (from beg RW) %x:var2\n",(unsigned int) offsetof(struct Mem,var2)-offset,(unsigned int) offsetof(struct Mem,var2));
-fprintf(file, "xox %x (from beg RW) %x:var3\n",(unsigned int) offsetof(struct Mem,var3)-offset,(unsigned int) offsetof(struct Mem,var3));
-fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
+	FILE * file;
+	file=fopen("./memoryMap.log", "w");
+	fprintf(file, "xox %x (from beg RW) %x:var0\n",(unsigned int) offsetof(struct Mem,var0)-offset,(unsigned int) offsetof(struct Mem,var0));
+	fprintf(file, "xox %x (from beg RW) %x:var\n",(unsigned int) offsetof(struct Mem,var)-offset,(unsigned int) offsetof(struct Mem,var));
+	fprintf(file, "xox %x (from beg RW) %x:var2\n",(unsigned int) offsetof(struct Mem,var2)-offset,(unsigned int) offsetof(struct Mem,var2));
+	fprintf(file, "xox %x (from beg RW) %x:var3\n",(unsigned int) offsetof(struct Mem,var3)-offset,(unsigned int) offsetof(struct Mem,var3));
+	fprintf(file, "xox %x (from beg RW) %x:dummy1\n",(unsigned int) offsetof(struct Mem,dummy1)-offset,(unsigned int) offsetof(struct Mem,dummy1));
 
-fclose(file);
+	fclose(file);
 }
 
 FILE * logDebug=NULL;
 
 #define MAX_FMT_SIZE 1024
 void log_error(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_ERROR,"%s",argptr);
+	log_cb(RETRO_LOG_ERROR,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 void log_debug(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+#ifdef DEBUG
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-	printf("%s", argptr);
+	log_cb(RETRO_LOG_DEBUG,"%s",formatted_string);
 #else
-	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+#endif
 #endif
 }
 
 void log_info(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_INFO,"%s",argptr);
+	log_cb(RETRO_LOG_INFO,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 
 void log_debug2(const char *fmt, ...) {
 #if DEBUG==2
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
-    log_debug(formatted_string);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
+	log_debug(formatted_string);
 #endif
 }
 
@@ -263,6 +266,17 @@ int8_t asm2C_IN(int16_t address) {
 	}
 }
 
+bool is_little_endian_real_check() {
+	union
+	{
+		uint16_t x;
+		uint8_t y[2];
+	} u;
+
+	u.x = 1;
+	return u.y[0];
+}
+
 /**
  * is_little_endian:
  *
@@ -278,24 +292,23 @@ bool is_little_endian()
 #elif defined(MSB_FIRST)
 	return 0;
 #else
-	union
-	{
-		uint16_t x;
-		uint8_t y[2];
-	} u;
-
-	u.x = 1;
-	return u.y[0];
+	return is_little_endian_real_check();
 #endif
 }
+
 
 void asm2C_init() {
 	m.isLittle=is_little_endian();
 #ifdef MSB_FIRST
 	if (m.isLittle) {
 		log_error("Inconsistency: is_little_endian=true and MSB_FIRST defined.\n");
+		exit(1);
 	}
 #endif
+	if (m.isLittle!=is_little_endian_real_check()) {
+		log_error("Inconsistency in little/big endianess detection. Please check if the Makefile sets MSB_FIRST properly for this architecture.\n");
+		exit(1);
+	}
 	log_debug2("asm2C_init is_little_endian:%d\n",m.isLittle);
 }
 
@@ -658,8 +671,8 @@ void asm2C_INT(int a) {
 
 #ifdef INCLUDEMAIN
 int main() {
-asm2C_init();stackDump();while (program()) { }
-return m.exitCode;
+	asm2C_init(); stackDump(); while (program()) { }
+	return m.exitCode;
 }
 #endif
 

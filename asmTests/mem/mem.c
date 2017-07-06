@@ -127,51 +127,53 @@ FILE * logDebug=NULL;
 
 #define MAX_FMT_SIZE 1024
 void log_error(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_ERROR,"%s",argptr);
+	log_cb(RETRO_LOG_ERROR,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 void log_debug(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+#ifdef DEBUG
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-	printf("%s", argptr);
+	log_cb(RETRO_LOG_DEBUG,"%s",formatted_string);
 #else
-	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+#endif
 #endif
 }
 
 void log_info(const char *fmt, ...) {
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
 #ifdef __LIBRETRO__
-    log_cb(RETRO_LOG_INFO,"%s",argptr);
+	log_cb(RETRO_LOG_INFO,"%s",formatted_string);
 #else
-    if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
+	if (logDebug!=NULL) { fprintf(logDebug,"%s",formatted_string); } else { printf("%s",formatted_string); }
 #endif
 }
 
 void log_debug2(const char *fmt, ...) {
 #if DEBUG==2
-    char formatted_string[MAX_FMT_SIZE];
-    va_list argptr;
-    va_start(argptr,fmt);
-    vsprintf (formatted_string,fmt, argptr);
-    va_end(argptr);
-    log_debug(formatted_string);
+	char formatted_string[MAX_FMT_SIZE];
+	va_list argptr;
+	va_start(argptr,fmt);
+	vsprintf (formatted_string,fmt, argptr);
+	va_end(argptr);
+	log_debug(formatted_string);
 #endif
 }
 
@@ -307,6 +309,17 @@ int8_t asm2C_IN(int16_t address) {
 	}
 }
 
+bool is_little_endian_real_check() {
+	union
+	{
+		uint16_t x;
+		uint8_t y[2];
+	} u;
+
+	u.x = 1;
+	return u.y[0];
+}
+
 /**
  * is_little_endian:
  *
@@ -322,24 +335,23 @@ bool is_little_endian()
 #elif defined(MSB_FIRST)
 	return 0;
 #else
-	union
-	{
-		uint16_t x;
-		uint8_t y[2];
-	} u;
-
-	u.x = 1;
-	return u.y[0];
+	return is_little_endian_real_check();
 #endif
 }
+
 
 void asm2C_init() {
 	m.isLittle=is_little_endian();
 #ifdef MSB_FIRST
 	if (m.isLittle) {
 		log_error("Inconsistency: is_little_endian=true and MSB_FIRST defined.\n");
+		exit(1);
 	}
 #endif
+	if (m.isLittle!=is_little_endian_real_check()) {
+		log_error("Inconsistency in little/big endianess detection. Please check if the Makefile sets MSB_FIRST properly for this architecture.\n");
+		exit(1);
+	}
 	log_debug2("asm2C_init is_little_endian:%d\n",m.isLittle);
 }
 
