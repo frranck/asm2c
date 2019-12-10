@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Expression",
+        "repositoryURL": "https://github.com/frranck/Expression",
+        "state": {
+          "branch": null,
+          "revision": "78b7aa46d4d632cc16aa47cf26f90515288d4461",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "Regex",
+        "repositoryURL": "https://github.com/crossroadlabs/Regex.git",
+        "state": {
+          "branch": null,
+          "revision": "68cf0d23bcac203a9caa86cc2530971229760916",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

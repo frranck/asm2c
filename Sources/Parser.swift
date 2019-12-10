@@ -279,7 +279,7 @@ class Parser {
         let stringFound = value.substring(with: myRange)
         for code in String(stringFound).utf8 { nodes.append(NumberNode(value: Int(code))) } ;
         
-        if (stringFound.characters.count != nodes.count) {
+        if (stringFound.count != nodes.count) {
             print("Warning string \(stringFound) size!=characters.count\n");
             let error="Error string <\(stringFound)> size!=characters.count prob a file encoding issue. (Did you converted your 8bit charset to utfxx?) \n";
             print(error)
@@ -290,7 +290,7 @@ class Parser {
 
     func parseDupDataContent() throws -> [ExprNode] {
         var nodes = [ExprNode]()
-        guard case Token.ParensOpen() = popCurrentToken() else {
+        guard case Token.ParensOpen = popCurrentToken() else {
             throw Errors.ExpectedToken(.ParensOpen)
         }
         let currentLine = currentLineNumber()

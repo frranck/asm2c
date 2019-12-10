@@ -27,7 +27,7 @@ class asm2c {
             let asmH = try String(contentsOf: asmHFile)
             let asmC = try String(contentsOf: asmCFile)
 
-            var heapInit = "{0}"
+            var heapInit = "{0},"
             if let urlHeap = URL(string: fileNameHeap) {
                 if let heapInitFile = try? String(contentsOf: urlHeap) {
                     heapInit=heapInitFile
@@ -91,6 +91,7 @@ class asm2c {
             )
             
             let printOffsets = multiline( "void asm2C_printOffsets(unsigned int offset) {",
+                                          "#ifdef DEBUG", 
                                           "FILE * file;",
                                           "file=fopen(\"./memoryMap.log\", \"w\");",
                                           dataPrimaryNodes.reduce("") {prev, lastline in
@@ -98,6 +99,7 @@ class asm2c {
                                             return "\(prev)fprintf(file, \"xox %x (from beg RW) %x:\(lastline.name)\\n\",(unsigned int) \(offsetString)-offset,(unsigned int) \(offsetString));\n"
                 },
                                           "fclose(file);",
+                                          "#endif",
                                           "}"
             )
             var showlines=false;
@@ -159,20 +161,10 @@ class asm2c {
                                          "#pragma GCC diagnostic ignored \"-Woverlength-strings\"",
                                          "#pragma GCC diagnostic ignored \"-Wunused-label\"",
                                           defines,
-                                         "Memory m = {", // jmpbuffer",
-                                         "{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers",
-                                         "0,0,0,0,0,0, //flags",
-                                         "0, //isLittle",
-                                         "0, //exitCode",
-                                         "\(memoryValue)",
-                                         "{0}, //vgaPalette",
-                                         "1,{0}, //selectorsPointer+selectors",
-                                         "0,{0}, //stackPointer+stack",
-                                         "0, //heapPointer",
-                                         "\(heapInit), //heap",
-                                         "{0},{0},{0}, NULL};\n",
-                                         "int program() {",
+                                         "void program() {",
+                                         "#ifndef FALCON",
                                          "jmp_buf jmpbuffer;",
+                                         "#endif",
                                          "void * dest;",
                                          "void * src;",
                                          "int i;",
@@ -192,14 +184,28 @@ class asm2c {
                                          code,
                                          "m.executionFinished = 1;",
                                          "moveToBackGround:",
-                                         "return (m.executionFinished == 0);",
+                                         "return;",
                                          "}",
+                                          "Memory m = {", // jmpbuffer",
+                                         "{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}},{{0}}, // registers",
+                                         "0,0,0,0,0,0, //flags",
+                                         "0, //isLittle",
+                                         "0, //exitCode",
+                                         "\(memoryValue)",
+                                         "{0}, //vgaPalette",
+                                         "0,", //vgaPaletteModified",
+                                         "1,{0}, //selectorsPointer+selectors",
+                                         "0,{0}, //stackPointer+stack",
+                                         "0, //heapPointer",
+                                         "\(heapInit) //heap",
+                                         "{0},{0},{0}, NULL, NULL, NULL};\n",
                                          printOffsets,
                                          asmC,
                                          fixBigEndian,
                                          "#ifdef INCLUDEMAIN",
                                          "int main() {",
-                                         "asm2C_init();stackDump();while (program()) { }",
+                                         "asm2C_init();stackDump();",
+                                         "while (m.executionFinished == 0) { program(); }",
                                          "return m.exitCode;",
                                          "}",
                                          "#endif",
@@ -246,6 +252,7 @@ class asm2c {
                                           "db exitCode;",
                                           memory,
                                           "db vgaPalette[256*3];",
+                                          "db vgaPaletteModified;",
                                           "dd selectorsPointer;",
                                           "dd selectors[NB_SELECTORS];",
                                           "dd stackPointer;",
@@ -256,10 +263,12 @@ class asm2c {
                                           "db vgaRam[VGARAM_SIZE];",
                                           "db vgaRamPaddingAfter[VGARAM_SIZE];",
                                           "char *path;",
+                                          "void *ramVideoPointer;",
+                                          "void *ramCopyPointer;",
                                           "} Memory;",
                                           "#pragma pack(pop)",
                                           "extern Memory m;",
-                                          "int program();",
+                                          "void program();",
                                           defineSizeOfs,
                                           "void fixBigEndian(void *data);",
                                           "#ifdef __cplusplus",

@@ -62,7 +62,7 @@ let tokenList: [(String, TokenGenerator, Int)] = [
     ("cs|ds|es|fs|gs|ss", { .Register16($0) }, 0),
     ("ah|bh|ch|dh", { .Register8h($0) }, 0),
     ("al|bl|cl|dl", { .Register8l($0) }, 0),
-    ("movsb|movsw|movsd|lodsb|lodsw|lodsd|stosb|stosw|stosd|rep|std|cld|sti|pushf|popf|nop|popad|pushad", { .Instruction0($0) }, 0),
+    ("movsb|movsw|movsd|lodsb|lodsw|lodsd|stosb|stosw|stosd|rep|std|cld|sti|pushf|popf|nop|ramesi|sprite_bn|sprite_bw|sprite_cloud|SPRITE_8_16|sprite_16_16|SPRITE_16_11|SPRITE_32_32|SPRITE_16_187|SPRITE_16_263|SPRITE_16_5|SPRITE_191_16|SPRITE_192_21|SPRITE_19_23|SPRITE_23_21|SPRITE_26_206|SPRITE_30_48|SPRITE_36_88|SPRITE_64_46|SPRITE_77_12|SPRITE_85_17|SPRITE_92_17|SPRITE_27_31|SPRITE_TIMEOUT|copyblock|rambuffer|popad|pushad|eax_x_320|edx_x_320", { .Instruction0($0) }, 0),
     ("dec|inc|pop|push|int|neg", { .Instruction1($0) }, 0),
     ("je|jne|jmp|jnz|jna|jz|loop|ja|jbe|jnbe|jb|jc|jnae|js|jns|jnb|jae|jnc", { .JumpInstruction($0) }, 0),
     ("cmp|movsx|movzx|mov|or|xor|and|add|rol|ror|sub|shl|shr|test|in|out|lea", { .Instruction2($0) }, 0),
@@ -127,18 +127,18 @@ public class Lexer {
         var tokens = [(Token,Int,String)]()
         var content = input
         
-        while (content.characters.count > 0) {
+        while (content.count > 0) {
             var matched = false
             
             let matchingTokensSorted = tokenList.filter { (content.match(regex: $0.0) != nil) }
-                .sorted(by: { (content.match(regex: $0.0)?.characters.count)! > (content.match(regex: $1.0)?.characters.count)! && ($0.2 >= $1.2)  })
+                .sorted(by: { (content.match(regex: $0.0)?.count)! > (content.match(regex: $1.0)?.count)! && ($0.2 >= $1.2)  })
             
             for (pattern, generator, _) in matchingTokensSorted {
                 if let m = content.match(regex: pattern) {
                     if let t = generator(m) {
                         tokens.append((t,line,input))
                     }
-                    let index = content.index(content.startIndex, offsetBy: m.characters.count)
+                    let index = content.index(content.startIndex, offsetBy: m.count)
                     content = content.substring(from: index)
                     matched = true
                     break
