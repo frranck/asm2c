@@ -26,6 +26,7 @@ let package = Package(
             path: "Sources"),
         .testTarget(
             name: "asm2cTests",
-            dependencies: ["asm2c"]),
+            dependencies: ["asm2c"],
+            path: "asmTests"),
     ]
 )
