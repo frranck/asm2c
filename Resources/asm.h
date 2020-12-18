@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #ifdef __LIBRETRO__
+#include <retro_endianness.h>
 #ifndef FALCON
 #include <boolean.h>
 #endif
@@ -33,6 +34,37 @@ extern "C" {
 #define db    uint8_t
 #define dw    uint16_t
 #define dd    uint32_t
+
+#if defined(_MSC_VER)
+
+#pragma pack(push, 1)
+struct unaligned_dw {
+  dw value;
+};
+
+struct unaligned_dd {
+  dd value;
+};
+#pragma pack(pop)
+
+#else
+
+struct unaligned_dw {
+  dw value;
+} __attribute__ ((__packed__));
+
+struct unaligned_dd {
+  dd value;
+} __attribute__ ((__packed__));
+
+#endif
+
+typedef struct unaligned_dw unaligned_dw_t;
+typedef struct unaligned_dd unaligned_dd_t;
+
+#define read_dd(p) (((struct unaligned_dd *)(p))->value)
+
+#define read_dw(p) (((struct unaligned_dw *)(p))->value)
 
 #ifdef MSB_FIRST
 typedef struct dblReg
@@ -492,8 +524,9 @@ int8_t asm2C_IN(int16_t data);
 { \
 db * src = realAddress(m.esi.dd.val, ds); \
 db * dst = realAddress(m.edi.dd.val, es); \
-for (int y=0;y<yy;y++) { \
-for (int x=0;x<xx;x++) { \
+int x,y; \
+for (y=0;y<yy;y++) { \
+for (x=0;x<xx;x++) { \
   if (*src != 0) { \
      *dst = *src; \
   } \
@@ -503,20 +536,26 @@ for (int x=0;x<xx;x++) { \
 }
 
 #define SPRITE_WITH_BREAK(xx) \
-for (int x=0;x<xx;x++) { \
+{ \
+int x; \
+for (x=0;x<xx;x++) { \
   if (*src != 0) { \
      *dst = *src; \
   } \
   dst++;src++; \
-} dst+=320-xx;src+=320-xx;if (*src == 248) {break;} 
+} dst+=320-xx;src+=320-xx;if (*src == 248) {break;} \
+}
 
 #define SPRITE_WITH_BREAK_W(xx) \
-for (int x=0;x<xx;x++) { \
+{ \
+int x; \
+for (x=0;x<xx;x++) { \
   if (*src != 0) { \
      *dst = 255; \
   } \
   dst++;src++; \
-} dst+=320-xx;src+=320-xx;if (*src == 248) {break;} 
+} dst+=320-xx;src+=320-xx;if (*src == 248) {break;} \
+}
 
 #define SPRITE_BN \
 { \
@@ -524,16 +563,17 @@ dw yy = m.ebx.dw.val; \
 dw xx = m.ecx.dw.val; \
 db * src = realAddress(m.esi.dd.val, ds); \
 db * dst = realAddress(m.edi.dd.val, es); \
+int x,y; \
 switch(xx) { \
-   case 23: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(23); } break; \
-   case 26: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(26); } break; \
-   case 32: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(32); } break; \
-   case 38: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(38); } break; \
-   case 16: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(16); } break; \
-   case 17: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK(17); } break; \
+   case 23: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(23); } break; \
+   case 26: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(26); } break; \
+   case 32: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(32); } break; \
+   case 38: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(38); } break; \
+   case 16: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(16); } break; \
+   case 17: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK(17); } break; \
    default: \
-for (int y=0;y<yy;y++) { \
-for (int x=0;x<xx;x++) { \
+for (y=0;y<yy;y++) { \
+for (x=0;x<xx;x++) { \
   if (*src != 0) { \
      *dst = *src; \
   } \
@@ -549,16 +589,17 @@ dw yy = m.ebx.dw.val; \
 dw xx = m.ecx.dw.val; \
 db * src = realAddress(m.esi.dd.val, ds); \
 db * dst = realAddress(m.edi.dd.val, es); \
+int x,y; \
 switch(xx) { \
-   case 23: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(23); } break; \
-   case 26: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(26); } break; \
-   case 32: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(32); } break; \
-   case 38: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(38); } break; \
-   case 16: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(16); } break; \
-   case 17: for (int y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(17); } break; \
+   case 23: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(23); } break; \
+   case 26: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(26); } break; \
+   case 32: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(32); } break; \
+   case 38: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(38); } break; \
+   case 16: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(16); } break; \
+   case 17: for (y=0;y<yy;y++) { SPRITE_WITH_BREAK_W(17); } break; \
    default: \
-for (int y=0;y<yy;y++) { \
-for (int x=0;x<xx;x++) { \
+for (y=0;y<yy;y++) { \
+for (x=0;x<xx;x++) { \
   if (*src != 0) { \
      *dst = 255; \
   } \
@@ -573,8 +614,9 @@ for (int x=0;x<xx;x++) { \
 { \
 db * src = realAddress(m.esi.dd.val, ds); \
 db * dst = realAddress(m.edi.dd.val, es); \
-for (int y=0;y<22;y++) { \
-for (int x=0;x<48;x++) { \
+int x,y; \
+for (y=0;y<22;y++) { \
+for (x=0;x<48;x++) { \
   db s = *src; \
   db d = *dst; \
   if (d == 103) { \
@@ -611,11 +653,6 @@ for (int x=0;x<48;x++) { \
 #define SPRITE_92_17 SPRITE(92,17)
 #define SPRITE_27_31 SPRITE(27,31)
 
-#ifdef __LIBSDL2__
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_mixer.h>
-#endif
-
 #ifdef __LIBRETRO__
 #include "libretro.h"
 extern retro_log_printf_t log_cb;
@@ -634,7 +671,9 @@ void log_debug2(const char *fmt, ...);
     #define R(a)    a
 #endif
 
+#ifndef __LIBRETRO__
 bool is_little_endian();
+#endif
 
 #if defined(_MSC_VER)
 #define SWAP16    _byteswap_ushort

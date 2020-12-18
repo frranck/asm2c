@@ -270,7 +270,15 @@ public struct Instruction1Node: CustomStringConvertible {
             return "R(\(instruction)\(castOperand));\n"
         }
         if shouldPointExpression(expr: operand) {
-            castOperand = "*((\(sizeDirective) *) realAddress(\(operand), \(selector)))" //TOFIX
+            if sizeDirective == .dword {
+				castOperand = "read_dd(realAddress(\(operand), \(selector)))" //TOFIX
+			}
+			else if sizeDirective == .word {
+				castOperand = "read_dw(realAddress(\(operand), \(selector)))" //TOFIX
+			}
+			else {
+				castOperand = "*((\(sizeDirective) *) realAddress(\(operand), \(selector)))" //TOFIX
+			}
         }
         let s = "\(instruction.uppercased())(\(sizeDirective.nbBits),\(castOperand))"
         return "R(\(s));\n";
@@ -299,11 +307,27 @@ public struct Instruction2Node: CustomStringConvertible {
         }
         
         if shouldPointExpression(expr: lhs) {
-           castLhs = "*((\(sizeDirectiveDest) *) realAddress(\(lhs), \(selector)))"
+            if sizeDirectiveDest == .dword {
+				castLhs = "read_dd(realAddress(\(lhs), \(selector)))"
+			}
+			else if sizeDirectiveDest == .word {
+				castLhs = "read_dw(realAddress(\(lhs), \(selector)))"
+			}
+			else {
+				castLhs = "*((\(sizeDirectiveDest) *) realAddress(\(lhs), \(selector)))"
+			}
         }
         switch (rhs) {
         case is BraquetNode:
-            castRhs = "*((\(sizeDirectiveSource) *) realAddress(\(rhs), \(selector)))"
+            if sizeDirectiveSource == .dword {
+				castRhs = "read_dd(realAddress(\(rhs), \(selector)))"
+			}
+			else if sizeDirectiveSource == .word {
+				castRhs = "read_dw(realAddress(\(rhs), \(selector)))"
+			}
+			else {
+				castRhs = "*((\(sizeDirectiveSource) *) realAddress(\(rhs), \(selector)))"
+			}
         case is OffsetNode:
             castRhs = "(\(rhs))"
             if let lhs = lhs as? RegisterNode {
@@ -311,7 +335,15 @@ public struct Instruction2Node: CustomStringConvertible {
             }
         default:
             if shouldPointExpression(expr: rhs) {
-                castRhs = "*((\(sizeDirectiveDest) *) realAddress(\(rhs), \(selector)))"
+				if sizeDirectiveDest == .dword {
+					castRhs = "read_dd(realAddress(\(rhs), \(selector)))"
+				}
+				else if sizeDirectiveDest == .word {
+					castRhs = "read_dw(realAddress(\(rhs), \(selector)))"
+				}
+				else {
+					castRhs = "*((\(sizeDirectiveDest) *) realAddress(\(rhs), \(selector)))"
+				}
             } else {
                 castRhs = "(\(sizeDirectiveSource))\(rhs)"
             }
