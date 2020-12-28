@@ -259,7 +259,7 @@ bool is_little_endian_real_check()
    u.x = 1;
    return(u.y[0]);
 }
-
+#ifndef __LIBRETRO__
 /**
  * is_little_endian:
  *
@@ -278,6 +278,7 @@ bool is_little_endian()
    return(is_little_endian_real_check());
 #endif
 }
+#endif
 
 void asm2C_init()
 {
