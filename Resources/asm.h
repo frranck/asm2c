@@ -484,10 +484,10 @@ typedef union registry16Bits
 #define CLD    m.DF = 0
 #define STD    m.DF = 1
 
-void stackDump();
+void stackDump(void);
 void hexDump(void *addr, int len);
 void asm2C_INT(int a);
-void asm2C_init();
+void asm2C_init(void);
 void asm2C_printOffsets(unsigned int offset);
 
 // directjeu nosetjmp,2
@@ -672,7 +672,7 @@ void log_debug2(const char *fmt, ...);
 #endif
 
 #ifndef __LIBRETRO__
-bool is_little_endian();
+bool is_little_endian(void);
 #endif
 
 #if defined(_MSC_VER)

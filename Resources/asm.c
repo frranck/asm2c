@@ -80,7 +80,7 @@ void log_debug2(const char *fmt, ...)
 #endif
 }
 
-void checkIfVgaRamEmpty()
+void checkIfVgaRamEmpty(void)
 {
    int i;
    int vgaram_empty = 1;
@@ -96,7 +96,7 @@ void checkIfVgaRamEmpty()
    (void)vgaram_empty;
 }
 
-void stackDump()
+void stackDump(void)
 {
    log_debug("is_little_endian()=%d\n", m.isLittle);
    log_debug("sizeof(dd)=%zu\n", sizeof(dd));
@@ -248,7 +248,7 @@ int8_t asm2C_IN(int16_t address)
    }
 }
 
-bool is_little_endian_real_check()
+bool is_little_endian_real_check(void)
 {
    union
    {
@@ -268,7 +268,7 @@ bool is_little_endian_real_check()
  * Returns: greater than 0 if little-endian,
  * otherwise big-endian.
  **/
-bool is_little_endian()
+bool is_little_endian(void)
 {
 #if defined(__x86_64) || defined(__i386) || defined(_M_IX86) || defined(_M_X64)
    return(1);
@@ -280,7 +280,7 @@ bool is_little_endian()
 }
 #endif
 
-void asm2C_init()
+void asm2C_init(void)
 {
    m.isLittle = is_little_endian();
 #ifdef MSB_FIRST
@@ -355,14 +355,15 @@ void asm2C_INT(int a)
 
       case 0x3d:
       {
-         char fileName[1000];
+         #define FILENAME_SIZE 1000
+         char fileName[FILENAME_SIZE];
          if (m.path != NULL)
          {
-            sprintf(fileName, "%s/%s", m.path, (const char *)realAddress(m.edx.dd.val, ds));
+            snprintf(fileName, FILENAME_SIZE, "%s/%s", m.path, (const char *)realAddress(m.edx.dd.val, ds));
          }
          else
          {
-            sprintf(fileName, "%s", (const char *)realAddress(m.edx.dd.val, ds));
+            snprintf(fileName, FILENAME_SIZE, "%s", (const char *)realAddress(m.edx.dd.val, ds));
          }
          file = fopen(fileName, "rb");              //TOFIX, multiple files support
          log_debug2("Opening file %s -> %p\n", fileName, (void *)file);
