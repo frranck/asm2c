@@ -355,15 +355,24 @@ void asm2C_INT(int a)
 
       case 0x3d:
       {
-         #define FILENAME_SIZE 1000
+         #define FILENAME_SIZE 1000 //SKIP_ME
          char fileName[FILENAME_SIZE];
          if (m.path != NULL)
          {
+#ifdef __LIBRETRO__
+            sprintf(fileName, "%s/%s", m.path, (const char *)realAddress(m.edx.dd.val, ds));
+#else 
             snprintf(fileName, FILENAME_SIZE, "%s/%s", m.path, (const char *)realAddress(m.edx.dd.val, ds));
+#endif 
+
          }
          else
          {
+#ifdef __LIBRETRO__
+            sprintf(fileName, "%s", (const char *)realAddress(m.edx.dd.val, ds));
+#else
             snprintf(fileName, FILENAME_SIZE, "%s", (const char *)realAddress(m.edx.dd.val, ds));
+#endif
          }
          file = fopen(fileName, "rb");              //TOFIX, multiple files support
          log_debug2("Opening file %s -> %p\n", fileName, (void *)file);
